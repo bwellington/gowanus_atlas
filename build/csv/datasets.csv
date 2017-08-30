@@ -1,0 +1,10 @@
+layer_name,file,type
+watershed,watershedsketch.json,json
+slr,10in_clip_simplified.topojson,json
+slr,30in_clip_simplified.topojson,json
+slr,58in_clip_simplified.topojson,json
+slr,75in_clip_simplified.topojson,json
+cso,gowanus_cso_drainage_areas.geojson,json
+cleanup,cleanup.geojson,json
+zoning,gowanus_zoning.geojson,json
+land_use,pluto_zoning_small.geojson,json

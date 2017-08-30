@@ -1,0 +1,7 @@
+interview,layer_category,layer_name,label,source,notes
+person1,hydrology,watershed,Gowanus Canal Watershed,,
+person1,hydrology,slr,Projected Sea Level Rise,,
+person1|person2,hydrology,cso,Combined Sewer Overflow Areas,,
+person2,superfund,cleanup,Cleanup Plan,,
+person1|person2,built_environment,land_use,Land Use,,
+person2,built_environment,zoning,Zoning,,
