@@ -5,8 +5,7 @@ const containers = {
   outerContainer,
   mapContainer,
   getMapSize() {
-    const mapContainerClientRect = this.mapContainer.node().getBoundingClientRect();
-    return { width: mapContainerClientRect.width, height: mapContainerClientRect.height };
+    return { width: window.innerWidth, height: window.innerHeight };
   },
 };
 

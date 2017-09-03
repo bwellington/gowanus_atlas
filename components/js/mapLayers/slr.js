@@ -1,3 +1,4 @@
+import * as topojson from 'topojson-client';
 import MapOverlayLayer from '../visualization-components/mapOverlay/mapOverlayLayer';
 
 const slrLayer = new MapOverlayLayer()
@@ -5,30 +6,62 @@ const slrLayer = new MapOverlayLayer()
   .name('slr')
   .render('Vector')
   .addPropMethods(['dataPaths'])
-  .draw(function draw() {
-    // load data, process data, draw layers
-    this.drawLayers();
+  .draw(function loadData() {
+    const { dataPaths } = this.props();
+    // only load if data is undefined...
+    const q = d3.queue();
+    dataPaths.forEach((d) => {
+      q.defer(d3.json, d);
+    });
+    const text = {
+      '75in_clip': {
+        year: '2100s',
+        level: '75"',
+      },
+      '58in_clip': {
+        year: '2080s',
+        level: '58"',
+      },
+      '30in_clip': {
+        year: '2050s',
+        level: '30"',
+      },
+      '10in_clip': {
+        year: '2020s',
+        level: '10"',
+      },
+    };
+    q.awaitAll((error, results) => {
+      const cleanResults = results.map((d) => {
+        const layerName = Object.keys(d.objects)[0];
+        const layerGeo = topojson.feature(d, d.objects[layerName]);
+        layerGeo.layerProps = text[layerName];
+        return layerGeo;
+      });
+      this.data(cleanResults);
+      this.drawLayers();
+    });
     return this;
   });
 
 slrLayer.drawLayers = function drawLayers() {
-  const { group, key, data } = this.properties();
+  const { group, name, data, refreshMap } = this.props();
   // tooltip.pane(pane);
-  group.selectAll(`${key}`)
+  group.selectAll(`.${name}`)
     .data(data)
     .enter()
     .append('g')
     .attrs({
-      class: (d, i) => `${key} ${key}${i}`,
+      class: (d, i) => `${name} ${name}${i}`,
       opacity: 0,
     })
     .each(function animateLayers(d, i) {
-      d3.select(this).selectAll(`.${key}Layer`)
+      d3.select(this).selectAll(`.${name}Layer`)
         .data(d.features)
         .enter()
         .append('path')
         .attrs({
-          class: `${key}Layer${i}`,
+          class: `${name}Layer${i}`,
           fill: 'rgb(173,216,230)',
           'fill-opacity': 0.3,
           cursor: 'pointer',
@@ -37,7 +70,7 @@ slrLayer.drawLayers = function drawLayers() {
           // tooltip.position(d3.mouse(this))
           //   .text(d.properties.text)
           //   .draw();
-          d3.selectAll(`.${key}Layer${i}`)
+          d3.selectAll(`.${name}Layer${i}`)
             .transition()
             .duration(150)
             .attrs({
@@ -46,7 +79,7 @@ slrLayer.drawLayers = function drawLayers() {
         })
         .on('mouseout', () => {
           // tooltip.remove();
-          d3.selectAll(`.${key}Layer${i}`)
+          d3.selectAll(`.${name}Layer${i}`)
             .transition()
             .duration(250)
             .attrs({
@@ -64,6 +97,7 @@ slrLayer.drawLayers = function drawLayers() {
     .attrs({
       opacity: 1,
     });
+  refreshMap();
 };
 
 export default slrLayer;

@@ -1,16 +1,30 @@
 import MapOverlay from './visualization-components/mapOverlay/mapOverlay';
+import State from './visualization-components/state';
 import Map from './map';
+import Menu from './menu';
 import containers from './containers';
-
-// import slrLayer from './mapLayers/slr';
+import interviews from './interviews';
+import slrLayer from './mapLayers/slr';
 import watershedLayer from './mapLayers/watershed';
 
 require('../styles/leaflet.css');
 require('../styles/index.scss');
 
-const { mapContainer } = containers;
+const { mapContainer, outerContainer } = containers;
+
+const state = new State({
+  view: 'default',
+  interview: '',
+  size: containers.getMapSize(),
+});
 
 watershedLayer.dataPath('data/watershedsketch.json');
+slrLayer.dataPaths([
+  'data/75in_clip_simplified.topojson',
+  'data/58in_clip_simplified.topojson',
+  'data/30in_clip_simplified.topojson',
+  'data/10in_clip_simplified.topojson',
+]);
 
 
 const mapBounds = [[40.68330841818999, -74.00514352808408],
@@ -27,8 +41,14 @@ const map = Map({
 new MapOverlay()
   .coordinateBounds(svgBounds)
   .addVectorLayer(watershedLayer)
-  .selectedLayers(['watershed'])
+  .addVectorLayer(slrLayer)
+  .selectedLayers(['watershed', 'slr'])
   .addTo(map);
+
+new Menu()
+  .interviews(interviews)
+  .selection(outerContainer)
+  .draw();
 
 const draw = () => {
 
