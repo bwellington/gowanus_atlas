@@ -5,6 +5,7 @@ import Menu from './menu';
 import containers from './containers';
 import interviews from './interviews';
 import slrLayer from './mapLayers/slr';
+import cleanupLayer from './mapLayers/cleanup';
 import watershedLayer from './mapLayers/watershed';
 
 require('../styles/leaflet.css');
@@ -19,12 +20,15 @@ const state = new State({
 });
 
 watershedLayer.dataPath('data/watershedsketch.json');
+
 slrLayer.dataPaths([
   'data/75in_clip_simplified.topojson',
   'data/58in_clip_simplified.topojson',
   'data/30in_clip_simplified.topojson',
   'data/10in_clip_simplified.topojson',
 ]);
+
+cleanupLayer.dataPath('data/cleanup.geojson');
 
 
 const mapBounds = [[40.68330841818999, -74.00514352808408],
@@ -42,7 +46,8 @@ new MapOverlay()
   .coordinateBounds(svgBounds)
   .addVectorLayer(watershedLayer)
   .addVectorLayer(slrLayer)
-  .selectedLayers(['watershed', 'slr'])
+  .addVectorLayer(cleanupLayer)
+  .selectedLayers(['watershed', 'slr', 'cleanup'])
   .addTo(map);
 
 new Menu()
