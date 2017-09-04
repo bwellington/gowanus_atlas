@@ -129,4 +129,10 @@ cleanupLayer.drawLayer = function drawLayers() {
   refreshMap();
 };
 
+cleanupLayer.remove = function removeLayer() {
+  const { group, name } = this.props();
+
+  group.selectAll(`.${name}`).remove();
+};
+
 export default cleanupLayer;

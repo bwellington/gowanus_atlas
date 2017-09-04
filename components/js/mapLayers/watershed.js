@@ -20,14 +20,14 @@ const watershedLayer = new MapOverlayLayer()
   });
 
 watershedLayer.drawLayer = function drawLayer() {
-  const { data, group, refreshMap } = this.props();
+  const { data, group, refreshMap, name } = this.props();
   const geoJSON = topojson.feature(data, data.objects.watershedsketch);
   group.selectAll('.map__watershed-layer')
     .data(geoJSON.features)
     .enter()
     .append('path')
     .attrs({
-      class: 'map__watershed-layer',
+      class: `${name} map__watershed-layer`,
       fill: 'none',
       stroke: 'orange',
       'stroke-width': 1.5,
@@ -40,6 +40,12 @@ watershedLayer.drawLayer = function drawLayer() {
       opacity: 0.8,
     });
   refreshMap();
+};
+
+watershedLayer.remove = function removeLayer() {
+  const { group, name } = this.props();
+
+  group.selectAll(`.${name}`).remove();
 };
 
 export default watershedLayer;

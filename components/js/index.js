@@ -12,10 +12,10 @@ require('../styles/leaflet.css');
 require('../styles/index.scss');
 
 const { mapContainer, outerContainer } = containers;
-
+const defaultView = { type: 'default' };
 const state = new State({
-  view: 'default',
-  interview: '',
+  view: defaultView,
+  selectedLayers: [],
   size: containers.getMapSize(),
 });
 
@@ -42,22 +42,45 @@ const map = Map({
   container: mapContainer,
 });
 
-new MapOverlay()
+const mapOverlay = new MapOverlay()
   .coordinateBounds(svgBounds)
   .addVectorLayer(watershedLayer)
   .addVectorLayer(slrLayer)
   .addVectorLayer(cleanupLayer)
-  .selectedLayers(['watershed', 'slr', 'cleanup'])
+  .selectedLayers([])
   .addTo(map);
 
-new Menu()
+const menu = new Menu()
   .interviews(interviews)
   .selection(outerContainer)
+  .view(state.view())
+  .onInterviewClick((interview) => {
+    state.update({ view: { type: 'interview', interview } });
+  })
+  .onBackClick(() => {
+    state.update({ view: defaultView });
+  })
+  .onLayerClick((newLayers) => {
+    state.update({ selectedLayers: newLayers });
+  })
   .draw();
 
-const draw = () => {
-
-};
-
-draw();
+state.registerCallback({
+  view: function updateView() {
+    const { view } = this.props();
+    menu.view(view)
+      .update();
+    if (view.type === 'interview') {
+      state.update({ selectedLayers: view.interview.layers });
+    }
+    if (view.type === 'default') {
+      state.update({ selectedLayers: [] });
+    }
+  },
+  selectedLayers: function updateSelectedLayers() {
+    const { selectedLayers } = this.props();
+    mapOverlay.updateSelectedLayers(selectedLayers);
+    menu.updateMenuLayers();
+  },
+});
 
