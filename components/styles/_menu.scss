@@ -2,20 +2,46 @@
   position: absolute;
   right: 5vh;
   top: 5vh;
-  width: 300px;
-  height: 90vh;
-  background: rgba(150,150,150,1);
+  width: 272px;
+  height: 85vh;
+  background: $menu-fill--stories;
   z-index:950;
+  padding:15px;
 }
 
-// this stuff should be in menu__interview-button or something
-.menu__row, .menu__back-button {
-  cursor:pointer;
-}
 
 .menu__section {
   margin-bottom: 15px;
 }
+
+.menu__default__row {
+  cursor: pointer;
+}
+
+.menu__header {
+  font-size: $menu__header-size;
+  font-weight: bold;
+}
+
+
+.menu__name {
+  margin-top:5px;
+}
+
+.menu__name-title {
+  font-style: italic;
+}
+
+
+.menu__back-button-row {
+  text-align: right;
+}
+
+.menu__back-button {
+  cursor:pointer;
+}
+
+
 
 .menu__row:hover, .menu__back-button:hover {
   color:white;

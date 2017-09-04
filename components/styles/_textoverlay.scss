@@ -5,5 +5,17 @@
   z-index: 950;
   pointer-events: none;
   color: white;
+  
+  max-width: 500px;
+}
+
+.quote__text {
   font-size: 24px;
+}
+
+.quote__attribution {
+  font-size: 18px;
+  margin-left:50px;
+  margin-top:15px;
+  font-style: italic;
 }

@@ -40,11 +40,20 @@ class Menu extends ChainableObject {
       .data(interviews)
       .enter()
       .append('div')
-      .attr('class', 'menu__row')
+      .attr('class', 'menu__row menu__section menu__default__row')
       .on('click', onInterviewClick);
 
     rows.append('div')
+      .attr('class', 'menu__category menu__header')
+      .text(d => d.category);
+
+    rows.append('div')
+      .attr('class', 'menu__name')
       .text(d => d.fullName);
+
+    rows.append('div')
+      .attr('class', 'menu__name-title')
+      .text(d => d.title);
   }
   drawInterview() {
     const { container, view, onBackClick, onLayerClick } = this.props();
@@ -52,9 +61,11 @@ class Menu extends ChainableObject {
 
 
     container.append('div')
-      .attr('class', 'menu__section menu__back-button')
+      .attr('class', 'menu__section menu__back-button-row')
+      .append('span')
+      .attr('class', 'menu__back-button')
       .on('click', onBackClick)
-      .text('back');
+      .text('<< BACK');
 
     container
       .append('div')
@@ -68,13 +79,15 @@ class Menu extends ChainableObject {
 
     container
       .append('div')
-      .attr('class', 'menu__section')
+      .attr('class', 'menu__section  menu__header')
       .text('Map Layers');
 
     this._.menuLayers = container.selectAll('.menu__map-layer')
       .data(view.interview.layers)
       .enter()
       .append('div')
+      .attr('class', 'menu__map-layer-row')
+      .append('span')
       .attr('class', 'menu__map-layer')
       .text(d => d)
       .on('click', (d) => {

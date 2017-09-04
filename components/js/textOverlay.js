@@ -14,10 +14,23 @@ class TextOverlay extends ChainableObject {
   update() {
     const { selection, view } = this.props();
     selection.selectAll('.quote').remove();
-    selection
-      .append('div')
-      .attr('class', 'quote')
-      .text('"QUOTE FROM INTERVIEW THAT RELATES TO MAP"');
+    if (view.type === 'interview') {
+      const { interview } = view;
+
+      const quoteBox = selection
+        .append('div')
+        .attr('class', 'quote');
+
+      quoteBox
+        .append('div')
+        .attr('class', 'quote__text')
+        .text(`"${interview.quote}"`);
+
+      quoteBox
+        .append('div')
+        .attr('class', 'quote__attribution')
+        .text(`—${interview.fullName}`);
+    }
   }
 }
 
