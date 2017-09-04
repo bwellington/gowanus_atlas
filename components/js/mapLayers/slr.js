@@ -1,5 +1,6 @@
 import * as topojson from 'topojson-client';
 import MapOverlayLayer from '../visualization-components/mapOverlay/mapOverlayLayer';
+import Tooltip from '../visualization-components/tooltip';
 
 const slrLayer = new MapOverlayLayer()
   .type('Polygon')
@@ -7,8 +8,9 @@ const slrLayer = new MapOverlayLayer()
   .render('Vector')
   .addPropMethods(['dataPaths'])
   .draw(function loadData() {
-    const { dataPaths } = this.props();
-    // only load if data is undefined...
+    const { dataPaths, map } = this.props();
+    this._.tooltip = new Tooltip().selection(d3.select(map.getPanes().overlayPane));
+    console.log(map.getPanes().mapPane.style.transform);
     const q = d3.queue();
     dataPaths.forEach((d) => {
       q.defer(d3.json, d);
@@ -45,8 +47,9 @@ const slrLayer = new MapOverlayLayer()
   });
 
 slrLayer.drawLayers = function drawLayers() {
-  const { group, name, data, refreshMap } = this.props();
-  // tooltip.pane(pane);
+  const { group, name, data, refreshMap, tooltip } = this.props();
+
+
   group.selectAll(`.${name}`)
     .data(data)
     .enter()
@@ -66,10 +69,13 @@ slrLayer.drawLayers = function drawLayers() {
           'fill-opacity': 0.3,
           cursor: 'pointer',
         })
-        .on('mouseover', () => {
-          // tooltip.position(d3.mouse(this))
-          //   .text(d.properties.text)
-          //   .draw();
+        .on('mouseover', function mouseover() {
+          tooltip.position(d3.mouse(this))
+            .text([
+              ['Level: ', d.layerProps.level],
+              ['Year: ', d.layerProps.year],
+            ])
+            .draw();
           d3.selectAll(`.${name}Layer${i}`)
             .transition()
             .duration(150)
@@ -78,7 +84,7 @@ slrLayer.drawLayers = function drawLayers() {
             });
         })
         .on('mouseout', () => {
-          // tooltip.remove();
+          tooltip.remove();
           d3.selectAll(`.${name}Layer${i}`)
             .transition()
             .duration(250)
@@ -87,7 +93,7 @@ slrLayer.drawLayers = function drawLayers() {
             });
         })
         .on('mousemove', () => {
-          // tooltip.position(d3.mouse(this)).update();
+          tooltip.position(d3.mouse(this)).update();
         });
     })
     .transition()

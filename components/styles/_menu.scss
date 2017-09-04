@@ -8,8 +8,13 @@
   z-index:950;
 }
 
+// this stuff should be in menu__interview-button or something
 .menu__row, .menu__back-button {
   cursor:pointer;
+}
+
+.menu__section {
+  margin-bottom: 15px;
 }
 
 .menu__row:hover, .menu__back-button:hover {

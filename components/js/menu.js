@@ -52,17 +52,23 @@ class Menu extends ChainableObject {
 
 
     container.append('div')
-      .attr('class', 'menu__back-button')
+      .attr('class', 'menu__section menu__back-button')
       .on('click', onBackClick)
       .text('back');
 
     container
       .append('div')
-      .attr('class', 'menu__video')
+      .attr('class', 'menu__section menu__video')
       .html(`<iframe src="${view.interview.videoPath}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>`);
 
     container
       .append('div')
+      .attr('class', 'menu__section menu__interview-description')
+      .text(view.interview.description);
+
+    container
+      .append('div')
+      .attr('class', 'menu__section')
       .text('Map Layers');
 
     this._.menuLayers = container.selectAll('.menu__map-layer')

@@ -2,6 +2,7 @@ import MapOverlay from './visualization-components/mapOverlay/mapOverlay';
 import State from './visualization-components/state';
 import Map from './map';
 import Menu from './menu';
+import TextOverlay from './textOverlay';
 import containers from './containers';
 import interviews from './interviews';
 import slrLayer from './mapLayers/slr';
@@ -13,6 +14,7 @@ require('../styles/index.scss');
 
 const { mapContainer, outerContainer } = containers;
 const defaultView = { type: 'default' };
+
 const state = new State({
   view: defaultView,
   selectedLayers: [],
@@ -65,11 +67,23 @@ const menu = new Menu()
   })
   .draw();
 
+const textOverlay = new TextOverlay()
+  .selection(outerContainer)
+  .view(state.view())
+  .draw();
+
 state.registerCallback({
   view: function updateView() {
     const { view } = this.props();
-    menu.view(view)
+
+    menu
+      .view(view)
       .update();
+
+    textOverlay
+      .view(view)
+      .update();
+
     if (view.type === 'interview') {
       state.update({ selectedLayers: view.interview.layers });
     }
