@@ -3,6 +3,7 @@ import State from './visualization-components/state';
 import Map from './map';
 import Menu from './menu';
 import TextOverlay from './textOverlay';
+import Title from './title';
 import containers from './containers';
 import interviews from './interviews';
 import slrLayer from './mapLayers/slr';
@@ -71,6 +72,13 @@ const textOverlay = new TextOverlay()
   .selection(outerContainer)
   .view(state.view())
   .draw();
+
+new Title()
+  .selection(outerContainer)
+  .title('The Gowanus Atlas')
+  .subtitle('Mapping Brooklyn\'s Gowanus Canal')
+  .draw();
+
 
 state.registerCallback({
   view: function updateView() {
