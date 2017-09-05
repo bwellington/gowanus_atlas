@@ -1,8 +1,8 @@
 .title {
   position: absolute;
   color: $title-color;
-  left: 50px;
-  top: 25px;
+  left: 25px;
+  top: -25px;
   z-index:900;
   pointer-events: none;
   transform: rotate(90deg);
@@ -11,8 +11,10 @@
 
 .title__main {
   font-size: 60px;
+  font-weight:bold;
 }
 
 .title__sub {
   font-size: 24px;
+  // font-weight:bold;
 }
