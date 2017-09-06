@@ -21,7 +21,7 @@ const state = new State({
   selectedLayers: [],
   size: containers.getMapSize(),
 });
-
+console.log(watershedLayer);
 watershedLayer.dataPath('data/watershedsketch.json');
 
 slrLayer.dataPaths([
@@ -53,6 +53,7 @@ const mapOverlay = new MapOverlay()
   .selectedLayers([])
   .addTo(map);
 
+
 const menu = new Menu()
   .interviews(interviews)
   .selection(outerContainer)
@@ -68,16 +69,30 @@ const menu = new Menu()
   })
   .draw();
 
+
 const textOverlay = new TextOverlay()
   .selection(outerContainer)
   .view(state.view())
   .draw();
 
-new Title()
+const testTitle = new Title();
+
+testTitle.title.xxx = 50;
+testTitle._.ok = 4;
+const title = new Title()
   .selection(outerContainer)
   .title('The Gowanus Atlas')
   .subtitle('Mapping Brooklyn\'s Gowanus Canal')
   .draw();
+
+testTitle
+  .name('OTHER')
+  .selection(outerContainer)
+  .title('Theasdf Gowanus Atlas')
+  .subtitle('Mappinxxxxx\'s Gowanus Canal')
+  .draw();
+
+console.log(testTitle);
 
 
 state.registerCallback({

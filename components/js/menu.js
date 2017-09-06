@@ -1,18 +1,20 @@
-import ChainableObject from './visualization-components/chainableObject';
+import Props from './visualization-components/props';
 
-class Menu extends ChainableObject {
+const props = new Props([
+  'selection',
+  'position',
+  'interviews',
+  'status',
+  'onInterviewClick',
+  'onBackClick',
+  'onLayerClick',
+  'view',
+  'size',
+]);
+
+class Menu {
   constructor() {
-    super([
-      'selection',
-      'position',
-      'interviews',
-      'status',
-      'onInterviewClick',
-      'onBackClick',
-      'onLayerClick',
-      'view',
-      'size',
-    ]);
+    props.addTo(this);
   }
   draw() {
     const { selection } = this.props();

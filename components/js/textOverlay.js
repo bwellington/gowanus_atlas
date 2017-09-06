@@ -1,11 +1,12 @@
-import ChainableObject from './visualization-components/chainableObject';
+import Props from './visualization-components/props';
 
-class TextOverlay extends ChainableObject {
+const props = new Props([
+  'selection',
+  'view',
+]);
+class TextOverlay {
   constructor() {
-    super([
-      'selection',
-      'view',
-    ]);
+    props.addTo(this);
   }
   draw() {
     this.update();

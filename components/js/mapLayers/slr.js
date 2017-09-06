@@ -2,6 +2,7 @@ import * as topojson from 'topojson-client';
 import MapOverlayLayer from '../visualization-components/mapOverlay/mapOverlayLayer';
 import Tooltip from '../visualization-components/tooltip';
 
+
 const slrLayer = new MapOverlayLayer()
   .type('Polygon')
   .name('slr')

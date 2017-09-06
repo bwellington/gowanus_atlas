@@ -1,25 +1,32 @@
-import ChainableObject from './visualization-components/chainableObject';
+import Props from './visualization-components/props';
 
-class Title extends ChainableObject {
+const props = new Props([
+  'selection',
+  'title',
+  'subtitle',
+  'name',
+])
+  .setDefaultValues({ name: 'title' });
+
+
+class Title {
   constructor() {
-    super([
-      'selection',
-      'title',
-      'subtitle',
-    ]);
+    props.addTo(this);
   }
   draw() {
-    const { selection, title, subtitle } = this.props();
+    const { selection, name, title, subtitle } = this.props();
+
     const titleContainer = selection.append('div')
-      .attr('class', 'title');
+      .attr('class', `${name}`);
 
     titleContainer.append('div')
-      .attr('class', 'title__main')
+      .attr('class', `${name}__main`)
       .text(title);
 
     titleContainer.append('div')
-      .attr('class', 'title__sub')
+      .attr('class', `${name}__sub`)
       .text(subtitle);
+    return this;
   }
 }
 
