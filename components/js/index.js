@@ -6,12 +6,15 @@ import TextOverlay from './textOverlay';
 import Title from './title';
 import containers from './containers';
 import interviews from './interviews';
+import datasetList from './datasetList';
 import slrLayer from './mapLayers/slr';
 import cleanupLayer from './mapLayers/cleanup';
 import watershedLayer from './mapLayers/watershed';
 
 require('../styles/leaflet.css');
 require('../styles/index.scss');
+
+console.log(datasetList);
 
 const { mapContainer, outerContainer } = containers;
 const defaultView = { type: 'default' };
@@ -21,7 +24,7 @@ const state = new State({
   selectedLayers: [],
   size: containers.getMapSize(),
 });
-console.log(watershedLayer);
+
 watershedLayer.dataPath('data/watershedsketch.json');
 
 slrLayer.dataPaths([
@@ -84,15 +87,6 @@ const title = new Title()
   .title('The Gowanus Atlas')
   .subtitle('Mapping Brooklyn\'s Gowanus Canal')
   .draw();
-
-testTitle
-  .name('OTHER')
-  .selection(outerContainer)
-  .title('Theasdf Gowanus Atlas')
-  .subtitle('Mappinxxxxx\'s Gowanus Canal')
-  .draw();
-
-console.log(testTitle);
 
 
 state.registerCallback({
