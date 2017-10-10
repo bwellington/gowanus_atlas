@@ -6,7 +6,7 @@ import TextOverlay from './textOverlay';
 import Title from './title';
 import containers from './containers';
 import interviews from './interviews';
-import datasetList from './datasetList';
+import { mapDatasetList, Dataset } from './datasetList';
 import slrLayer from './mapLayers/slr';
 import cleanupLayer from './mapLayers/cleanup';
 import watershedLayer from './mapLayers/watershed';
@@ -14,7 +14,8 @@ import watershedLayer from './mapLayers/watershed';
 require('../styles/leaflet.css');
 require('../styles/index.scss');
 
-console.log(datasetList);
+console.log(mapDatasetList);
+console.log(Dataset.getDatasetByName(mapDatasetList, 'slr'));
 
 const { mapContainer, outerContainer } = containers;
 const defaultView = { type: 'default' };

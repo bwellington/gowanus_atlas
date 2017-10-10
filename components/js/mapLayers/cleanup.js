@@ -2,7 +2,7 @@ import MapOverlayLayer from '../visualization-components/mapOverlay/mapOverlayLa
 
 const cleanupLayer = new MapOverlayLayer()
   .type('Polygon')
-  .name('cleanup')
+  // .name('cleanup')
   .render('Vector')
   .addPropMethods(['dataPath'])
   .draw(function loadData() {
