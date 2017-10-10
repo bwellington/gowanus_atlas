@@ -4,7 +4,7 @@ import MapOverlayLayer from '../visualization-components/mapOverlay/mapOverlayLa
 
 const watershedLayer = new MapOverlayLayer()
   .type('Polygon')
-  .name('watershed')
+
   .render('Vector')
   .addPropMethods(['dataPath'])
   .draw(function loadData() {

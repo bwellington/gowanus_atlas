@@ -5,7 +5,6 @@ import Tooltip from '../visualization-components/tooltip';
 
 const slrLayer = new MapOverlayLayer()
   .type('Polygon')
-  .name('slr')
   .render('Vector')
   .addPropMethods(['dataPaths'])
   .draw(function loadData() {

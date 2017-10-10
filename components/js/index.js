@@ -14,9 +14,6 @@ import watershedLayer from './mapLayers/watershed';
 require('../styles/leaflet.css');
 require('../styles/index.scss');
 
-console.log(mapDatasetList);
-console.log(Dataset.getDatasetByName(mapDatasetList, 'slr'));
-
 const { mapContainer, outerContainer } = containers;
 const defaultView = { type: 'default' };
 
@@ -26,16 +23,22 @@ const state = new State({
   size: containers.getMapSize(),
 });
 
-watershedLayer.dataPath('data/watershedsketch.json');
 
-slrLayer.dataPaths([
-  'data/75in_clip_simplified.topojson',
-  'data/58in_clip_simplified.topojson',
-  'data/30in_clip_simplified.topojson',
-  'data/10in_clip_simplified.topojson',
-]);
+// move all of this into function
+const watershedDataInfo = Dataset.getDatasetByName(mapDatasetList, 'watershed');
+watershedLayer
+  .name(watershedDataInfo.name)
+  .dataPath(watershedDataInfo.dataPath);
 
-cleanupLayer.dataPath('data/cleanup.geojson');
+const slrDataInfo = Dataset.getDatasetByName(mapDatasetList, 'slr');
+slrLayer
+  .name(slrDataInfo.name)
+  .dataPaths(slrDataInfo.dataPath);
+
+const cleanupDataInfo = Dataset.getDatasetByName(mapDatasetList, 'cleanup');
+cleanupLayer
+  .name(cleanupDataInfo.name)
+  .dataPath(cleanupDataInfo.dataPath);
 
 
 const mapBounds = [[40.68330841818999, -74.00514352808408],
