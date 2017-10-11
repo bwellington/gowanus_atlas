@@ -12,6 +12,7 @@ import cleanupLayer from './mapLayers/cleanup';
 import watershedLayer from './mapLayers/watershed';
 import galleriesLayer from './mapLayers/galleries';
 import landUseLayer from './mapLayers/landuse';
+import zoningLayer from './mapLayers/zoning';
 import constants from './constants';
 
 require('../styles/leaflet.css');
@@ -42,6 +43,7 @@ addDataInfoToLayer({ layer: slrLayer, dataName: 'slr' });
 addDataInfoToLayer({ layer: cleanupLayer, dataName: 'cleanup' });
 addDataInfoToLayer({ layer: galleriesLayer, dataName: 'galleries' });
 addDataInfoToLayer({ layer: landUseLayer, dataName: 'landuse' });
+addDataInfoToLayer({ layer: zoningLayer, dataName: 'zoning' });
 
 
 const map = Map({
@@ -56,6 +58,7 @@ const mapOverlay = new MapOverlay()
   .addVectorLayer(cleanupLayer)
   .addVectorLayer(galleriesLayer)
   .addVectorLayer(landUseLayer)
+  .addVectorLayer(zoningLayer)
   .selectedLayers(['slr'])
   .addTo(map);
 

@@ -44,6 +44,11 @@ export const mapDatasetList = [
     'Land Use',
     'data/pluto_zoning_small.geojson',
   ),
+  new Dataset(
+    'zoning',
+    'Zoning',
+    'data/gowanus_zoning.geojson',
+  ),
 ];
 
 export default mapDatasetList;

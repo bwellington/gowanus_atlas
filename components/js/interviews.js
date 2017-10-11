@@ -40,7 +40,7 @@ const interviews = [
     imagePath: '',
     category: 'Equity',
     description: 'Michelle is the Executive Director of the Fifth Avenue Committee, a non-profit community organization in Brooklyn that develops and manages affordable housing and community facilities, creates economic opportunities and ensures access to economic stability, organizes residents and workers, offers student-centered adult education, and combats displacement caused by gentrification. She also serves on the New York City Planning Commission.',
-    layers: [],
+    layers: ['zoning'],
     quote: 'I think that the cleanup processes that are underway and the rezoning that will be formally launched have the ability to try to right some wrongs that have existed historically, but I think that only happens if we are conscious about righting those wrongs.',
   },
 ];
