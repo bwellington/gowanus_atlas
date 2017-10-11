@@ -1,7 +1,7 @@
 import MapOverlayLayer from '../visualization-components/mapOverlay/mapOverlayLayer';
 
-const galleriesLayer = new MapOverlayLayer()
-  .type('Point')
+const landUseLayer = new MapOverlayLayer()
+  .type('Polygon')
   .render('Vector')
   .addPropMethods(['dataPath'])
   .draw(function loadData() {
@@ -16,36 +16,24 @@ const galleriesLayer = new MapOverlayLayer()
     }
   });
 
-galleriesLayer.drawLayer = function drawLayer() {
+landUseLayer.drawLayer = function drawLayer() {
   const { data, name, group, refreshMap } = this.props();
-
-  const points = data.features.map((d) => {
-    const point = Object.assign({}, d);
-    point.lat = d.geometry.coordinates[1];
-    point.lon = d.geometry.coordinates[0];
-    return point;
-  });
-
-
   group.selectAll(`.${name}-layer`)
-    .data(points)
+    .data(data.features)
     .enter()
-    .append('circle')
+    .append('path')
     .attrs({
       class: `${name}-layer`,
-      // cx: d => map.latLngToLayerPoint(d).x,
-      // cy: d => map.latLngToLayerPoint(d).y,
-      fill: 'red',
-      r: 5,
+      fill: 'white',
     });
 
   refreshMap();
 };
 
-galleriesLayer.remove = function removeLayer() {
+landUseLayer.remove = function removeLayer() {
   const { group, name } = this.props();
-
   group.selectAll(`.${name}-layer`).remove();
 };
 
-export default galleriesLayer;
+export default landUseLayer;
+

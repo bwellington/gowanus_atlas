@@ -18,7 +18,7 @@ const interviews = [
     imagePath: '',
     category: 'Industry and Infrastructure',
     description: 'A property manager and developer, Paul founded Gowanus Alliance in 2010 with three friends, all second and third generation businessmen in the surrounding area. Paul promotes the retention of manufacturing, industrial, creative, and entertainment businesses in the Gowanus community; seeks a new location for the Kentile sign he rescued prior to its demolition; and advocates for new community playgrounds and parks.',
-    layers: ['cleanup'],
+    layers: ['landuse'],
     quote: 'We need more of the same. We need more space for the manufacturers to feel comfortable that they can grow into a 5 or 10 year plan.',
   },
   {
@@ -29,7 +29,7 @@ const interviews = [
     imagePath: '',
     category: 'Community',
     description: 'While working as Parent Coordinator at the Brooklyn School of Collaborative Studies, Tracey co-founded the Gowanus Houses Art Collective, an arts youth program for the complex where she is a long time resident. She sees the program as a bridge to the creative community in the surrounding wealthier neighborhoods, offering them a window into life in the public housing complex.',
-    layers: [],
+    layers: ['cleanup'],
     quote: 'For many years the canal reeked, the smell was just horrible, and in the summer it permeated, it was just sickening. And so now there’s this superfund, and there’s this big concern about the cleanup.',
   },
   {

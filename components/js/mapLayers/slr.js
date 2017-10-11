@@ -8,42 +8,45 @@ const slrLayer = new MapOverlayLayer()
   .render('Vector')
   .addPropMethods(['dataPath'])
   .draw(function loadData() {
-    const { dataPath, map } = this.props();
+    const { dataPath, map, data } = this.props();
     this._.tooltip = new Tooltip().selection(d3.select(map.getPanes().overlayPane));
     // console.log(map.getPanes().mapPane.style.transform);
-    const q = d3.queue();
-    dataPath.forEach((d) => {
-      q.defer(d3.json, d);
-    });
-    const text = {
-      '75in_clip': {
-        year: '2100s',
-        level: '75"',
-      },
-      '58in_clip': {
-        year: '2080s',
-        level: '58"',
-      },
-      '30in_clip': {
-        year: '2050s',
-        level: '30"',
-      },
-      '10in_clip': {
-        year: '2020s',
-        level: '10"',
-      },
-    };
-    q.awaitAll((error, results) => {
-      const cleanResults = results.map((d) => {
-        const layerName = Object.keys(d.objects)[0];
-        const layerGeo = topojson.feature(d, d.objects[layerName]);
-        layerGeo.layerProps = text[layerName];
-        return layerGeo;
+    if (data === undefined) {
+      const q = d3.queue();
+      dataPath.forEach((d) => {
+        q.defer(d3.json, d);
       });
-      this.data(cleanResults);
+      const text = {
+        '75in_clip': {
+          year: '2100s',
+          level: '75"',
+        },
+        '58in_clip': {
+          year: '2080s',
+          level: '58"',
+        },
+        '30in_clip': {
+          year: '2050s',
+          level: '30"',
+        },
+        '10in_clip': {
+          year: '2020s',
+          level: '10"',
+        },
+      };
+      q.awaitAll((error, results) => {
+        const cleanResults = results.map((d) => {
+          const layerName = Object.keys(d.objects)[0];
+          const layerGeo = topojson.feature(d, d.objects[layerName]);
+          layerGeo.layerProps = text[layerName];
+          return layerGeo;
+        });
+        this.data(cleanResults);
+        this.drawLayers();
+      });
+    } else {
       this.drawLayers();
-    });
-    return this;
+    }
   });
 
 slrLayer.drawLayers = function drawLayers() {

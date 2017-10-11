@@ -11,11 +11,14 @@ import slrLayer from './mapLayers/slr';
 import cleanupLayer from './mapLayers/cleanup';
 import watershedLayer from './mapLayers/watershed';
 import galleriesLayer from './mapLayers/galleries';
+import landUseLayer from './mapLayers/landuse';
+import constants from './constants';
 
 require('../styles/leaflet.css');
 require('../styles/index.scss');
 
 const { mapContainer, outerContainer } = containers;
+const { svgBounds, mapBounds } = constants;
 const defaultView = { type: 'default' };
 
 const state = new State({
@@ -38,13 +41,8 @@ addDataInfoToLayer({ layer: watershedLayer, dataName: 'watershed' });
 addDataInfoToLayer({ layer: slrLayer, dataName: 'slr' });
 addDataInfoToLayer({ layer: cleanupLayer, dataName: 'cleanup' });
 addDataInfoToLayer({ layer: galleriesLayer, dataName: 'galleries' });
+addDataInfoToLayer({ layer: landUseLayer, dataName: 'landuse' });
 
-
-const mapBounds = [[40.68330841818999, -74.00514352808408],
- [40.66438090633452, -73.98112238190814]];
-
-const svgBounds = [[40.720980, -74.049538],
-[40.652425, -73.939110]];
 
 const map = Map({
   bounds: mapBounds,
@@ -57,7 +55,8 @@ const mapOverlay = new MapOverlay()
   .addVectorLayer(slrLayer)
   .addVectorLayer(cleanupLayer)
   .addVectorLayer(galleriesLayer)
-  .selectedLayers([])
+  .addVectorLayer(landUseLayer)
+  .selectedLayers(['slr'])
   .addTo(map);
 
 

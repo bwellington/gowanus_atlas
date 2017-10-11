@@ -39,6 +39,11 @@ export const mapDatasetList = [
     'Art Galleries',
     'data/art_galleries.geojson',
   ),
+  new Dataset(
+    'landuse',
+    'Land Use',
+    'data/pluto_zoning_small.geojson',
+  ),
 ];
 
 export default mapDatasetList;
