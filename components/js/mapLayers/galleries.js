@@ -32,6 +32,7 @@ galleriesLayer.drawLayer = function drawLayer() {
     .enter()
     .append('circle')
     .attrs({
+      class: `${name}-layer`,
       cx: d => map.latLngToLayerPoint(d).x,
       cy: d => map.latLngToLayerPoint(d).y,
       fill: 'red',
