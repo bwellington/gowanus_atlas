@@ -37,7 +37,6 @@ class Menu {
   drawDefault() {
     const { container, interviews, onInterviewClick } = this.props();
 
-    console.log('interview menu items', interviews);
 
     const rows = container.selectAll('.menu__row')
       .data(interviews)
@@ -85,7 +84,7 @@ class Menu {
       .attr('class', 'menu__section  menu__header')
       .text('Map Layers');
 
-    console.log(view.interview.layers);
+
     this._.menuLayers = container.selectAll('.menu__map-layer')
       .data(view.interview.layers)
       .enter()

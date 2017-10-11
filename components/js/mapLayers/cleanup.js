@@ -17,7 +17,7 @@ const cleanupLayer = new MapOverlayLayer()
   });
 
 cleanupLayer.drawLayer = function drawLayers() {
-  const { group, name, pane, data, refreshMap } = this.props();
+  const { group, name, data, refreshMap } = this.props();
   // tooltip.pane(pane);
 
   const stages = ['1', '2', '3a', '3b'].map((d) => {
@@ -37,7 +37,7 @@ cleanupLayer.drawLayer = function drawLayers() {
   const animationSpeed = 750;
 
 
-  group.selectAll(`${name}`)
+  group.selectAll(`.${name}`)
     .data(stages)
     .enter()
     .append('g')
@@ -64,7 +64,7 @@ cleanupLayer.drawLayer = function drawLayers() {
           cursor: 'pointer',
         })
         .on('mouseover', function mouseover(dd) {
-          const text = [['Cleanup Stage: ', dd.properties.stage]];
+          // const text = [['Cleanup Stage: ', dd.properties.stage]];
           const transitionSpeed = 150;
           // tooltip.position(d3.mouse(this))
           //   .text(text)

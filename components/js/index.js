@@ -10,6 +10,7 @@ import { mapDatasetList, Dataset } from './datasetList';
 import slrLayer from './mapLayers/slr';
 import cleanupLayer from './mapLayers/cleanup';
 import watershedLayer from './mapLayers/watershed';
+import galleriesLayer from './mapLayers/galleries';
 
 require('../styles/leaflet.css');
 require('../styles/index.scss');
@@ -24,21 +25,19 @@ const state = new State({
 });
 
 
-// move all of this into function
-const watershedDataInfo = Dataset.getDatasetByName(mapDatasetList, 'watershed');
-watershedLayer
-  .name(watershedDataInfo.name)
-  .dataPath(watershedDataInfo.dataPath);
+const addDataInfoToLayer = ({ layer, dataName }) => {
+  const dataInfo = Dataset.getDatasetByName(mapDatasetList, dataName);
 
-const slrDataInfo = Dataset.getDatasetByName(mapDatasetList, 'slr');
-slrLayer
-  .name(slrDataInfo.name)
-  .dataPaths(slrDataInfo.dataPath);
+  layer
+    .name(dataInfo.name)
+    .dataPath(dataInfo.dataPath);
+};
 
-const cleanupDataInfo = Dataset.getDatasetByName(mapDatasetList, 'cleanup');
-cleanupLayer
-  .name(cleanupDataInfo.name)
-  .dataPath(cleanupDataInfo.dataPath);
+
+addDataInfoToLayer({ layer: watershedLayer, dataName: 'watershed' });
+addDataInfoToLayer({ layer: slrLayer, dataName: 'slr' });
+addDataInfoToLayer({ layer: cleanupLayer, dataName: 'cleanup' });
+addDataInfoToLayer({ layer: galleriesLayer, dataName: 'galleries' });
 
 
 const mapBounds = [[40.68330841818999, -74.00514352808408],
@@ -57,6 +56,7 @@ const mapOverlay = new MapOverlay()
   .addVectorLayer(watershedLayer)
   .addVectorLayer(slrLayer)
   .addVectorLayer(cleanupLayer)
+  .addVectorLayer(galleriesLayer)
   .selectedLayers([])
   .addTo(map);
 
@@ -86,7 +86,7 @@ const testTitle = new Title();
 
 testTitle.title.xxx = 50;
 testTitle._.ok = 4;
-const title = new Title()
+new Title()
   .selection(outerContainer)
   .title('The Gowanus Atlas')
   .subtitle('Mapping Brooklyn\'s Gowanus Canal')

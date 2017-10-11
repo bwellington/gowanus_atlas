@@ -12,7 +12,7 @@ export class Dataset {
   }
 }
 
-// make this an object instead and add methods to it????? Yes do that
+
 export const mapDatasetList = [
   new Dataset(
     'slr',
@@ -33,6 +33,11 @@ export const mapDatasetList = [
     'cleanup',
     'Cleanup Plan',
     'data/cleanup.geojson',
+  ),
+  new Dataset(
+    'galleries',
+    'Art Galleries',
+    'data/art_galleries.geojson',
   ),
 ];
 

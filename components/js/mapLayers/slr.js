@@ -6,13 +6,13 @@ import Tooltip from '../visualization-components/tooltip';
 const slrLayer = new MapOverlayLayer()
   .type('Polygon')
   .render('Vector')
-  .addPropMethods(['dataPaths'])
+  .addPropMethods(['dataPath'])
   .draw(function loadData() {
-    const { dataPaths, map } = this.props();
+    const { dataPath, map } = this.props();
     this._.tooltip = new Tooltip().selection(d3.select(map.getPanes().overlayPane));
     // console.log(map.getPanes().mapPane.style.transform);
     const q = d3.queue();
-    dataPaths.forEach((d) => {
+    dataPath.forEach((d) => {
       q.defer(d3.json, d);
     });
     const text = {
