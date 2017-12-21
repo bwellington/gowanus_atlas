@@ -59,7 +59,7 @@ const mapOverlay = new MapOverlay()
   .addVectorLayer(galleriesLayer)
   .addVectorLayer(landUseLayer)
   .addVectorLayer(zoningLayer)
-  .selectedLayers(['slr'])
+  .selectedLayers([])
   .addTo(map);
 
 
@@ -76,7 +76,7 @@ const menu = new Menu()
   .onLayerClick((newLayers) => {
     state.update({ selectedLayers: newLayers });
   })
-  .draw();
+  .init();
 
 
 const textOverlay = new TextOverlay()
