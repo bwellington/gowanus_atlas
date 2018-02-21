@@ -1,0 +1,16 @@
+.galleries-layer {
+  fill: rgba(255, 165, 0, .8);
+}
+
+.galleries-layer:hover {
+  fill: rgba(255, 165, 0, 1);
+}
+
+.landuse-layer {
+  opacity: .8;
+  cursor: pointer;
+}
+
+.landuse-layer:hover {
+  opacity: 1;
+}

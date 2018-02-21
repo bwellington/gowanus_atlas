@@ -59,7 +59,7 @@ const mapOverlay = new MapOverlay()
   .addVectorLayer(galleriesLayer)
   .addVectorLayer(landUseLayer)
   .addVectorLayer(zoningLayer)
-  .selectedLayers(['cleanup', 'galleries'])
+  .selectedLayers(['galleries', 'watershed', 'landuse'])
   .addTo(map);
 
 

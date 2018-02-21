@@ -44,7 +44,6 @@ galleriesLayer.drawLayer = function drawLayer() {
       cursor: 'pointer',
       // cx: d => map.latLngToLayerPoint(d).x,
       // cy: d => map.latLngToLayerPoint(d).y,
-      fill: 'orange',
       r: 5,
     })
     .on('mouseover', (d) => {
