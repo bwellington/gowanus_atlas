@@ -1,4 +1,5 @@
 import MapOverlayLayer from '../visualization-components/mapOverlay/mapOverlayLayer';
+import Tooltip from '../visualization-components/tooltip';
 
 const landUseCodes = {
   '01': {
@@ -69,6 +70,7 @@ const landUseLayer = new MapOverlayLayer()
   .addPropMethods(['dataPath'])
   .draw(function loadData() {
     const { dataPath, data } = this.props();
+    this._.tooltip = new Tooltip().selection(d3.select('body'));
     if (data === undefined) {
       d3.json(dataPath, (loadedData) => {
         this._.data = cleanData(loadedData);
@@ -80,7 +82,7 @@ const landUseLayer = new MapOverlayLayer()
   });
 
 landUseLayer.drawLayer = function drawLayer() {
-  const { data, name, group, refreshMap } = this.props();
+  const { data, name, group, refreshMap, tooltip } = this.props();
   group.selectAll(`.${name}-layer`)
     .data(data)
     .enter()
@@ -88,6 +90,22 @@ landUseLayer.drawLayer = function drawLayer() {
     .attrs({
       class: `${name}-layer`,
       fill: d => d.properties.color,
+    })
+    .on('mouseover', (d) => {
+      tooltip
+        .position([d3.event.x + 10, d3.event.y + 10])
+        .text([
+          ['Land Use: ', d.properties.landUseText],
+        ])
+        .draw();
+    })
+    .on('mousemove', () => {
+      tooltip
+        .position([d3.event.x + 10, d3.event.y + 10])
+        .update();
+    })
+    .on('mouseout', () => {
+      tooltip.remove();
     });
 
   refreshMap();
