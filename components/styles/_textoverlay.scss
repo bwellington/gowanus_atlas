@@ -9,6 +9,12 @@
   max-width: 500px;
 }
 
+@media (max-width: 1200px) {
+  .quote{
+    left: 10vw;
+  }
+}
+
 .quote__text {
   font-size: 18px;
 }

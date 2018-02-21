@@ -37,7 +37,7 @@ export const mapDatasetList = [
   new Dataset(
     'galleries',
     'Art Galleries',
-    'data/art_galleries.geojson',
+    'data/art_galleries_clip.geojson',
   ),
   new Dataset(
     'landuse',

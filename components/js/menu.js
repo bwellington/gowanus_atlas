@@ -3,11 +3,28 @@ import Props from './visualization-components/privateProps';
 const privateProps = new WeakMap();
 
 const privateMethods = {
+  initMenu() {
+    const props = privateProps.get(this);
+    const { selection } = props;
+    const { drawButtons } = privateMethods;
+    props.container = selection.append('div')
+      .attr('class', 'menu__container');
+    // drawButtons.call(this);
+  },
+  drawButtons() {
+    const props = privateProps.get(this);
+    const { selection } = props;
+
+    selection.append('div')
+      .attr('class', 'menu__tab menu__tab--stories')
+      .append('span')
+      .attr('class', 'menu__tab-button menu__tab-button--stories')
+      .text('STORIES');
+  },
   drawDefault() {
     const props = privateProps.get(this);
     const { container, interviews, onInterviewClick } = props;
 
-    console.log(interviews);
     const rows = container.selectAll('.menu__row')
       .data(interviews)
       .enter()
@@ -36,11 +53,14 @@ const privateMethods = {
   drawInterview() {
     const props = privateProps.get(this);
     const { container, view, onBackClick, onLayerClick } = props;
+    const selectedInterview = view.interview;
+    console.log('view', selectedInterview);
+
     props.activeLayers = view.interview.layers;
 
 
     container.append('div')
-      .attr('class', 'menu__section menu__back-button-row')
+      .attr('class', 'menu__back-button-row')
       .append('span')
       .attr('class', 'menu__back-button')
       .on('click', onBackClick)
@@ -48,13 +68,18 @@ const privateMethods = {
 
     container
       .append('div')
+      .attr('class', 'menu__header')
+      .text(`${selectedInterview.fullName}, ${selectedInterview.title}`);
+
+    container
+      .append('div')
       .attr('class', 'menu__section menu__video')
-      .html(`<iframe src="${view.interview.videoPath}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>`);
+      .html(`<iframe src="${selectedInterview.videoPath}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>`);
 
     container
       .append('div')
       .attr('class', 'menu__section menu__interview-description')
-      .text(view.interview.description);
+      .text(selectedInterview.description);
 
     container
       .append('div')
@@ -63,7 +88,7 @@ const privateMethods = {
 
 
     props.menuLayers = container.selectAll('.menu__map-layer')
-      .data(view.interview.layers)
+      .data(selectedInterview.layers)
       .enter()
       .append('div')
       .attr('class', 'menu__map-layer-row')
@@ -110,9 +135,8 @@ class Menu {
   }
   init() {
     const props = privateProps.get(this);
-    const { selection } = props;
-    props.container = selection.append('div')
-      .attr('class', 'menu__container');
+    const { initMenu } = privateMethods;
+    initMenu.call(this);
     this.update();
     return this;
   }

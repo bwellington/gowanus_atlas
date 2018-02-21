@@ -8,8 +8,8 @@ const slrLayer = new MapOverlayLayer()
   .render('Vector')
   .addPropMethods(['dataPath'])
   .draw(function loadData() {
-    const { dataPath, map, data } = this.props();
-    this._.tooltip = new Tooltip().selection(d3.select(map.getPanes().overlayPane));
+    const { dataPath, data } = this.props();
+    this._.tooltip = new Tooltip().selection(d3.select('body'));
     // console.log(map.getPanes().mapPane.style.transform);
     if (data === undefined) {
       const q = d3.queue();
@@ -72,8 +72,8 @@ slrLayer.drawLayers = function drawLayers() {
           'fill-opacity': 0.3,
           cursor: 'pointer',
         })
-        .on('mouseover', function mouseover() {
-          tooltip.position(d3.mouse(this))
+        .on('mouseover', () => {
+          tooltip.position([d3.event.x + 10, d3.event.y + 10])
             .text([
               ['Level: ', d.layerProps.level],
               ['Year: ', d.layerProps.year],
@@ -96,7 +96,7 @@ slrLayer.drawLayers = function drawLayers() {
             });
         })
         .on('mousemove', () => {
-          tooltip.position(d3.mouse(this)).update();
+          tooltip.position([d3.event.x + 10, d3.event.y + 10]).update();
         });
     })
     .transition()
