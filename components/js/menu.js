@@ -105,12 +105,13 @@ const privateMethods = {
     const {
       container,
       onBackClick,
-      onLayerClick,
       selectedInterview,
       mapLayers,
     } = props;
 
-    console.log('view', selectedInterview);
+    const {
+      drawLayerButtons,
+    } = privateMethods;
 
 
     container.append('div')
@@ -140,22 +141,35 @@ const privateMethods = {
       .attr('class', 'menu__section  menu__header')
       .text('Map Layers');
 
+    const layers = selectedInterview
+      .layers.map(d => mapLayers.find(dd => dd.name === d));
 
-    props.menuLayers = container
+    const buttonContainer = container
       .append('div')
-      .attr('class', 'menu__map-layer-row')
+      .attr('class', 'menu__button-container');
+
+    drawLayerButtons
+      .call(this, {
+        layers,
+        buttonContainer,
+      });
+  },
+  drawLayerButtons({ layers, buttonContainer }) {
+    const props = privateProps.get(this);
+    const {
+      onLayerClick,
+    } = props;
+
+    props.menuLayers = buttonContainer
       .selectAll('.menu__map-layer')
-      .data(selectedInterview.layers)
+      .data(layers)
       .enter()
       .append('div')
       .on('click', (d) => {
-        onLayerClick(d);
+        onLayerClick(d.name);
       })
-      // .append('div')
-      // .attr('class', 'menu__map-layer-row')
-      // .append('span')
       .attr('class', 'menu__map-layer')
-      .text(d => mapLayers.find(dd => dd.name === d).fullName);
+      .text(d => d.fullName);
   },
   drawAllData() {
     const props = privateProps.get(this);
@@ -163,7 +177,17 @@ const privateMethods = {
       container,
       mapLayers,
     } = props;
-    console.log('draw all data', mapLayers);
+    const { drawLayerButtons } = privateMethods;
+
+    const buttonContainer = container
+      .append('div')
+      .attr('class', 'menu__button-container');
+
+    drawLayerButtons
+      .call(this, {
+        layers: mapLayers,
+        buttonContainer,
+      });
   },
 };
 
@@ -196,20 +220,20 @@ class Menu {
   }
   init() {
     const { initMenu } = privateMethods;
+    console.log('init menu');
     initMenu.call(this);
     this.update();
     return this;
   }
   update() {
     const props = privateProps.get(this);
-    const { view } = props;
+    const { view, container } = props;
     const {
       clearMenu,
       drawDefault,
       drawInterview,
       drawAllData,
     } = privateMethods;
-
 
     clearMenu.call(this);
     if (view === 'storiesList') {
@@ -219,12 +243,15 @@ class Menu {
     } else if (view === 'allData') {
       drawAllData.call(this);
     }
+    this.updateMenuLayers();
+    container.classed('menu__container--allData', view === 'allData');
   }
   updateMenuLayers() {
     const props = privateProps.get(this);
     const { menuLayers, selectedLayers } = props;
-    console.log('selected');
-    menuLayers.classed('menu__map-layer--active', d => selectedLayers.includes(d));
+    if (selectedLayers === undefined) return;
+
+    menuLayers.classed('menu__map-layer--active', d => selectedLayers.includes(d.name));
   }
 }
 
