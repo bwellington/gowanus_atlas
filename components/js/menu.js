@@ -6,20 +6,70 @@ const privateMethods = {
   initMenu() {
     const props = privateProps.get(this);
     const { selection } = props;
-    const { drawButtons } = privateMethods;
+    const { drawTabs } = privateMethods;
     props.container = selection.append('div')
       .attr('class', 'menu__container');
-    // drawButtons.call(this);
+    drawTabs.call(this);
   },
-  drawButtons() {
+  clearMenu() {
+    const { container } = privateProps.get(this);
+    container.selectAll('div').remove();
+  },
+  setTabAppearances() {
+    const {
+      storiesTab,
+      allDataTab,
+      view,
+    } = privateProps.get(this);
+    if (view === 'storiesList' || view === 'interview') {
+      storiesTab.attr('src', 'png/tabs-04.png');
+      allDataTab.attr('src', 'png/tabs-01.png');
+    } else if (view === 'allData') {
+      storiesTab.attr('src', 'png/tabs-03.png');
+      allDataTab.attr('src', 'png/tabs-02.png');
+    }
+  },
+  drawTabs() {
     const props = privateProps.get(this);
-    const { selection } = props;
+    const { selection, onTabClick } = props;
+    const { setTabAppearances } = privateMethods;
 
-    selection.append('div')
-      .attr('class', 'menu__tab menu__tab--stories')
-      .append('span')
-      .attr('class', 'menu__tab-button menu__tab-button--stories')
-      .text('STORIES');
+    props.storiesTab = selection.append('img')
+      .attrs({
+        class: 'menu__tab menu__tab--stories',
+      })
+      .on('mouseover', function storiesMouseover() {
+        d3.select(this).attr('src', 'png/tabs-04.png');
+      })
+      .on('mouseout', () => {
+        setTabAppearances.call(this);
+      })
+      .on('click', () => {
+        if (props.selectedInterview === undefined) {
+          onTabClick('storiesList');
+        } else {
+          onTabClick('interview');
+        }
+        setTabAppearances.call(this);
+      });
+
+    props.allDataTab = selection.append('img')
+      .attrs({
+        class: 'menu__tab menu__tab--allData',
+        src: 'png/tabs-01.png',
+      })
+      .on('mouseover', function allDataMouseover() {
+        d3.select(this).attr('src', 'png/tabs-02.png');
+      })
+      .on('mouseout', () => {
+        setTabAppearances.call(this);
+      })
+      .on('click', () => {
+        onTabClick('allData');
+        setTabAppearances.call(this);
+      });
+
+    setTabAppearances.call(this);
   },
   drawDefault() {
     const props = privateProps.get(this);
@@ -52,11 +102,16 @@ const privateMethods = {
   },
   drawInterview() {
     const props = privateProps.get(this);
-    const { container, view, onBackClick, onLayerClick } = props;
-    const selectedInterview = view.interview;
+    const {
+      container,
+      onBackClick,
+      onLayerClick,
+      selectedInterview,
+    } = props;
+
     console.log('view', selectedInterview);
 
-    props.activeLayers = view.interview.layers;
+    props.activeLayers = selectedInterview.layers;
 
 
     container.append('div')
@@ -110,26 +165,37 @@ const privateMethods = {
       });
     this.updateMenuLayers();
   },
+  drawAllData() {
+    const props = privateProps.get(this);
+    const {
+      container,
+    } = props;
+    console.log('draw all data');
+  },
 };
 
 const publicPropMethods = new Props({
   target: privateProps,
   fields: [
-    'selection',
     'position',
     'interviews',
     'status',
     'onInterviewClick',
     'onBackClick',
     'onLayerClick',
-    'view',
+    'onTabClick',
+    'selectedInterview',
+    'selection',
     'size',
+    'view',
   ],
 });
 
 class Menu {
   constructor() {
-    const defaultProps = {};
+    const defaultProps = {
+      tabSize: { width: 42, height: 317 },
+    };
     privateProps.set(this, defaultProps);
     publicPropMethods.addTo(Menu.prototype);
   }
@@ -142,15 +208,22 @@ class Menu {
   }
   update() {
     const props = privateProps.get(this);
-    const { view, container } = props;
-    const { drawDefault, drawInterview } = privateMethods;
-    container.selectAll('div').remove();
+    const { view } = props;
+    const {
+      clearMenu,
+      drawDefault,
+      drawInterview,
+      drawAllData,
+    } = privateMethods;
 
 
-    if (view.type === 'default') {
+    clearMenu.call(this);
+    if (view === 'storiesList') {
       drawDefault.call(this);
-    } else if (view.type === 'interview') {
+    } else if (view === 'interview') {
       drawInterview.call(this);
+    } else if (view === 'allData') {
+      drawAllData.call(this);
     }
   }
   updateMenuLayers() {

@@ -50,13 +50,10 @@ const landUseCodes = {
 
 
 const cleanData = (rawData) => {
-  console.log('raw lu', rawData);
   const cleanFeatures = rawData.features
   .filter(d => d.properties.LandUse !== null)
   .map((d) => {
     const cleanFeature = Object.assign({}, d);
-    // d.properties.LandUse
-    console.log(d.properties.LandUse);
     cleanFeature.properties.color = landUseCodes[d.properties.LandUse].color;
     cleanFeature.properties.landUseText = landUseCodes[d.properties.LandUse].text;
     return cleanFeature;

@@ -18,13 +18,24 @@ import constants from './constants';
 require('../styles/leaflet.css');
 require('../styles/index.scss');
 
+[
+  'png/tabs-01.png',
+  'png/tabs-02.png',
+  'png/tabs-03.png',
+  'png/tabs-04.png',
+].forEach((imgPath) => {
+  const img = new Image();
+  img.src = imgPath;
+});
+
 const { mapContainer, outerContainer } = containers;
 const { svgBounds, mapBounds } = constants;
-const defaultView = { type: 'default' };
 
 const state = new State({
-  view: defaultView,
+  view: 'storiesList',
+  tab: 'stories',
   selectedLayers: [],
+  selectedInterview: undefined,
   size: containers.getMapSize(),
 });
 
@@ -67,11 +78,18 @@ const menu = new Menu()
   .interviews(interviews)
   .selection(outerContainer)
   .view(state.view())
+  .selectedInterview(state.selectedInterview())
   .onInterviewClick((interview) => {
-    state.update({ view: { type: 'interview', interview } });
+    state.update({ selectedInterview: interview, view: 'interview' });
+    // state.update({ view: { type: 'interview', interview } });
   })
   .onBackClick(() => {
-    state.update({ view: defaultView });
+    state.update({ view: 'storiesList' });
+  })
+  .onTabClick((tab) => {
+    const currentView = state.view();
+    if (tab === currentView) return;
+    state.update({ view: tab });
   })
   .onLayerClick((newLayers) => {
     state.update({ selectedLayers: newLayers });
@@ -97,22 +115,24 @@ new Title()
 
 state.registerCallback({
   view: function updateView() {
-    const { view } = this.props();
+    const { view, selectedInterview } = this.props();
 
     menu
       .view(view)
+      .selectedInterview(selectedInterview)
       .update();
 
     textOverlay
       .view(view)
+      .selectedInterview(selectedInterview)
       .update();
 
-    if (view.type === 'interview') {
-      state.update({ selectedLayers: view.interview.layers });
+    if (view === 'interview') {
+      state.update({ selectedLayers: selectedInterview.layers });
     }
-    if (view.type === 'default') {
-      state.update({ selectedLayers: [] });
-    }
+    // if (view === 'default') {
+    //   state.update({ selectedLayers: [] });
+    // }
   },
   selectedLayers: function updateSelectedLayers() {
     const { selectedLayers } = this.props();

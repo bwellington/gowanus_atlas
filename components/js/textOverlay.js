@@ -1,6 +1,7 @@
 import Props from './visualization-components/props';
 
 const props = new Props([
+  'selectedInterview',
   'selection',
   'view',
 ]);
@@ -13,11 +14,13 @@ class TextOverlay {
     return this;
   }
   update() {
-    const { selection, view } = this.props();
+    const {
+      selection,
+      view,
+      selectedInterview,
+    } = this.props();
     selection.selectAll('.quote').remove();
-    if (view.type === 'interview') {
-      const { interview } = view;
-
+    if (view === 'interview') {
       const quoteBox = selection
         .append('div')
         .attr('class', 'quote');
@@ -25,12 +28,12 @@ class TextOverlay {
       quoteBox
         .append('div')
         .attr('class', 'quote__text')
-        .text(`"${interview.quote}"`);
+        .text(`"${selectedInterview.quote}"`);
 
       quoteBox
         .append('div')
         .attr('class', 'quote__attribution')
-        .text(`—${interview.fullName}`);
+        .text(`—${selectedInterview.fullName}`);
     }
   }
 }

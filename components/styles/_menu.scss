@@ -1,47 +1,76 @@
+$menu-right: 50px;
+$menu-top: 50px;
+// $tab-width: 42px;
+// $tab-height: 317px;
+$tab-width: 36px;
+$tab-height: 272px;
+$tab-top: $menu-top;
+$tab-right: $menu-right - $tab-width;
+
 .menu__container {
   position: absolute;
-  right: 50px;
-  top: 50px;
+  right: $menu-right;
+  top: $menu-top;
   width: 272px;
   height: 85vh;
   background: $title-color;
   z-index:950;
   padding:15px;
-  border-radius: 10px;
+  // border-radius: 10px;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  // border-top-right-radius: 6px;
 }
 
 .menu__tab {
-  font-size: 25px;
-  font-weight: bold;
-  z-index: 1900;
-  transform: rotate(90deg);
-  transform-origin: top left;
   position: absolute;
-  right: -125px;
-}
-
-.menu__tab--stories {
-  top: 50px;
-}
-.menu__tab--alldata {
-  top: 200px;
-}
-
-.menu__tab-button {
-  background: $title-color;
-  color: black;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-  padding-left: 20px;
-  padding-right: 20px;
-  padding-top: 5px;
-  padding-bottom: 15px;
+  z-index: 925;
+  width: $tab-width;
+  height: $tab-height;
   cursor: pointer;
 }
 
-.menu__tab-button:hover {
-  color: white;
+.menu__tab--stories {
+  right: $tab-right;
+  top: $tab-top;
 }
+
+.menu__tab--allData {
+  right: $tab-right;
+  top: $tab-top + $tab-height;
+}
+
+// .menu__tab {
+//   font-size: 25px;
+//   font-weight: bold;
+//   z-index: 1900;
+//   transform: rotate(90deg);
+//   transform-origin: top left;
+//   position: absolute;
+//   right: -125px;
+// }
+
+
+// .menu__tab--alldata {
+//   top: 200px;
+// }
+
+// .menu__tab-button {
+//   background: $title-color;
+//   color: black;
+//   border-top-left-radius: 10px;
+//   border-top-right-radius: 10px;
+//   padding-left: 20px;
+//   padding-right: 20px;
+//   padding-top: 5px;
+//   padding-bottom: 15px;
+//   cursor: pointer;
+// }
+
+// .menu__tab-button:hover {
+//   color: white;
+// }
 
 .menu__section {
   margin-bottom: 25px;
