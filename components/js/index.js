@@ -6,7 +6,7 @@ import TextOverlay from './textOverlay';
 import Title from './title';
 import containers from './containers';
 import interviews from './interviews';
-import { mapDatasetList, Dataset } from './datasetList';
+import { mapDatasetList } from './datasetList';
 import slrLayer from './mapLayers/slr';
 import cleanupLayer from './mapLayers/cleanup';
 import watershedLayer from './mapLayers/watershed';
@@ -34,6 +34,7 @@ const { svgBounds, mapBounds } = constants;
 const state = new State({
   view: 'storiesList',
   tab: 'stories',
+  dataLoaded: [],
   selectedLayers: [],
   selectedInterview: undefined,
   size: containers.getMapSize(),
@@ -41,11 +42,11 @@ const state = new State({
 
 
 const addDataInfoToLayer = ({ layer, dataName }) => {
-  const dataInfo = Dataset.getDatasetByName(mapDatasetList, dataName);
+  const dataInfo = mapDatasetList.find(d => d.name === dataName);
 
   layer
     .name(dataInfo.name)
-    .dataPath(dataInfo.dataPath);
+    .dataInfo(dataInfo);
 };
 
 
@@ -78,6 +79,7 @@ const menu = new Menu()
   .interviews(interviews)
   .selection(outerContainer)
   .view(state.view())
+  .mapLayers(mapDatasetList)
   .selectedInterview(state.selectedInterview())
   .onInterviewClick((interview) => {
     state.update({ selectedInterview: interview, view: 'interview' });
@@ -91,7 +93,17 @@ const menu = new Menu()
     if (tab === currentView) return;
     state.update({ view: tab });
   })
-  .onLayerClick((newLayers) => {
+  .onLayerClick((d) => {
+    const currentSelectedLayers = state.selectedLayers();
+    let newLayers;
+    if (currentSelectedLayers.includes(d)) {
+      const index = currentSelectedLayers.indexOf(d);
+      newLayers = [...currentSelectedLayers.slice(0, index),
+        ...currentSelectedLayers.slice(index + 1)];
+    } else {
+      newLayers = [...currentSelectedLayers, d];
+    }
+
     state.update({ selectedLayers: newLayers });
   })
   .init();
@@ -136,8 +148,11 @@ state.registerCallback({
   },
   selectedLayers: function updateSelectedLayers() {
     const { selectedLayers } = this.props();
+    console.log('selected', selectedLayers);
     mapOverlay.updateSelectedLayers(selectedLayers);
-    menu.updateMenuLayers();
+    menu
+      .selectedLayers(selectedLayers)
+      .updateMenuLayers();
   },
 });
 

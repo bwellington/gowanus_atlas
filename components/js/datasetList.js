@@ -1,54 +1,60 @@
-export class Dataset {
-  constructor(name, nameDescriptive, dataPath) {
-    this.name = name;
-    this.nameDescriptive = nameDescriptive;
-    this.dataPath = dataPath;
-  }
-  static getDatasetNames(datasetList) {
-    return datasetList.map(d => d.name);
-  }
-  static getDatasetByName(datasetList, name) {
-    return datasetList.filter(d => d.name === name)[0];
-  }
-}
 
 
 export const mapDatasetList = [
-  new Dataset(
-    'slr',
-    'Projected Sea Level Rise',
-    [
+  {
+    name: 'slr',
+    category: 'Hydrology',
+    fullName: 'Projected Sea Level Rise',
+    exclude: [],
+    dataPath: [
       'data/75in_clip_simplified.topojson',
       'data/58in_clip_simplified.topojson',
       'data/30in_clip_simplified.topojson',
       'data/10in_clip_simplified.topojson',
     ],
-  ),
-  new Dataset(
-    'watershed',
-    'Gowanus Canal Watershed',
-    'data/watershedsketch.json',
-  ),
-  new Dataset(
-    'cleanup',
-    'Cleanup Plan',
-    'data/cleanup.geojson',
-  ),
-  new Dataset(
-    'galleries',
-    'Art Galleries',
-    'data/art_galleries_clip.geojson',
-  ),
-  new Dataset(
-    'landuse',
-    'Land Use',
-    'data/pluto_zoning_small.geojson',
-  ),
-  new Dataset(
-    'zoning',
-    'Zoning',
-    'data/gowanus_zoning.geojson',
-  ),
+  },
+  {
+    name: 'watershed',
+    category: 'Hydrology',
+    fullName: 'Gowanus Canal Watershed',
+    exclude: [],
+    dataPath: 'data/watershedsketch.json',
+  },
+  {
+    name: 'cleanup',
+    category: 'Environment',
+    fullName: 'Cleanup Plan',
+    exclude: [],
+    dataPath: 'data/cleanup.geojson',
+  },
+  {
+    name: 'galleries',
+    category: 'Culture',
+    fullName: 'Art Galleries',
+    exclude: [],
+    dataPath: 'data/art_galleries_clip.geojson',
+  },
+  {
+    name: 'landuse',
+    category: 'Built Environment',
+    fullName: 'Land Use',
+    exclude: ['manufacturingLandUse'],
+    dataPath: 'data/pluto_zoning_small.geojson',
+  },
+  {
+    name: 'manufacturingLandUse',
+    fullName: 'Manufacturing Land Use',
+    category: 'Built Environment',
+    exclude: ['landuse'],
+    dataPath: 'data/pluto_zoning_small.geojson',
+  },
+  {
+    name: 'zoning',
+    category: 'Built Environment',
+    fullName: 'Zoning',
+    exclude: [],
+    dataPath: 'data/gowanus_zoning.geojson',
+  },
 ];
 
 export default mapDatasetList;

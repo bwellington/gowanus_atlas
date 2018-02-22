@@ -6,9 +6,10 @@ import Tooltip from '../visualization-components/tooltip';
 const slrLayer = new MapOverlayLayer()
   .type('Polygon')
   .render('Vector')
-  .addPropMethods(['dataPath'])
+  .addPropMethods(['dataInfo'])
   .draw(function loadData() {
-    const { dataPath, data } = this.props();
+    const { dataInfo, data } = this.props();
+    const { dataPath } = dataInfo;
     this._.tooltip = new Tooltip().selection(d3.select('body'));
     // console.log(map.getPanes().mapPane.style.transform);
     if (data === undefined) {

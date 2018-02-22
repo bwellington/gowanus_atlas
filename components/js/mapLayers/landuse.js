@@ -64,9 +64,10 @@ const cleanData = (rawData) => {
 const landUseLayer = new MapOverlayLayer()
   .type('Polygon')
   .render('Vector')
-  .addPropMethods(['dataPath'])
+  .addPropMethods(['dataInfo'])
   .draw(function loadData() {
-    const { dataPath, data } = this.props();
+    const { dataInfo, data } = this.props();
+    const { dataPath } = dataInfo;
     this._.tooltip = new Tooltip().selection(d3.select('body'));
     if (data === undefined) {
       d3.json(dataPath, (loadedData) => {

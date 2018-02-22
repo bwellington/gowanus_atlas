@@ -132,6 +132,8 @@ $tab-right: $menu-right - $tab-width;
 
 .menu__map-layer-row {
   margin-bottom: 15px;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .menu__map-layer {
@@ -147,6 +149,8 @@ $tab-right: $menu-right - $tab-width;
   background: $title-color;
   color: $layer-button-color--inactive;
   transition: background $btn-speed, color $btn-speed;
+  margin-right: 10px;
+  margin-bottom: 5px;
 }
 
 .menu__map-layer--active, .menu__map-layer:hover {

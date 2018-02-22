@@ -107,11 +107,10 @@ const privateMethods = {
       onBackClick,
       onLayerClick,
       selectedInterview,
+      mapLayers,
     } = props;
 
     console.log('view', selectedInterview);
-
-    props.activeLayers = selectedInterview.layers;
 
 
     container.append('div')
@@ -142,35 +141,29 @@ const privateMethods = {
       .text('Map Layers');
 
 
-    props.menuLayers = container.selectAll('.menu__map-layer')
+    props.menuLayers = container
+      .append('div')
+      .attr('class', 'menu__map-layer-row')
+      .selectAll('.menu__map-layer')
       .data(selectedInterview.layers)
       .enter()
       .append('div')
-      .attr('class', 'menu__map-layer-row')
-      .append('span')
-      .attr('class', 'menu__map-layer')
-      .text(d => d)
       .on('click', (d) => {
-        let newLayers;
-        const { activeLayers } = props;
-        if (activeLayers.includes(d)) {
-          const index = activeLayers.indexOf(d);
-          newLayers = [...activeLayers.slice(0, index), ...activeLayers.slice(index + 1)];
-        } else {
-          newLayers = activeLayers.slice(0);
-          newLayers.push(d);
-        }
-        props.activeLayers = newLayers;
-        onLayerClick(newLayers);
-      });
-    this.updateMenuLayers();
+        onLayerClick(d);
+      })
+      // .append('div')
+      // .attr('class', 'menu__map-layer-row')
+      // .append('span')
+      .attr('class', 'menu__map-layer')
+      .text(d => mapLayers.find(dd => dd.name === d).fullName);
   },
   drawAllData() {
     const props = privateProps.get(this);
     const {
       container,
+      mapLayers,
     } = props;
-    console.log('draw all data');
+    console.log('draw all data', mapLayers);
   },
 };
 
@@ -179,14 +172,16 @@ const publicPropMethods = new Props({
   fields: [
     'position',
     'interviews',
-    'status',
+    'mapLayers',
     'onInterviewClick',
     'onBackClick',
     'onLayerClick',
     'onTabClick',
     'selectedInterview',
+    'selectedLayers',
     'selection',
     'size',
+    'status',
     'view',
   ],
 });
@@ -200,7 +195,6 @@ class Menu {
     publicPropMethods.addTo(Menu.prototype);
   }
   init() {
-    const props = privateProps.get(this);
     const { initMenu } = privateMethods;
     initMenu.call(this);
     this.update();
@@ -228,9 +222,9 @@ class Menu {
   }
   updateMenuLayers() {
     const props = privateProps.get(this);
-    const { menuLayers, activeLayers } = props;
-
-    menuLayers.classed('menu__map-layer--active', d => activeLayers.includes(d));
+    const { menuLayers, selectedLayers } = props;
+    console.log('selected');
+    menuLayers.classed('menu__map-layer--active', d => selectedLayers.includes(d));
   }
 }
 

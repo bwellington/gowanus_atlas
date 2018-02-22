@@ -3,9 +3,10 @@ import MapOverlayLayer from '../visualization-components/mapOverlay/mapOverlayLa
 const zoningLayer = new MapOverlayLayer()
   .type('Polygon')
   .render('Vector')
-  .addPropMethods(['dataPath'])
+  .addPropMethods(['dataInfo'])
   .draw(function loadData() {
-    const { dataPath, data } = this.props();
+    const { dataInfo, data } = this.props();
+    const { dataPath } = dataInfo;
     if (data === undefined) {
       d3.json(dataPath, (loadedData) => {
         this._.data = loadedData;
