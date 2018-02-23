@@ -39,7 +39,7 @@ export const mapDatasetList = [
     category: 'Built Environment',
     fullName: 'Land Use',
     exclude: ['manufacturingLandUse'],
-    dataPath: 'data/pluto_zoning_small.geojson',
+    dataPath: 'data/pluto.topojson',
   },
   {
     name: 'manufacturingLandUse',

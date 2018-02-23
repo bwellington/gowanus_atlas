@@ -1,5 +1,7 @@
+import * as topojson from 'topojson-client';
 import MapOverlayLayer from '../visualization-components/mapOverlay/mapOverlayLayer';
 import Tooltip from '../visualization-components/tooltip';
+
 
 const landUseCodes = {
   '01': {
@@ -50,12 +52,23 @@ const landUseCodes = {
 
 
 const cleanData = (rawData) => {
-  const cleanFeatures = rawData.features
+  console.log(topojson.feature(rawData, rawData.objects.pluto));
+  const cleanFeatures = topojson.feature(rawData, rawData.objects.pluto)
+  .features
   .filter(d => d.properties.LandUse !== null)
+  // .filter(d => landUseCodes[d.properties.LandUse] !== undefined)
   .map((d) => {
     const cleanFeature = Object.assign({}, d);
-    cleanFeature.properties.color = landUseCodes[d.properties.LandUse].color;
-    cleanFeature.properties.landUseText = landUseCodes[d.properties.LandUse].text;
+    // cleanFeature.properties.color = landUseCodes[d.properties.LandUse].color;
+    const code = landUseCodes[d.properties.LandUse];
+    if (code === undefined) {
+      cleanFeature.properties.color = 'grey';
+      cleanFeature.properties.landUseText = d.properties.LandUse;
+    } else {
+      cleanFeature.properties.color = code.color;
+      cleanFeature.properties.landUseText = code.text;
+    }
+
     return cleanFeature;
   });
   return cleanFeatures;
@@ -81,6 +94,7 @@ const landUseLayer = new MapOverlayLayer()
 
 landUseLayer.drawLayer = function drawLayer() {
   const { data, name, group, refreshMap, tooltip } = this.props();
+
   group.selectAll(`.${name}-layer`)
     .data(data)
     .enter()
@@ -104,7 +118,8 @@ landUseLayer.drawLayer = function drawLayer() {
     })
     .on('mouseout', () => {
       tooltip.remove();
-    });
+    })
+    .on('click', d => console.log(d));
 
   refreshMap();
 };

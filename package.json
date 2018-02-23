@@ -12,6 +12,7 @@
     "babel-loader": "^7.1.1",
     "babel-plugin-transform-object-rest-spread": "^6.23.0",
     "babel-preset-es2015": "^6.24.1",
+    "bfj": "^5.2.1",
     "cpx": "^1.5.0",
     "css-loader": "^0.28.4",
     "eslint": "^3.19.0",
@@ -26,6 +27,7 @@
     "raw-loader": "^0.5.1",
     "sass-loader": "^6.0.5",
     "style-loader": "^0.18.2",
+    "turf": "^3.0.14",
     "url-loader": "^0.5.8",
     "webpack": "^2.6.1",
     "webpack-dev-server": "^2.4.5"

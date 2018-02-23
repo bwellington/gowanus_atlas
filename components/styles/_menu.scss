@@ -24,7 +24,7 @@ $tab-right: $menu-right - $tab-width;
 }
 
 .menu__container--allData {
-  background: rgb(0, 0, 255);
+  background: $menu-fill--allData;
 }
 
 .menu__tab {
@@ -45,43 +45,8 @@ $tab-right: $menu-right - $tab-width;
   top: $tab-top + $tab-height;
 }
 
-// .menu__tab {
-//   font-size: 25px;
-//   font-weight: bold;
-//   z-index: 1900;
-//   transform: rotate(90deg);
-//   transform-origin: top left;
-//   position: absolute;
-//   right: -125px;
-// }
-
-
-// .menu__tab--alldata {
-//   top: 200px;
-// }
-
-// .menu__tab-button {
-//   background: $title-color;
-//   color: black;
-//   border-top-left-radius: 10px;
-//   border-top-right-radius: 10px;
-//   padding-left: 20px;
-//   padding-right: 20px;
-//   padding-top: 5px;
-//   padding-bottom: 15px;
-//   cursor: pointer;
-// }
-
-// .menu__tab-button:hover {
-//   color: white;
-// }
-
 .menu__section {
   margin-bottom: 25px;
-}
-
-.menu__default__row {
-  // cursor: pointer;
 }
 
 .menu__header {
@@ -158,12 +123,16 @@ $tab-right: $menu-right - $tab-width;
 }
 
 .menu__container--allData .menu__map-layer {
-  background: red;
+  background: $menu-fill--allData;
+  color: white;
+  border-color: white;
 }
 
 .menu__container--allData .menu__map-layer--active,
 .menu__container--allData .menu__map-layer:hover{
-  background: yellow;
+  background: $menu-fill--stories;
+  border-color: $menu-fill--allData;
+  color: black;
 }
 
 .menu__map-layer--active, .menu__map-layer:hover {

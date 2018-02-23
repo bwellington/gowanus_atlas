@@ -35,7 +35,7 @@ const state = new State({
   view: 'storiesList',
   tab: 'stories',
   dataLoaded: [],
-  selectedLayers: [],
+  selectedLayers: ['galleries', 'watershed', 'landuse'],
   selectedInterview: undefined,
   size: containers.getMapSize(),
 });
@@ -71,7 +71,7 @@ const mapOverlay = new MapOverlay()
   .addVectorLayer(galleriesLayer)
   .addVectorLayer(landUseLayer)
   .addVectorLayer(zoningLayer)
-  .selectedLayers(['galleries', 'watershed', 'landuse'])
+  .selectedLayers(state.selectedLayers())
   .addTo(map);
 
 
@@ -81,6 +81,7 @@ const menu = new Menu()
   .view(state.view())
   .mapLayers(mapDatasetList)
   .selectedInterview(state.selectedInterview())
+  .selectedLayers(state.selectedLayers())
   .onInterviewClick((interview) => {
     state.update({ selectedInterview: interview, view: 'interview' });
     // state.update({ view: { type: 'interview', interview } });
@@ -127,11 +128,12 @@ new Title()
 
 state.registerCallback({
   view: function updateView() {
-    const { view, selectedInterview } = this.props();
+    const { view, selectedInterview, selectedLayers } = this.props();
+
 
     menu
-      .view(view)
       .selectedInterview(selectedInterview)
+      .view(view)
       .update();
 
     textOverlay
@@ -142,13 +144,10 @@ state.registerCallback({
     if (view === 'interview') {
       state.update({ selectedLayers: selectedInterview.layers });
     }
-    // if (view === 'default') {
-    //   state.update({ selectedLayers: [] });
-    // }
   },
   selectedLayers: function updateSelectedLayers() {
     const { selectedLayers } = this.props();
-    console.log('selected', selectedLayers);
+
     mapOverlay.updateSelectedLayers(selectedLayers);
     menu
       .selectedLayers(selectedLayers)

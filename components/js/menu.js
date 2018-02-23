@@ -7,6 +7,7 @@ const privateMethods = {
     const props = privateProps.get(this);
     const { selection } = props;
     const { drawTabs } = privateMethods;
+    console.log('init menu');
     props.container = selection.append('div')
       .attr('class', 'menu__container');
     drawTabs.call(this);
@@ -170,6 +171,7 @@ const privateMethods = {
       })
       .attr('class', 'menu__map-layer')
       .text(d => d.fullName);
+    console.log('draw buttons');
   },
   drawAllData() {
     const props = privateProps.get(this);
@@ -220,7 +222,7 @@ class Menu {
   }
   init() {
     const { initMenu } = privateMethods;
-    console.log('init menu');
+
     initMenu.call(this);
     this.update();
     return this;
@@ -249,7 +251,7 @@ class Menu {
   updateMenuLayers() {
     const props = privateProps.get(this);
     const { menuLayers, selectedLayers } = props;
-    if (selectedLayers === undefined) return;
+    if (selectedLayers === undefined || menuLayers === undefined) return;
 
     menuLayers.classed('menu__map-layer--active', d => selectedLayers.includes(d.name));
   }

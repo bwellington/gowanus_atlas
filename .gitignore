@@ -3,6 +3,6 @@ node_modules
 .DS_Store
 .tmp
 .~lock*
-raw_data
 build/map.js
 build/data
+rawData
