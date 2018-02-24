@@ -55,6 +55,20 @@ export const mapDatasetList = [
     exclude: [],
     dataPath: 'data/pluto.topojson',
   },
+  {
+    name: 'plutoBounds',
+    category: 'Built Environment',
+    fullName: 'Study Area',
+    exclude: [],
+    dataPath: 'data/plutoBounds.topojson',
+  },
+  {
+    name: 'assessedValue',
+    category: 'Built Environment',
+    fullName: 'Total Assessed Value',
+    exclude: [],
+    dataPath: 'data/pluto.topojson',
+  },
 ];
 
 export default mapDatasetList;

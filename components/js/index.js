@@ -14,6 +14,8 @@ import galleriesLayer from './mapLayers/galleries';
 import landUseLayer from './mapLayers/landuse';
 import zoningLayer from './mapLayers/zoning';
 import manufacturingLandUse from './mapLayers/manufacturingLandUse';
+import plutoBounds from './mapLayers/plutoBounds';
+import assessedValue from './mapLayers/assessedValue';
 import constants from './constants';
 
 require('../styles/leaflet.css');
@@ -36,7 +38,7 @@ const state = new State({
   view: 'storiesList',
   tab: 'stories',
   dataLoaded: [],
-  selectedLayers: ['manufacturingLandUse'],
+  selectedLayers: ['assessedValue'],
   selectedInterview: undefined,
   size: containers.getMapSize(),
 });
@@ -50,6 +52,8 @@ const addDataInfoToLayer = ({ layer, dataName }) => {
     .dataInfo(dataInfo);
 };
 
+addDataInfoToLayer({ layer: assessedValue, dataName: 'assessedValue' });
+addDataInfoToLayer({ layer: plutoBounds, dataName: 'plutoBounds' });
 addDataInfoToLayer({ layer: manufacturingLandUse, dataName: 'manufacturingLandUse' });
 addDataInfoToLayer({ layer: watershedLayer, dataName: 'watershed' });
 addDataInfoToLayer({ layer: slrLayer, dataName: 'slr' });
@@ -66,6 +70,8 @@ const map = Map({
 
 const mapOverlay = new MapOverlay()
   .coordinateBounds(svgBounds)
+  .addVectorLayer(assessedValue)
+  .addVectorLayer(plutoBounds)
   .addVectorLayer(watershedLayer)
   .addVectorLayer(slrLayer)
   .addVectorLayer(cleanupLayer)

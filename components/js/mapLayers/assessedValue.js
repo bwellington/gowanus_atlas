@@ -4,17 +4,20 @@ import Tooltip from '../visualization-components/tooltip';
 
 
 const cleanData = (rawData) => {
-  const cleanFeatures = topojson.feature(rawData, rawData.objects.pluto)
+  console.log('raw', rawData);
+
+  const data = topojson.feature(rawData, rawData.objects.pluto);
+  const dataExtent = d3.extent(data.features.filter(d => d.properties.AssessTot !== 0),
+    d => d.properties.AssessTot);
+  console.log(dataExtent);
+  const scale = d3.scaleSqrt().domain(dataExtent).range([0, 1]);
+  const cleanFeatures = data
   .features
   .map((d) => {
     const cleanFeature = Object.assign({}, d);
-    const zoneLetter = d.properties.ZoneDist1.slice(0, 1);
-    if (zoneLetter === 'M') {
-      cleanFeature.properties.color = 'rgb(200,100,220)';
-    } else if (zoneLetter === 'C') {
-      cleanFeature.properties.color = 'rgb(234,144,158)';
-    } else if (zoneLetter === 'R') {
-      cleanFeature.properties.color = 'rgb(246,242,164)';
+    if (d.properties.AssessTot !== 0) {
+      cleanFeature.properties.color =
+      d3.interpolateYlOrRd(scale(d.properties.AssessTot));
     } else {
       cleanFeature.properties.color = 'grey';
     }
@@ -24,7 +27,7 @@ const cleanData = (rawData) => {
   return cleanFeatures;
 };
 
-const zoningLayer = new MapOverlayLayer()
+const assessedValueLayer = new MapOverlayLayer()
   .type('Polygon')
   .render('Vector')
   .addPropMethods(['dataInfo'])
@@ -35,6 +38,8 @@ const zoningLayer = new MapOverlayLayer()
     if (data === undefined) {
       d3.json(dataPath, (loadedData) => {
         this._.data = cleanData(loadedData);
+
+        console.log(this._.data);
         this.drawLayer();
       });
     } else {
@@ -42,7 +47,7 @@ const zoningLayer = new MapOverlayLayer()
     }
   });
 
-zoningLayer.drawLayer = function drawLayer() {
+assessedValueLayer.drawLayer = function drawLayer() {
   const { data, name, group, refreshMap, tooltip } = this.props();
 
   group.selectAll(`.${name}-layer`)
@@ -57,7 +62,7 @@ zoningLayer.drawLayer = function drawLayer() {
       tooltip
         .position([d3.event.x + 10, d3.event.y + 10])
         .text([
-          ['Zoning: ', d.properties.ZoneDist1],
+          ['Total Assessed Value: ', d.properties.AssessTot],
         ])
         .draw();
     })
@@ -74,10 +79,9 @@ zoningLayer.drawLayer = function drawLayer() {
   refreshMap();
 };
 
-zoningLayer.remove = function removeLayer() {
+assessedValueLayer.remove = function removeLayer() {
   const { group, name } = this.props();
   group.selectAll(`.${name}-layer`).remove();
 };
 
-export default zoningLayer;
-
+export default assessedValueLayer;

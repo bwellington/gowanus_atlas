@@ -2,7 +2,7 @@ import * as topojson from 'topojson-client';
 import MapOverlayLayer from '../visualization-components/mapOverlay/mapOverlayLayer';
 import Tooltip from '../visualization-components/tooltip';
 
-const watershedLayer = new MapOverlayLayer()
+const plutoBoundsLayer = new MapOverlayLayer()
   .type('Polygon')
 
   .render('Vector')
@@ -21,13 +21,12 @@ const watershedLayer = new MapOverlayLayer()
     }
   });
 
-watershedLayer.drawLayer = function drawLayer() {
+plutoBoundsLayer.drawLayer = function drawLayer() {
   const { data, group, refreshMap, name, tooltip } = this.props();
-  const geoJSON = topojson.feature(data, data.objects.watershedsketch);
-  group.selectAll(`.${name}-layer`)
-    .data(geoJSON.features)
-    .enter()
-    .append('path')
+  const geoJSON = topojson.feature(data, data.objects.plutoBounds);
+
+  group
+    .append('path').datum(geoJSON)
     .attrs({
       class: `${name}-layer`,
       opacity: 0,
@@ -36,7 +35,7 @@ watershedLayer.drawLayer = function drawLayer() {
       tooltip
         .position([d3.event.x + 10, d3.event.y + 10])
         .text([
-          ['', 'Gowanus Canal Watershed'],
+          ['', 'Study Area (Approximate Bounds of Rezoning)'],
         ])
         .draw();
     })
@@ -56,10 +55,10 @@ watershedLayer.drawLayer = function drawLayer() {
   refreshMap();
 };
 
-watershedLayer.remove = function removeLayer() {
+plutoBoundsLayer.remove = function removeLayer() {
   const { group, name } = this.props();
 
   group.selectAll(`.${name}-layer`).remove();
 };
 
-export default watershedLayer;
+export default plutoBoundsLayer;

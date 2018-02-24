@@ -6,13 +6,31 @@
   fill: rgba(255, 165, 0, 1);
 }
 
+.assessedValue-layer,
 .manufacturingLandUse-layer,
-.landuse-layer {
+.landuse-layer,
+.zoning-layer {
   opacity: .8;
   cursor: pointer;
 }
 
+.assessedValue-layer:hover,
 .manufacturingLandUse-layer:hover,
-.landuse-layer:hover {
+.landuse-layer:hover,
+.zoning-layer:hover {
   opacity: 1;
+}
+
+.watershed-layer,
+.plutoBounds-layer {
+  stroke: orange;
+  stroke-width: 1.5;
+  stroke-dasharray: 10,5;
+  fill: none;
+  cursor: pointer;
+}
+
+.watershed-layer:hover,
+.plutoBounds-layer:hover {
+  stroke-width: 2;
 }

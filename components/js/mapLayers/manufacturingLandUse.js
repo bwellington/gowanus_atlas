@@ -52,7 +52,6 @@ const landUseCodes = {
 
 
 const cleanData = (rawData) => {
-  console.log(topojson.feature(rawData, rawData.objects.pluto));
   const cleanFeatures = topojson.feature(rawData, rawData.objects.pluto)
   .features
   .filter(d => d.properties.LandUse === '06')
