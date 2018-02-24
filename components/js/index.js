@@ -13,6 +13,7 @@ import watershedLayer from './mapLayers/watershed';
 import galleriesLayer from './mapLayers/galleries';
 import landUseLayer from './mapLayers/landuse';
 import zoningLayer from './mapLayers/zoning';
+import manufacturingLandUse from './mapLayers/manufacturingLandUse';
 import constants from './constants';
 
 require('../styles/leaflet.css');
@@ -35,7 +36,7 @@ const state = new State({
   view: 'storiesList',
   tab: 'stories',
   dataLoaded: [],
-  selectedLayers: ['galleries', 'watershed', 'landuse'],
+  selectedLayers: ['manufacturingLandUse'],
   selectedInterview: undefined,
   size: containers.getMapSize(),
 });
@@ -49,7 +50,7 @@ const addDataInfoToLayer = ({ layer, dataName }) => {
     .dataInfo(dataInfo);
 };
 
-
+addDataInfoToLayer({ layer: manufacturingLandUse, dataName: 'manufacturingLandUse' });
 addDataInfoToLayer({ layer: watershedLayer, dataName: 'watershed' });
 addDataInfoToLayer({ layer: slrLayer, dataName: 'slr' });
 addDataInfoToLayer({ layer: cleanupLayer, dataName: 'cleanup' });
@@ -70,6 +71,7 @@ const mapOverlay = new MapOverlay()
   .addVectorLayer(cleanupLayer)
   .addVectorLayer(galleriesLayer)
   .addVectorLayer(landUseLayer)
+  .addVectorLayer(manufacturingLandUse)
   .addVectorLayer(zoningLayer)
   .selectedLayers(state.selectedLayers())
   .addTo(map);
@@ -128,7 +130,7 @@ new Title()
 
 state.registerCallback({
   view: function updateView() {
-    const { view, selectedInterview, selectedLayers } = this.props();
+    const { view, selectedInterview } = this.props();
 
 
     menu

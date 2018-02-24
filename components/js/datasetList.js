@@ -46,14 +46,14 @@ export const mapDatasetList = [
     fullName: 'Manufacturing Land Use',
     category: 'Built Environment',
     exclude: ['landuse'],
-    dataPath: 'data/pluto_zoning_small.geojson',
+    dataPath: 'data/pluto.topojson',
   },
   {
     name: 'zoning',
     category: 'Built Environment',
     fullName: 'Zoning',
     exclude: [],
-    dataPath: 'data/gowanus_zoning.geojson',
+    dataPath: 'data/pluto.topojson',
   },
 ];
 

@@ -55,7 +55,7 @@ const cleanData = (rawData) => {
   console.log(topojson.feature(rawData, rawData.objects.pluto));
   const cleanFeatures = topojson.feature(rawData, rawData.objects.pluto)
   .features
-  .filter(d => d.properties.LandUse !== null)
+  .filter(d => d.properties.LandUse === '06')
   .map((d) => {
     const cleanFeature = Object.assign({}, d);
     const code = landUseCodes[d.properties.LandUse];
@@ -72,7 +72,7 @@ const cleanData = (rawData) => {
   return cleanFeatures;
 };
 
-const landUseLayer = new MapOverlayLayer()
+const manufacturingLandUse = new MapOverlayLayer()
   .type('Polygon')
   .render('Vector')
   .addPropMethods(['dataInfo'])
@@ -90,7 +90,7 @@ const landUseLayer = new MapOverlayLayer()
     }
   });
 
-landUseLayer.drawLayer = function drawLayer() {
+manufacturingLandUse.drawLayer = function drawLayer() {
   const { data, name, group, refreshMap, tooltip } = this.props();
 
   group.selectAll(`.${name}-layer`)
@@ -122,10 +122,9 @@ landUseLayer.drawLayer = function drawLayer() {
   refreshMap();
 };
 
-landUseLayer.remove = function removeLayer() {
+manufacturingLandUse.remove = function removeLayer() {
   const { group, name } = this.props();
   group.selectAll(`.${name}-layer`).remove();
 };
 
-export default landUseLayer;
-
+export default manufacturingLandUse;

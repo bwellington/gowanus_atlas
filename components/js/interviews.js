@@ -7,7 +7,7 @@ const interviews = [
     imagePath: '',
     category: 'Social Landscape',
     description: 'Abby is an artist and the Executive Director of Arts Gowanus, a local non-profit organization working to support, promote, and advocate for local artists and a sustainable arts community. Each year the organization sponsors Gowanus Open Studios, an event held in October that showcases local artists and their work, connecting them to the greater New York City community.',
-    layers: ['galleries', 'watershed', 'landuse', 'zoning'],
+    layers: ['manufacturingLandUse', 'galleries', 'watershed'],
     quote: 'There’s a reason gowanus has become such a hub of creativity and artists’ culture, and that’s because of the affordable spaces that are here, and it’s because of the history of industry and manufacturing that has been going on in Gowanus for a couple hundred years now.',
   },
   {
