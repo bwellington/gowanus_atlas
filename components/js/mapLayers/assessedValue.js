@@ -2,14 +2,13 @@ import * as topojson from 'topojson-client';
 import MapOverlayLayer from '../visualization-components/mapOverlay/mapOverlayLayer';
 import Tooltip from '../visualization-components/tooltip';
 
+const formatNum = d3.format(',d');
 
 const cleanData = (rawData) => {
-  console.log('raw', rawData);
-
   const data = topojson.feature(rawData, rawData.objects.pluto);
   const dataExtent = d3.extent(data.features.filter(d => d.properties.AssessTot !== 0),
     d => d.properties.AssessTot);
-  console.log(dataExtent);
+
   const scale = d3.scaleSqrt().domain(dataExtent).range([0, 1]);
   const cleanFeatures = data
   .features
@@ -21,7 +20,6 @@ const cleanData = (rawData) => {
     } else {
       cleanFeature.properties.color = 'grey';
     }
-
     return cleanFeature;
   });
   return cleanFeatures;
@@ -38,8 +36,6 @@ const assessedValueLayer = new MapOverlayLayer()
     if (data === undefined) {
       d3.json(dataPath, (loadedData) => {
         this._.data = cleanData(loadedData);
-
-        console.log(this._.data);
         this.drawLayer();
       });
     } else {
@@ -62,7 +58,7 @@ assessedValueLayer.drawLayer = function drawLayer() {
       tooltip
         .position([d3.event.x + 10, d3.event.y + 10])
         .text([
-          ['Total Assessed Value: ', d.properties.AssessTot],
+          ['Total Assessed Value: ', `$${formatNum(d.properties.AssessTot)}`],
         ])
         .draw();
     })

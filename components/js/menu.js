@@ -154,6 +154,8 @@ const privateMethods = {
         layers,
         buttonContainer,
       });
+
+    props.menuLayers = container.selectAll('.menu__map-layer');
   },
   drawLayerButtons({ layers, buttonContainer }) {
     const props = privateProps.get(this);
@@ -161,7 +163,7 @@ const privateMethods = {
       onLayerClick,
     } = props;
 
-    props.menuLayers = buttonContainer
+    buttonContainer
       .selectAll('.menu__map-layer')
       .data(layers)
       .enter()
@@ -171,7 +173,6 @@ const privateMethods = {
       })
       .attr('class', 'menu__map-layer')
       .text(d => d.fullName);
-    console.log('draw buttons');
   },
   drawAllData() {
     const props = privateProps.get(this);
@@ -180,16 +181,40 @@ const privateMethods = {
       mapLayers,
     } = props;
     const { drawLayerButtons } = privateMethods;
+    const boundDrawLayerButtons = drawLayerButtons.bind(this);
 
-    const buttonContainer = container
+    const categories = [...new Set(mapLayers.map(d => d.category))];
+
+    const menuRows = container.selectAll('.menu__button-row')
+      .data(categories)
+      .enter()
       .append('div')
-      .attr('class', 'menu__button-container');
+      .attr('class', 'menu__button-row');
 
-    drawLayerButtons
-      .call(this, {
-        layers: mapLayers,
-        buttonContainer,
+    menuRows
+      .append('div')
+      .attr('class', 'menu__row-title')
+      .text(d => d);
+
+    menuRows
+      .append('div')
+      .attr('class', 'menu__button-container')
+      .each(function addButtons(d) {
+        boundDrawLayerButtons({
+          layers: mapLayers.filter(dd => dd.category === d),
+          buttonContainer: d3.select(this),
+        });
       });
+
+    props.menuLayers = container.selectAll('.menu__map-layer');
+    // const buttonContainer = container
+    //   .append('div')
+    //   .attr('class', 'menu__button-container');
+    // drawLayerButtons
+    //   .call(this, {
+    //     layers: mapLayers,
+    //     buttonContainer,
+    //   });
   },
 };
 

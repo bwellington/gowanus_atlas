@@ -73,6 +73,13 @@ $tab-right: $menu-right - $tab-width;
   margin-bottom: 5px;
 }
 
+.menu__row-title {
+  font-size: 18px;
+  color: white;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
 .menu__back-button {
   cursor:pointer;
 }
