@@ -132,7 +132,7 @@ const privateMethods = {
       .append('span')
       .attr('class', 'menu__back-button')
       .on('click', onBackClick)
-      .text('<< BACK');
+      .text('<< back');
 
     container
       .append('div')

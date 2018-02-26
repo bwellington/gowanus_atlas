@@ -103,6 +103,7 @@ const menu = new Menu()
   })
   .onTabClick((tab) => {
     const currentView = state.view();
+    console.log(tab);
     if (tab === currentView) return;
     state.update({ view: tab });
   })
@@ -140,15 +141,21 @@ testTitle._.ok = 4;
 new Title()
   .selection(outerContainer)
   .title('The Gowanus Atlas')
-  .subtitle('Mapping Brooklyn\'s Gowanus Canal')
+  .subtitle('Mapping the contexts and potential futures of the Gowanus Canal')
   .draw();
 
 
 state.registerCallback({
   view: function updateView() {
-    const { view, selectedInterview } = this.props();
+    const { view } = this.props();
 
+    if (view === 'storiesList') {
+      state.update({ selectedInterview: undefined });
+    }
 
+    const { selectedInterview } = this.props();
+
+    console.log('view', view);
     menu
       .selectedInterview(selectedInterview)
       .view(view)
@@ -162,7 +169,7 @@ state.registerCallback({
     if (view === 'interview') {
       state.update({ selectedLayers: selectedInterview.layers });
     } else if (view === 'storiesList') {
-      state.update({ selectedLayers: [], selectedInterview: undefined });
+      state.update({ selectedLayers: [] });
     }
   },
   selectedLayers: function updateSelectedLayers() {
