@@ -39,7 +39,7 @@ const state = new State({
   view: 'storiesList',
   tab: 'stories',
   dataLoaded: [],
-  selectedLayers: ['cso'],
+  selectedLayers: [],
   selectedInterview: undefined,
   size: containers.getMapSize(),
 });

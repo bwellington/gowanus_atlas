@@ -101,9 +101,9 @@ slrLayer.drawLayers = function drawLayers() {
         });
     })
     .transition()
-    .duration(750)
+    .duration(500)
     .ease(d3.easeQuadInOut)
-    .delay((d, i) => (data.length - i - 1) * 750)
+    .delay((d, i) => (data.length - i - 1) * 500)
     .attrs({
       opacity: 1,
     });

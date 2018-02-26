@@ -100,6 +100,7 @@ manufacturingLandUse.drawLayer = function drawLayer() {
       class: `${name}-layer`,
       fill: d => d.properties.color,
     })
+    .style('opacity', 0)
     .on('mouseover', (d) => {
       tooltip
         .position([d3.event.x + 10, d3.event.y + 10])
@@ -116,7 +117,11 @@ manufacturingLandUse.drawLayer = function drawLayer() {
     .on('mouseout', () => {
       tooltip.remove();
     })
-    .on('click', d => console.log(d));
+    .on('click', d => console.log(d))
+    .transition()
+    .duration(50)
+    .delay((d, i) => i * 1)
+    .style('opacity', 0.8);
 
   refreshMap();
 };

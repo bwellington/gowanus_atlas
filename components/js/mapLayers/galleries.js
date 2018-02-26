@@ -46,6 +46,7 @@ galleriesLayer.drawLayer = function drawLayer() {
       // cy: d => map.latLngToLayerPoint(d).y,
       r: 5,
     })
+    .style('opacity', 0)
     .on('mouseover', (d) => {
       tooltip
         .position([d3.event.x + 10, d3.event.y + 10])
@@ -61,7 +62,10 @@ galleriesLayer.drawLayer = function drawLayer() {
     })
     .on('mouseout', () => {
       tooltip.remove();
-    });
+    })
+    .transition()
+    .duration(500)
+    .style('opacity', 1);
 
   refreshMap();
 };
