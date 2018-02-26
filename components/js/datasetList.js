@@ -25,7 +25,10 @@ export const mapDatasetList = [
     category: 'Hydrology',
     fullName: 'Combined Sewer Overflow',
     exclude: [],
-    dataPath: 'data/cso.topojson',
+    dataPath: {
+      csoOutfall: 'data/cso_outfall.geojson',
+      csoArea: 'data/cso.topojson',
+    },
   },
   {
     name: 'cleanup',
@@ -65,7 +68,7 @@ export const mapDatasetList = [
   {
     name: 'plutoBounds',
     category: 'Built Environment',
-    fullName: 'Study Area',
+    fullName: 'Approximate Rezoning Area',
     exclude: [],
     dataPath: 'data/plutoBounds.topojson',
   },

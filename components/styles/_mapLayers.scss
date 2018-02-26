@@ -39,11 +39,32 @@
 .cso-layer {
   stroke: orange;
   stroke-width: 1.5;
-  fill: rgba(255, 165, 0, .25);
+  fill: rgba(255, 165, 0, .15);
   transition: fill $btn-speed;
   cursor: pointer;
 }
 
 .cso-layer:hover {
-  fill: rgba(255, 165, 0, .8);
+  fill: rgba(255, 165, 0, .5);
 }
+
+.cso-layer--circle {
+  stroke: white;
+  stroke-width: 1.5;
+  fill: rgba(255, 255, 255, .5);
+  transition: fill $btn-speed;
+  cursor: pointer;
+}
+
+.cso-layer--circle:hover {
+  fill: rgba(255, 255, 255, .9);
+}
+
+// .cso-layer--circle--null {
+//   stroke: rgb(100, 100, 100);
+//   fill: rgba(100, 100, 100, .5);
+// }
+
+// .cso-layer--circle--null:hover {
+//   fill: rgba(100, 100, 100, .9);
+// }

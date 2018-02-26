@@ -108,10 +108,7 @@ const menu = new Menu()
   })
   .onLayerClick((d) => {
     const currentSelectedLayers = state.selectedLayers();
-    console.log('maplayers', mapDatasetList);
-    console.log('new layer', d);
 
-    console.log('current layers', currentSelectedLayers);
     let newLayers;
     if (currentSelectedLayers.includes(d)) {
       const index = currentSelectedLayers.indexOf(d);
