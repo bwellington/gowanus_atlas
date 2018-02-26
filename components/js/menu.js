@@ -91,7 +91,6 @@ const privateMethods = {
     const interviewContainers = rows.append('div')
       .attr('class', 'menu__interview-container');
 
-    console.log('interviews', interviews);
     interviewContainers.append('div')
       .attr('class', 'menu__interview-headshot-container')
       .append('img')

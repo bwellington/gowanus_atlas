@@ -35,7 +35,6 @@ galleriesLayer.drawLayer = function drawLayer() {
     return point;
   });
 
-  console.log(points);
   group.selectAll(`.${name}-layer`)
     .data(points)
     .enter()

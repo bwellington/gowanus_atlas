@@ -161,6 +161,8 @@ state.registerCallback({
 
     if (view === 'interview') {
       state.update({ selectedLayers: selectedInterview.layers });
+    } else if (view === 'storiesList') {
+      state.update({ selectedLayers: [], selectedInterview: undefined });
     }
   },
   selectedLayers: function updateSelectedLayers() {
