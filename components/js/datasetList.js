@@ -45,21 +45,21 @@ export const mapDatasetList = [
     name: 'landuse',
     category: 'Built Environment',
     fullName: 'Land Use',
-    exclude: ['manufacturingLandUse'],
+    exclude: ['manufacturingLandUse', 'zoning', 'assessedValue'],
     dataPath: 'data/pluto.topojson',
   },
   {
     name: 'manufacturingLandUse',
     fullName: 'Manufacturing Land Use',
     category: 'Built Environment',
-    exclude: ['landuse'],
+    exclude: ['landuse', 'zoning', 'assessedValue'],
     dataPath: 'data/pluto.topojson',
   },
   {
     name: 'zoning',
     category: 'Built Environment',
     fullName: 'Zoning',
-    exclude: [],
+    exclude: ['manufacturingLandUse', 'landuse', 'assessedValue'],
     dataPath: 'data/pluto.topojson',
   },
   {
@@ -73,7 +73,7 @@ export const mapDatasetList = [
     name: 'assessedValue',
     category: 'Built Environment',
     fullName: 'Total Assessed Value',
-    exclude: [],
+    exclude: ['manufacturingLandUse', 'landuse', 'zoning'],
     dataPath: 'data/pluto.topojson',
   },
 ];

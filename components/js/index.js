@@ -108,15 +108,24 @@ const menu = new Menu()
   })
   .onLayerClick((d) => {
     const currentSelectedLayers = state.selectedLayers();
+    console.log('maplayers', mapDatasetList);
+    console.log('new layer', d);
+
+    console.log('current layers', currentSelectedLayers);
     let newLayers;
     if (currentSelectedLayers.includes(d)) {
       const index = currentSelectedLayers.indexOf(d);
       newLayers = [...currentSelectedLayers.slice(0, index),
         ...currentSelectedLayers.slice(index + 1)];
     } else {
-      newLayers = [...currentSelectedLayers, d];
+      const excludeLayers = mapDatasetList.find(dd => dd.name === d).exclude;
+      if (excludeLayers.length > 0) {
+        newLayers = currentSelectedLayers.filter(dd => !excludeLayers.includes(dd))
+          .concat(d);
+      } else {
+        newLayers = [...currentSelectedLayers, d];
+      }
     }
-
     state.update({ selectedLayers: newLayers });
   })
   .init();
