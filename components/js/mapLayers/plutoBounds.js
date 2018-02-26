@@ -23,10 +23,12 @@ const plutoBoundsLayer = new MapOverlayLayer()
 
 plutoBoundsLayer.drawLayer = function drawLayer() {
   const { data, group, refreshMap, name, tooltip } = this.props();
-  const geoJSON = topojson.feature(data, data.objects.plutoBounds);
+
+  const geoJSON = topojson.feature(data, data.objects.plutobounds);
 
   group
-    .append('path').datum(geoJSON)
+    .append('path')
+    .datum(geoJSON)
     .attrs({
       class: `${name}-layer`,
       opacity: 0,
