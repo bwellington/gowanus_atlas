@@ -16,9 +16,16 @@ export const mapDatasetList = [
   {
     name: 'watershed',
     category: 'Hydrology',
-    fullName: 'Gowanus Canal Watershed',
+    fullName: 'Canal Watershed',
     exclude: [],
     dataPath: 'data/watershedsketch.json',
+  },
+  {
+    name: 'cso',
+    category: 'Hydrology',
+    fullName: 'Combined Sewer Overflow',
+    exclude: [],
+    dataPath: 'data/cso.topojson',
   },
   {
     name: 'cleanup',

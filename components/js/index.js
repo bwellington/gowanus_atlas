@@ -15,6 +15,7 @@ import landUseLayer from './mapLayers/landuse';
 import zoningLayer from './mapLayers/zoning';
 import manufacturingLandUse from './mapLayers/manufacturingLandUse';
 import plutoBounds from './mapLayers/plutoBounds';
+import csoLayer from './mapLayers/cso';
 import assessedValue from './mapLayers/assessedValue';
 import constants from './constants';
 
@@ -38,7 +39,7 @@ const state = new State({
   view: 'storiesList',
   tab: 'stories',
   dataLoaded: [],
-  selectedLayers: ['assessedValue'],
+  selectedLayers: ['cso'],
   selectedInterview: undefined,
   size: containers.getMapSize(),
 });
@@ -51,6 +52,8 @@ const addDataInfoToLayer = ({ layer, dataName }) => {
     .name(dataInfo.name)
     .dataInfo(dataInfo);
 };
+
+addDataInfoToLayer({ layer: csoLayer, dataName: 'cso' });
 
 addDataInfoToLayer({ layer: assessedValue, dataName: 'assessedValue' });
 addDataInfoToLayer({ layer: plutoBounds, dataName: 'plutoBounds' });
@@ -70,6 +73,7 @@ const map = Map({
 
 const mapOverlay = new MapOverlay()
   .coordinateBounds(svgBounds)
+  .addVectorLayer(csoLayer)
   .addVectorLayer(assessedValue)
   .addVectorLayer(plutoBounds)
   .addVectorLayer(watershedLayer)

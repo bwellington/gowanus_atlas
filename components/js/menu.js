@@ -91,11 +91,24 @@ const privateMethods = {
     const interviewContainers = rows.append('div')
       .attr('class', 'menu__interview-container');
 
+    console.log('interviews', interviews);
     interviewContainers.append('div')
+      .attr('class', 'menu__interview-headshot-container')
+      .append('img')
+      .attrs({
+        src: d => d.imagePath,
+        class: 'menu__interview-headshot',
+      });
+
+    const interviewInfoContainers = interviewContainers
+      .append('div')
+      .attr('class', 'menu__interview-info-container');
+
+    interviewInfoContainers.append('div')
       .attr('class', 'menu__name')
       .text(d => d.fullName);
 
-    interviewContainers.append('div')
+    interviewInfoContainers.append('div')
       .attr('class', 'menu__name-title')
       .text(d => d.title);
 

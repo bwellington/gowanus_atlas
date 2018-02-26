@@ -12,6 +12,7 @@
 .zoning-layer {
   opacity: .8;
   cursor: pointer;
+  transition: opacity $btn-speed;
 }
 
 .assessedValue-layer:hover,
@@ -33,4 +34,16 @@
 .watershed-layer:hover,
 .plutoBounds-layer:hover {
   stroke-width: 2;
+}
+
+.cso-layer {
+  stroke: orange;
+  stroke-width: 1.5;
+  fill: rgba(255, 165, 0, .25);
+  transition: fill $btn-speed;
+  cursor: pointer;
+}
+
+.cso-layer:hover {
+  fill: rgba(255, 165, 0, .8);
 }

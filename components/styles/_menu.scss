@@ -21,6 +21,24 @@ $tab-right: $menu-right - $tab-width;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
   // border-top-right-radius: 6px;
+  overflow-y: auto;
+}
+
+.menu__container::-webkit-scrollbar{
+  // -webkit-box-shadow: inset 0 0 3px $title-color--dark;
+  background:transparent;
+  width: 10px !important;
+  opacity: .8 !important;
+}
+
+.menu__container::-webkit-scrollbar-thumb{
+  background:$title-color--dark !important;
+  border-radius: 5px;
+  // width: 5px;
+  
+}
+.menu__container::-webkit-scrollbar:hover {
+  opacity: 1 !important;
 }
 
 .menu__container--allData {
@@ -85,7 +103,15 @@ $tab-right: $menu-right - $tab-width;
 }
 
 .menu__interview-container {
+  display: flex;
   cursor: pointer;
+  align-items: center;
+}
+
+.menu__interview-headshot {
+  width: 100px;
+  height: 100px;
+  margin-right: 15px;
 }
 
 .menu__interview-container:hover, .menu__back-button:hover {
