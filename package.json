@@ -27,7 +27,6 @@
     "raw-loader": "^0.5.1",
     "sass-loader": "^6.0.5",
     "style-loader": "^0.18.2",
-    "turf": "^3.0.14",
     "url-loader": "^0.5.8",
     "webpack": "^2.6.1",
     "webpack-dev-server": "^2.4.5"
@@ -43,8 +42,14 @@
   },
   "homepage": "https://github.com/bwellington/gowanus_atlas#readme",
   "dependencies": {
+    "@turf/boolean-contains": "^6.0.0",
+    "@turf/boolean-overlap": "^6.0.0",
+    "@turf/helpers": "^6.1.1",
+    "async": "^2.6.0",
     "d3": "^4.13.0",
     "d3-scale-chromatic": "^1.2.0",
-    "topojson-client": "^3.0.0"
+    "mapshaper": "^0.4.64",
+    "topojson-client": "^3.0.0",
+    "turf": "^3.0.14"
   }
 }
