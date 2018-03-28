@@ -47,9 +47,10 @@ const extract = {
       boundary,
     } = props;
 
-    // const testFeature = (boundaryFeature, feature) => contains.default(boundaryFeature, feature) ||
+    // const testFeature = (boundaryFeature, feature) =>
+    // contains.default(boundaryFeature, feature) ||
     //   overlap.default(boundaryFeature, feature);
-    const testFeature = (boundaryFeature, feature) => contains.default(boundaryFeature, feature)
+    const testFeature = (boundaryFeature, feature) => contains.default(boundaryFeature, feature);
 
     const filteredFeatures = input.features.filter((d) => {
       if (d.geometry.type === 'MultiPolygon') {

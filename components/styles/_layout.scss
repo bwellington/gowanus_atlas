@@ -1,6 +1,10 @@
 .leaflet-pane > svg.d3-svg-overlay path{
 	pointer-events: auto;
 }
+svg {
+  pointer-events: none;
+}
+// .leaflet-pane > canvas
 
 body {
   padding:0px;

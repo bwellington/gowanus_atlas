@@ -1,7 +1,9 @@
 import * as topojson from 'topojson-client';
-import MapOverlayLayer from '../visualization-components/mapOverlay/mapOverlayLayer';
 import Tooltip from '../visualization-components/tooltip';
+import Props from '../visualization-components/privateProps';
+import datasetList from '../datasetList';
 
+const privateProps = new WeakMap();
 
 const landUseCodes = {
   '01': {
@@ -50,86 +52,153 @@ const landUseCodes = {
   },
 };
 
+const publicProps = new Props({
+  target: privateProps,
+  fields: [
+    'data',
+    'dataPath',
+    'leafletMap',
+    'render',
+  ],
+});
 
-const cleanData = (rawData) => {
-  const cleanFeatures = topojson.feature(rawData, rawData.objects.pluto)
-  .features
-  .filter(d => d.properties.LandUse !== null)
-  .map((d) => {
-    const cleanFeature = Object.assign({}, d);
-    const code = landUseCodes[d.properties.LandUse];
-    if (code === undefined) {
-      cleanFeature.properties.color = 'grey';
-      cleanFeature.properties.landUseText = 'Undefined';
-    } else {
-      cleanFeature.properties.color = code.color;
-      cleanFeature.properties.landUseText = code.text;
-    }
+const privateMethods = {
+  cleanData(rawData) {
+    const cleanFeatures = topojson.feature(rawData, rawData.objects.BKMapPluto)
+    .features
+    .filter(d => d.properties.LandUse !== null)
+    .map((d) => {
+      const cleanFeature = Object.assign({}, d);
+      const code = landUseCodes[d.properties.LandUse];
+      if (code === undefined) {
+        cleanFeature.properties.color = 'grey';
+        cleanFeature.properties.landUseText = 'Undefined';
+      } else {
+        cleanFeature.properties.color = code.color;
+        cleanFeature.properties.landUseText = code.text;
+      }
 
-    return cleanFeature;
-  });
-  return cleanFeatures;
+      return cleanFeature;
+    });
+    return cleanFeatures;
+  },
+  draw() {
+    const props = privateProps.get(this);
+    const {
+      leafletMap,
+      data,
+      tooltip,
+      tooltipOffset,
+    } = props;
+    const opacity = 0.8;
+    props.mapLayer = L.geoJSON(data, {
+      style(feature) {
+        return {
+          color: feature.properties.color,
+          fillOpacity: opacity,
+          stroke: false,
+        };
+      },
+      interactive: true,
+      onEachFeature(feature, layer) {
+        layer.on('mousedown', () => {
+          tooltip.remove();
+        });
+
+        layer.on('mouseover', (e) => {
+          layer.setStyle({
+            fillOpacity: 1,
+          });
+          const pos = [
+            e.containerPoint.x + tooltipOffset.x,
+            e.containerPoint.y + tooltipOffset.y,
+          ];
+          tooltip
+            .position(pos)
+            .text([
+              ['Land Use: ', feature.properties.landUseText],
+            ])
+            .draw();
+        });
+
+        layer.on('mousemove', (e) => {
+          const pos = [
+            e.containerPoint.x + tooltipOffset.x,
+            e.containerPoint.y + tooltipOffset.y,
+          ];
+          tooltip
+            .position(pos)
+            .update();
+        });
+
+        layer.on('mouseout', () => {
+          layer.setStyle({
+            fillOpacity: opacity,
+          });
+
+          tooltip.remove();
+        });
+      },
+    });
+
+    props.mapLayer.addTo(leafletMap);
+  },
 };
 
-const landUseLayer = new MapOverlayLayer()
-  .type('Polygon')
-  .render('Vector')
-  .addPropMethods(['dataInfo'])
-  .draw(function loadData() {
-    const { dataInfo, data } = this.props();
-    const { dataPath } = dataInfo;
-    this._.tooltip = new Tooltip().selection(d3.select('body'));
+const publicMethods = {
+  init() {
+    const props = privateProps.get(this);
+    const { name } = props;
+    const dataInfo = datasetList.find(d => d.name === name);
+
+    props.dataPath = dataInfo.dataPath;
+
+    props.tooltip = new Tooltip().selection(d3.select('body'));
+
+    return this;
+  },
+  draw() {
+    const props = privateProps.get(this);
+    const {
+      dataPath,
+      data,
+      status,
+    } = props;
+    const {
+      draw,
+      cleanData,
+    } = privateMethods;
+
+    if (status) return;
+
     if (data === undefined) {
       d3.json(dataPath, (loadedData) => {
-        this._.data = cleanData(loadedData);
-        this.drawLayer();
+        props.data = cleanData.call(this, loadedData);
+        props.status = true;
+        draw.call(this);
       });
     } else {
-      this.drawLayer();
+      draw.call(this);
     }
-  });
-
-landUseLayer.drawLayer = function drawLayer() {
-  const { data, name, group, refreshMap, tooltip } = this.props();
-
-  group.selectAll(`.${name}-layer`)
-    .data(data)
-    .enter()
-    .append('path')
-    .attrs({
-      class: `${name}-layer`,
-      fill: d => d.properties.color,
-    })
-    .style('opacity', 0)
-    .on('mouseover', (d) => {
-      tooltip
-        .position([d3.event.x + 10, d3.event.y + 10])
-        .text([
-          ['Land Use: ', d.properties.landUseText],
-        ])
-        .draw();
-    })
-    .on('mousemove', () => {
-      tooltip
-        .position([d3.event.x + 10, d3.event.y + 10])
-        .update();
-    })
-    .on('mouseout', () => {
-      tooltip.remove();
-    })
-    .on('click', d => console.log(d))
-    .transition()
-    .duration(50)
-    .delay((d, i) => i * 1)
-    .style('opacity', 0.8);
-
-  refreshMap();
+  },
+  remove() {
+    const props = privateProps.get(this);
+    const { mapLayer } = props;
+    props.status = false;
+    mapLayer.remove();
+  },
 };
 
-landUseLayer.remove = function removeLayer() {
-  const { group, name } = this.props();
-  group.selectAll(`.${name}-layer`).remove();
-};
+class LandUseLayer {
+  constructor() {
+    privateProps.set(this, {
+      name: 'landuse',
+      status: false,
+      tooltipOffset: { x: 10, y: 10 },
+    });
+  }
+}
 
-export default landUseLayer;
+Object.assign(LandUseLayer.prototype, publicProps, publicMethods);
 
+export default LandUseLayer;

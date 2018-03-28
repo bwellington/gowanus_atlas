@@ -3,6 +3,7 @@
 export const mapDatasetList = [
   {
     name: 'slr',
+    render: 'd3',
     category: 'Hydrology',
     fullName: 'Projected Sea Level Rise',
     exclude: [],
@@ -15,6 +16,7 @@ export const mapDatasetList = [
   },
   {
     name: 'watershed',
+    render: 'd3',
     category: 'Hydrology',
     fullName: 'Canal Watershed',
     exclude: [],
@@ -22,6 +24,7 @@ export const mapDatasetList = [
   },
   {
     name: 'cso',
+    render: 'd3',
     category: 'Hydrology',
     fullName: 'Combined Sewer Overflow',
     exclude: [],
@@ -32,6 +35,7 @@ export const mapDatasetList = [
   },
   {
     name: 'cleanup',
+    render: 'd3',
     category: 'Environment',
     fullName: 'Cleanup Plan',
     exclude: [],
@@ -39,6 +43,7 @@ export const mapDatasetList = [
   },
   {
     name: 'galleries',
+    render: 'd3',
     category: 'Culture',
     fullName: 'Art Galleries',
     exclude: [],
@@ -46,27 +51,31 @@ export const mapDatasetList = [
   },
   {
     name: 'landuse',
+    render: 'leaflet',
     category: 'Built Environment',
     fullName: 'Land Use',
     exclude: ['manufacturingLandUse', 'zoning', 'assessedValue'],
-    dataPath: 'data/pluto.topojson',
+    dataPath: 'data/BKMapPlutoClipped.topojson',
   },
   {
     name: 'manufacturingLandUse',
+    render: 'leaflet',
     fullName: 'Manufacturing Land Use',
     category: 'Built Environment',
     exclude: ['landuse', 'zoning', 'assessedValue'],
-    dataPath: 'data/pluto.topojson',
+    dataPath: 'data/BKMapPlutoClipped.topojson',
   },
   {
     name: 'zoning',
+    render: 'leaflet',
     category: 'Built Environment',
     fullName: 'Zoning',
     exclude: ['manufacturingLandUse', 'landuse', 'assessedValue'],
-    dataPath: 'data/pluto.topojson',
+    dataPath: 'data/BKMapPlutoClipped.topojson',
   },
   {
     name: 'plutoBounds',
+    render: 'd3',
     category: 'Built Environment',
     fullName: 'Approximate Rezoning Area',
     exclude: [],
@@ -74,10 +83,11 @@ export const mapDatasetList = [
   },
   {
     name: 'assessedValue',
+    render: 'leaflet',
     category: 'Built Environment',
     fullName: 'Total Assessed Value',
     exclude: ['manufacturingLandUse', 'landuse', 'zoning'],
-    dataPath: 'data/pluto.topojson',
+    dataPath: 'data/BKMapPlutoClipped.topojson',
   },
 ];
 

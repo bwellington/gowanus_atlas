@@ -1,6 +1,6 @@
 import MapOverlay from './visualization-components/mapOverlay/mapOverlay';
 import State from './visualization-components/state';
-import Map from './map';
+import LeafletMap from './map';
 import Menu from './menu';
 import TextOverlay from './textOverlay';
 import Title from './title';
@@ -11,13 +11,15 @@ import slrLayer from './mapLayers/slr';
 import cleanupLayer from './mapLayers/cleanup';
 import watershedLayer from './mapLayers/watershed';
 import galleriesLayer from './mapLayers/galleries';
-import landUseLayer from './mapLayers/landuse';
-import zoningLayer from './mapLayers/zoning';
+
+// import zoningLayer from './mapLayers/zoning';
 import manufacturingLandUse from './mapLayers/manufacturingLandUse';
 import plutoBounds from './mapLayers/plutoBounds';
 import csoLayer from './mapLayers/cso';
-import assessedValue from './mapLayers/assessedValue';
+// import assessedValue from './mapLayers/assessedValue';
 import constants from './constants';
+
+import LeafletLayers from './leafletLayers';
 
 require('../styles/leaflet.css');
 require('../styles/index.scss');
@@ -44,6 +46,14 @@ const state = new State({
   size: containers.getMapSize(),
 });
 
+const leafletMap = LeafletMap({
+  bounds: mapBounds,
+  container: mapContainer,
+});
+
+const leafletLayers = new LeafletLayers()
+  .leafletMap(leafletMap)
+  .init();
 
 const addDataInfoToLayer = ({ layer, dataName }) => {
   const dataInfo = mapDatasetList.find(d => d.name === dataName);
@@ -55,36 +65,31 @@ const addDataInfoToLayer = ({ layer, dataName }) => {
 
 addDataInfoToLayer({ layer: csoLayer, dataName: 'cso' });
 
-addDataInfoToLayer({ layer: assessedValue, dataName: 'assessedValue' });
+// addDataInfoToLayer({ layer: assessedValue, dataName: 'assessedValue' });
 addDataInfoToLayer({ layer: plutoBounds, dataName: 'plutoBounds' });
 addDataInfoToLayer({ layer: manufacturingLandUse, dataName: 'manufacturingLandUse' });
 addDataInfoToLayer({ layer: watershedLayer, dataName: 'watershed' });
 addDataInfoToLayer({ layer: slrLayer, dataName: 'slr' });
 addDataInfoToLayer({ layer: cleanupLayer, dataName: 'cleanup' });
 addDataInfoToLayer({ layer: galleriesLayer, dataName: 'galleries' });
-addDataInfoToLayer({ layer: landUseLayer, dataName: 'landuse' });
-addDataInfoToLayer({ layer: zoningLayer, dataName: 'zoning' });
+// addDataInfoToLayer({ layer: landUseLayer, dataName: 'landuse' });
+// addDataInfoToLayer({ layer: zoningLayer, dataName: 'zoning' });
 
-
-const map = Map({
-  bounds: mapBounds,
-  container: mapContainer,
-});
 
 const mapOverlay = new MapOverlay()
   .coordinateBounds(svgBounds)
   .addVectorLayer(csoLayer)
-  .addVectorLayer(assessedValue)
+  // .addVectorLayer(assessedValue)
   .addVectorLayer(plutoBounds)
   .addVectorLayer(watershedLayer)
   .addVectorLayer(slrLayer)
   .addVectorLayer(cleanupLayer)
   .addVectorLayer(galleriesLayer)
-  .addVectorLayer(landUseLayer)
-  .addVectorLayer(manufacturingLandUse)
-  .addVectorLayer(zoningLayer)
+  // .addVectorLayer(landUseLayer)
+  // .addVectorLayer(manufacturingLandUse)
+  // .addVectorLayer(zoningLayer)
   .selectedLayers(state.selectedLayers())
-  .addTo(map);
+  .addTo(leafletMap);
 
 
 const menu = new Menu()
@@ -175,7 +180,19 @@ state.registerCallback({
   selectedLayers: function updateSelectedLayers() {
     const { selectedLayers } = this.props();
 
-    mapOverlay.updateSelectedLayers(selectedLayers);
+    const currentLeafletLayers = selectedLayers.filter(d => mapDatasetList.find(dd => dd.name === d).render === 'leaflet');
+    const d3Layers = selectedLayers.filter(d => mapDatasetList.find(dd => dd.name === d).render === 'd3');
+
+    leafletLayers
+      .selectedLayers(currentLeafletLayers)
+      .updateLayers();
+
+    // currentLeafletLayers.forEach(layer => leafletLayers[layer].draw());
+
+
+    mapOverlay
+      .updateSelectedLayers(d3Layers);
+
     menu
       .selectedLayers(selectedLayers)
       .updateMenuLayers();

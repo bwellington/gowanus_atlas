@@ -52,7 +52,7 @@ const landUseCodes = {
 
 
 const cleanData = (rawData) => {
-  const cleanFeatures = topojson.feature(rawData, rawData.objects.pluto)
+  const cleanFeatures = topojson.feature(rawData, rawData.objects.BKMapPluto)
   .features
   .filter(d => d.properties.LandUse === '06')
   .map((d) => {
@@ -74,7 +74,7 @@ const cleanData = (rawData) => {
 const manufacturingLandUse = new MapOverlayLayer()
   .type('Polygon')
   .render('Vector')
-  .addPropMethods(['dataInfo'])
+  .addPropMethods(['dataInfo', 'leafletMap'])
   .draw(function loadData() {
     const { dataInfo, data } = this.props();
     const { dataPath } = dataInfo;

@@ -1,6 +1,7 @@
 const Map = ({ bounds, container }) => {
   const map = L.map(container.attr('id'), {
     zoomControl: false,
+    renderer: L.canvas(),
   }).fitBounds(bounds);
 
   // L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png', {

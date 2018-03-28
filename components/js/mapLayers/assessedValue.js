@@ -5,7 +5,8 @@ import Tooltip from '../visualization-components/tooltip';
 const formatNum = d3.format(',d');
 
 const cleanData = (rawData) => {
-  const data = topojson.feature(rawData, rawData.objects.pluto);
+  console.log(rawData);
+  const data = topojson.feature(rawData, rawData.objects.BKMapPluto);
   const dataExtent = d3.extent(data.features.filter(d => d.properties.AssessTot !== 0),
     d => d.properties.AssessTot);
 
@@ -28,7 +29,7 @@ const cleanData = (rawData) => {
 const assessedValueLayer = new MapOverlayLayer()
   .type('Polygon')
   .render('Vector')
-  .addPropMethods(['dataInfo'])
+  .addPropMethods(['dataInfo', 'leafletMap'])
   .draw(function loadData() {
     const { dataInfo, data } = this.props();
     const { dataPath } = dataInfo;

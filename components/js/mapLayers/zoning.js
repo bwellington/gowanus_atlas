@@ -4,7 +4,7 @@ import Tooltip from '../visualization-components/tooltip';
 
 
 const cleanData = (rawData) => {
-  const cleanFeatures = topojson.feature(rawData, rawData.objects.pluto)
+  const cleanFeatures = topojson.feature(rawData, rawData.objects.BKMapPluto)
   .features
   .map((d) => {
     const cleanFeature = Object.assign({}, d);
@@ -27,7 +27,7 @@ const cleanData = (rawData) => {
 const zoningLayer = new MapOverlayLayer()
   .type('Polygon')
   .render('Vector')
-  .addPropMethods(['dataInfo'])
+  .addPropMethods(['dataInfo', 'leafletMap'])
   .draw(function loadData() {
     const { dataInfo, data } = this.props();
     const { dataPath } = dataInfo;
