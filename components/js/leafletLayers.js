@@ -1,5 +1,8 @@
 import Props from './visualization-components/privateProps';
 import LandUseLayer from './mapLayers/landuse';
+import AssessedValueLayer from './mapLayers/assessedValue';
+// import zoningLayer from './mapLayers/zoning';
+// import manufacturingLandUse from './mapLayers/manufacturingLandUse';
 
 const privateProps = new WeakMap();
 
@@ -10,11 +13,24 @@ const publicMethods = {
     const props = privateProps.get(this);
     const { leafletMap } = props;
 
-    props.layers = {
-      landuse: new LandUseLayer()
+    props.layers = [
+      {
+        name: 'landuse',
+        Layer: LandUseLayer,
+      },
+      {
+        name: 'assessedValue',
+        Layer: AssessedValueLayer,
+      },
+    ].reduce((accumulator, d) => {
+      /* eslint-disable no-param-reassign */
+      accumulator[d.name] = new d.Layer()
         .leafletMap(leafletMap)
-        .init(),
-    };
+        .init();
+      return accumulator;
+      /* eslint-enable no-param-reassign */
+    }, {});
+
     return this;
   },
   updateLayers() {
@@ -23,12 +39,15 @@ const publicMethods = {
       layers,
       selectedLayers,
     } = props;
+    console.log(selectedLayers);
 
     Object.keys(layers)
     .forEach((layerName) => {
       if (selectedLayers.includes(layerName)) {
+        console.log('draw', layerName);
         layers[layerName].draw();
       } else {
+        console.log('remove', layerName);
         layers[layerName].remove();
       }
     });

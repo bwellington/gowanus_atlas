@@ -12,11 +12,10 @@ import cleanupLayer from './mapLayers/cleanup';
 import watershedLayer from './mapLayers/watershed';
 import galleriesLayer from './mapLayers/galleries';
 
-// import zoningLayer from './mapLayers/zoning';
-import manufacturingLandUse from './mapLayers/manufacturingLandUse';
+
 import plutoBounds from './mapLayers/plutoBounds';
 import csoLayer from './mapLayers/cso';
-// import assessedValue from './mapLayers/assessedValue';
+
 import constants from './constants';
 
 import LeafletLayers from './leafletLayers';
@@ -67,7 +66,7 @@ addDataInfoToLayer({ layer: csoLayer, dataName: 'cso' });
 
 // addDataInfoToLayer({ layer: assessedValue, dataName: 'assessedValue' });
 addDataInfoToLayer({ layer: plutoBounds, dataName: 'plutoBounds' });
-addDataInfoToLayer({ layer: manufacturingLandUse, dataName: 'manufacturingLandUse' });
+// addDataInfoToLayer({ layer: manufacturingLandUse, dataName: 'manufacturingLandUse' });
 addDataInfoToLayer({ layer: watershedLayer, dataName: 'watershed' });
 addDataInfoToLayer({ layer: slrLayer, dataName: 'slr' });
 addDataInfoToLayer({ layer: cleanupLayer, dataName: 'cleanup' });

@@ -1,90 +1,75 @@
 import * as topojson from 'topojson-client';
-import MapOverlayLayer from '../visualization-components/mapOverlay/mapOverlayLayer';
-import Tooltip from '../visualization-components/tooltip';
+import Props from '../visualization-components/privateProps';
+import getPlutoBase from './plutoBase';
+
+const privateProps = new WeakMap();
 
 const formatNum = d3.format(',d');
 
-const cleanData = (rawData) => {
-  console.log(rawData);
-  const data = topojson.feature(rawData, rawData.objects.BKMapPluto);
-  const dataExtent = d3.extent(data.features.filter(d => d.properties.AssessTot !== 0),
-    d => d.properties.AssessTot);
+const publicProps = new Props({
+  target: privateProps,
+  fields: [
+    'data',
+    'dataPath',
+    'leafletMap',
+    'render',
+  ],
+});
 
-  const scale = d3.scaleSqrt().domain(dataExtent).range([0, 1]);
-  const cleanFeatures = data
-  .features
-  .map((d) => {
-    const cleanFeature = Object.assign({}, d);
-    if (d.properties.AssessTot !== 0) {
-      cleanFeature.properties.color =
-      d3.interpolateYlOrRd(scale(d.properties.AssessTot));
-    } else {
-      cleanFeature.properties.color = 'grey';
-    }
-    return cleanFeature;
-  });
-  return cleanFeatures;
+const privateMethods = {
+  cleanData(rawData) {
+    const data = topojson.feature(rawData, rawData.objects.BKMapPluto);
+    const dataExtent = d3.extent(data.features.filter(d => d.properties.AssessTot !== 0),
+      d => d.properties.AssessTot);
+
+    const scale = d3.scalePow().exponent(0.25).domain(dataExtent).range([0, 1]);
+    const cleanFeatures = data
+    .features
+    .map((d) => {
+      const cleanFeature = Object.assign({}, d);
+      if (d.properties.AssessTot !== 0) {
+        cleanFeature.properties.color =
+        d3.interpolateYlOrRd(scale(d.properties.AssessTot));
+      } else {
+        cleanFeature.properties.color = 'grey';
+      }
+      return cleanFeature;
+    });
+    return cleanFeatures;
+  },
+  getTooltipText(feature) {
+    return [
+      ['Land Use: ', `$${formatNum(feature.properties.AssessTot)}`],
+    ];
+  },
 };
 
-const assessedValueLayer = new MapOverlayLayer()
-  .type('Polygon')
-  .render('Vector')
-  .addPropMethods(['dataInfo', 'leafletMap'])
-  .draw(function loadData() {
-    const { dataInfo, data } = this.props();
-    const { dataPath } = dataInfo;
-    this._.tooltip = new Tooltip().selection(d3.select('body'));
-    if (data === undefined) {
-      d3.json(dataPath, (loadedData) => {
-        this._.data = cleanData(loadedData);
-        this.drawLayer();
-      });
-    } else {
-      this.drawLayer();
-    }
-  });
+const publicMethods = {};
 
-assessedValueLayer.drawLayer = function drawLayer() {
-  const { data, name, group, refreshMap, tooltip } = this.props();
+class AssessedValueLayer {
+  constructor() {
+    privateProps.set(this, {
+      name: 'assessedValue',
+      status: false,
+      tooltipOffset: { x: 10, y: 10 },
+    });
+  }
+}
 
-  group.selectAll(`.${name}-layer`)
-    .data(data)
-    .enter()
-    .append('path')
-    .attrs({
-      class: `${name}-layer`,
-      fill: d => d.properties.color,
-    })
-    .style('opacity', 0)
-    .on('mouseover', (d) => {
-      tooltip
-        .position([d3.event.x + 10, d3.event.y + 10])
-        .text([
-          ['Total Assessed Value: ', `$${formatNum(d.properties.AssessTot)}`],
-        ])
-        .draw();
-    })
-    .on('mousemove', () => {
-      tooltip
-        .position([d3.event.x + 10, d3.event.y + 10])
-        .update();
-    })
-    .on('mouseout', () => {
-      tooltip.remove();
-    })
-    .on('click', d => console.log(d))
-    .transition()
-    .duration(50)
-    .delay((d, i) => i * 1)
-    .style('opacity', 0.8);
+const {
+  publicBaseMethods,
+  privateBaseMethods,
+} = getPlutoBase({ privateProps, privateMethods });
 
+Object.assign(AssessedValueLayer.prototype,
+  publicProps,
+  publicMethods,
+  publicBaseMethods,
+);
 
-  refreshMap();
-};
+Object.assign(
+  privateMethods,
+  privateBaseMethods,
+);
 
-assessedValueLayer.remove = function removeLayer() {
-  const { group, name } = this.props();
-  group.selectAll(`.${name}-layer`).remove();
-};
-
-export default assessedValueLayer;
+export default AssessedValueLayer;
