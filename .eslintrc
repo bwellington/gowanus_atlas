@@ -4,7 +4,8 @@
     "d3": false,
     "L": false,
     "window": false,
-    "Image": false
+    "Image": false,
+    "$": false
   },
   "rules": {
     "max-lines": "error",

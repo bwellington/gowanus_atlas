@@ -4,6 +4,7 @@ import LeafletMap from './map';
 import Menu from './menu';
 import TextOverlay from './textOverlay';
 import Title from './title';
+import TopMenu from './topMenu';
 import containers from './containers';
 import interviews from './interviews';
 import { mapDatasetList } from './datasetList';
@@ -100,7 +101,6 @@ const menu = new Menu()
   .selectedLayers(state.selectedLayers())
   .onInterviewClick((interview) => {
     state.update({ selectedInterview: interview, view: 'interview' });
-    // state.update({ view: { type: 'interview', interview } });
   })
   .onBackClick(() => {
     state.update({ view: 'storiesList' });
@@ -132,6 +132,33 @@ const menu = new Menu()
   })
   .init();
 
+const topMenu = new TopMenu()
+  .container(d3.select('.top-menu'))
+  .interviews(interviews)
+  .mapLayers(mapDatasetList)
+  .onLayerClick((d) => {
+    const currentSelectedLayers = state.selectedLayers();
+
+    let newLayers;
+    if (currentSelectedLayers.includes(d)) {
+      const index = currentSelectedLayers.indexOf(d);
+      newLayers = [...currentSelectedLayers.slice(0, index),
+        ...currentSelectedLayers.slice(index + 1)];
+    } else {
+      const excludeLayers = mapDatasetList.find(dd => dd.name === d).exclude;
+      if (excludeLayers.length > 0) {
+        newLayers = currentSelectedLayers.filter(dd => !excludeLayers.includes(dd))
+          .concat(d);
+      } else {
+        newLayers = [...currentSelectedLayers, d];
+      }
+    }
+    state.update({ selectedLayers: newLayers });
+  })
+  .onInterviewClick((interview) => {
+    state.update({ selectedInterview: interview, view: 'interview' });
+  })
+  .init();
 
 const textOverlay = new TextOverlay()
   .selection(outerContainer)

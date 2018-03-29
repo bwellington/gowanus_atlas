@@ -1,0 +1,110 @@
+.top-menu {
+  z-index: 1000;
+  position: fixed;
+  left: 200px;
+  top: 0px;
+  display: flex;
+  height: 50px;
+  justify-content: center;
+  align-items: center;
+}
+
+.top-menu__item {
+  color: white;
+  cursor: pointer !important;
+  margin-right: 20px;
+  font-size: 16px;
+}
+
+.top-menu__popup {
+  z-index: 1000;
+}
+
+.ui.popup {
+  border: none;
+  background: $title-color;
+  // left: 0px !important;
+}
+
+.top-menu__content {
+  width: 300px;
+  // display: flex;
+  // flex-wrap: wrap;
+}
+
+.top-menu__interview-category {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.interviewsRow {
+  display: flex;
+}
+
+.top-menu__interview {
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  // width: 50%;
+}
+
+.top-menu__interview--active,
+.top-menu__interview:hover {
+  color: white;
+}
+
+.top-menu__category-hr {
+  border: 0px;
+  border-top: 1px solid black;
+}
+
+.top-menu__interview-headshot {
+  width: 100px;
+  height: 100px;
+  margin-right: 15px;
+}
+
+
+
+.top-menu__row-title {
+  font-size: 18px;
+  // color: white;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.top-menu__button-container {
+  margin-bottom: 15px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.top-menu__map-layer {
+  cursor: pointer;
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  border-color: black;
+  border-style: solid;
+  border-radius: 8px;
+  border-width: 1px;
+  background: $title-color;
+  color: $layer-button-color--inactive;
+  transition: background $btn-speed, color $btn-speed;
+  margin-right: 10px;
+  margin-bottom: 5px;
+}
+
+.top-menu__container--allData .top-menu__map-layer {
+  background: $menu-fill--allData;
+  color: white;
+  border-color: white;
+}
+
+.top-menu__map-layer--active, .top-menu__map-layer:hover {
+  color: $layer-button-color--active;
+  //border-color: $layer-button-color--active;
+  background: $title-color--dark;
+  border-color: $title-color--dark;
+}
