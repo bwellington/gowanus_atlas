@@ -39,15 +39,12 @@ const publicMethods = {
       layers,
       selectedLayers,
     } = props;
-    console.log(selectedLayers);
 
     Object.keys(layers)
     .forEach((layerName) => {
       if (selectedLayers.includes(layerName)) {
-        console.log('draw', layerName);
         layers[layerName].draw();
       } else {
-        console.log('remove', layerName);
         layers[layerName].remove();
       }
     });

@@ -39,7 +39,7 @@ const privateMethods = {
   },
   getTooltipText(feature) {
     return [
-      ['Land Use: ', `$${formatNum(feature.properties.AssessTot)}`],
+      ['Assessed Value: ', `$${formatNum(feature.properties.AssessTot)}`],
     ];
   },
 };

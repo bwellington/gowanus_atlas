@@ -203,6 +203,13 @@ state.registerCallback({
       state.update({ selectedLayers: [] });
     }
   },
+  selectedInterview() {
+    const { selectedInterview } = this.props();
+
+    topMenu
+      .selectedInterview(selectedInterview)
+      .updateInterview();
+  },
   selectedLayers: function updateSelectedLayers() {
     const { selectedLayers } = this.props();
 

@@ -19,6 +19,8 @@ const privateMethods = {
       onInterviewClick,
     } = props;
 
+    const { setInterviewColors } = privateMethods;
+
     $('.top-menu__item--stories')
       .popup({
         html: `
@@ -27,9 +29,10 @@ const privateMethods = {
         `,
         hoverable: true,
         variation: 'basic',
-        onCreate() {
-          d3.select('.top-menu__content--stories')
-            .selectAll('.top-menu__interview-category')
+        onCreate: () => {
+          props.storiesContainer = d3.select('.top-menu__content--stories');
+
+          props.storiesContainer.selectAll('.top-menu__interview-category')
             .data(interviewCategories)
             .enter()
             .append('div')
@@ -72,10 +75,25 @@ const privateMethods = {
                 .attr('class', 'top-menu__person-title')
                 .text(d => d.title);
 
+              // interviewBlocks.classed()
               interviewBlocks.on('click', onInterviewClick);
             });
+          props.interviewBlocks = props.storiesContainer.selectAll('.top-menu__interview');
+
+          setInterviewColors.call(this);
         },
       });
+  },
+  setInterviewColors() {
+    const {
+      selectedInterview,
+      interviewBlocks,
+    } = privateProps.get(this);
+
+    if (selectedInterview === undefined || interviewBlocks === undefined) return;
+
+    interviewBlocks
+      .classed('top-menu__interview--active', d => d.name === selectedInterview.name);
   },
   drawLayerButtons({ layers, buttonContainer }) {
     const props = privateProps.get(this);
@@ -114,7 +132,8 @@ const privateMethods = {
         hoverable: true,
         variation: 'basic',
         onCreate() {
-          const menuRows = d3.select('.top-menu__content--all')
+          props.mapLayersContainer = d3.select('.top-menu__content--all');
+          const menuRows = props.mapLayersContainer
             .selectAll('.top-menu__button-row')
             .data(categories)
             .enter()
@@ -136,7 +155,8 @@ const privateMethods = {
               });
             });
 
-          // props.menuLayers = container.selectAll('.top-menu__map-layer');
+          props.menuLayers = props.mapLayersContainer
+            .selectAll('.top-menu__map-layer');
         },
       });
   },
@@ -148,8 +168,12 @@ const publicMethods = {
       initPopups,
     } = privateMethods;
     initPopups.call(this);
-    console.log('init top menu');
+
     return this;
+  },
+  updateInterview() {
+    const { setInterviewColors } = privateMethods;
+    setInterviewColors.call(this);
   },
 };
 
@@ -161,6 +185,8 @@ const publicProps = new Props({
     'mapLayers',
     'onInterviewClick',
     'onLayerClick',
+    'selectedInterview',
+    'selectedLayers',
   ],
 });
 
