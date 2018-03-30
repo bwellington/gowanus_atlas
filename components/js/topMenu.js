@@ -95,6 +95,13 @@ const privateMethods = {
     interviewBlocks
       .classed('top-menu__interview--active', d => d.name === selectedInterview.name);
   },
+  setLayerColors() {
+    const { menuLayers, selectedLayers } = privateProps.get(this);
+
+    if (menuLayers === undefined || selectedLayers === undefined) return;
+
+    menuLayers.classed('top-menu__map-layer--active', d => selectedLayers.includes(d.name));
+  },
   drawLayerButtons({ layers, buttonContainer }) {
     const props = privateProps.get(this);
     const {
@@ -118,7 +125,10 @@ const privateMethods = {
       mapLayers,
     } = props;
 
-    const { drawLayerButtons } = privateMethods;
+    const {
+      drawLayerButtons,
+      setLayerColors,
+    } = privateMethods;
     const boundDrawLayerButtons = drawLayerButtons.bind(this);
 
     const categories = [...new Set(mapLayers.map(d => d.category))];
@@ -131,7 +141,7 @@ const privateMethods = {
         `,
         hoverable: true,
         variation: 'basic',
-        onCreate() {
+        onCreate: () => {
           props.mapLayersContainer = d3.select('.top-menu__content--all');
           const menuRows = props.mapLayersContainer
             .selectAll('.top-menu__button-row')
@@ -157,6 +167,8 @@ const privateMethods = {
 
           props.menuLayers = props.mapLayersContainer
             .selectAll('.top-menu__map-layer');
+
+          setLayerColors.call(this);
         },
       });
   },
@@ -174,6 +186,10 @@ const publicMethods = {
   updateInterview() {
     const { setInterviewColors } = privateMethods;
     setInterviewColors.call(this);
+  },
+  updateLayers() {
+    const { setLayerColors } = privateMethods;
+    setLayerColors.call(this);
   },
 };
 

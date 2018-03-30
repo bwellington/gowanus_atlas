@@ -92,45 +92,45 @@ const mapOverlay = new MapOverlay()
   .addTo(leafletMap);
 
 
-const menu = new Menu()
-  .interviews(interviews)
-  .selection(outerContainer)
-  .view(state.view())
-  .mapLayers(mapDatasetList)
-  .selectedInterview(state.selectedInterview())
-  .selectedLayers(state.selectedLayers())
-  .onInterviewClick((interview) => {
-    state.update({ selectedInterview: interview, view: 'interview' });
-  })
-  .onBackClick(() => {
-    state.update({ view: 'storiesList' });
-  })
-  .onTabClick((tab) => {
-    const currentView = state.view();
-    console.log(tab);
-    if (tab === currentView) return;
-    state.update({ view: tab });
-  })
-  .onLayerClick((d) => {
-    const currentSelectedLayers = state.selectedLayers();
+// const menu = new Menu()
+//   .interviews(interviews)
+//   .selection(outerContainer)
+//   .view(state.view())
+//   .mapLayers(mapDatasetList)
+//   .selectedInterview(state.selectedInterview())
+//   .selectedLayers(state.selectedLayers())
+//   .onInterviewClick((interview) => {
+//     state.update({ selectedInterview: interview, view: 'interview' });
+//   })
+//   .onBackClick(() => {
+//     state.update({ view: 'storiesList' });
+//   })
+//   .onTabClick((tab) => {
+//     const currentView = state.view();
+//     console.log(tab);
+//     if (tab === currentView) return;
+//     state.update({ view: tab });
+//   })
+//   .onLayerClick((d) => {
+//     const currentSelectedLayers = state.selectedLayers();
 
-    let newLayers;
-    if (currentSelectedLayers.includes(d)) {
-      const index = currentSelectedLayers.indexOf(d);
-      newLayers = [...currentSelectedLayers.slice(0, index),
-        ...currentSelectedLayers.slice(index + 1)];
-    } else {
-      const excludeLayers = mapDatasetList.find(dd => dd.name === d).exclude;
-      if (excludeLayers.length > 0) {
-        newLayers = currentSelectedLayers.filter(dd => !excludeLayers.includes(dd))
-          .concat(d);
-      } else {
-        newLayers = [...currentSelectedLayers, d];
-      }
-    }
-    state.update({ selectedLayers: newLayers });
-  })
-  .init();
+//     let newLayers;
+//     if (currentSelectedLayers.includes(d)) {
+//       const index = currentSelectedLayers.indexOf(d);
+//       newLayers = [...currentSelectedLayers.slice(0, index),
+//         ...currentSelectedLayers.slice(index + 1)];
+//     } else {
+//       const excludeLayers = mapDatasetList.find(dd => dd.name === d).exclude;
+//       if (excludeLayers.length > 0) {
+//         newLayers = currentSelectedLayers.filter(dd => !excludeLayers.includes(dd))
+//           .concat(d);
+//       } else {
+//         newLayers = [...currentSelectedLayers, d];
+//       }
+//     }
+//     state.update({ selectedLayers: newLayers });
+//   })
+//   .init();
 
 const topMenu = new TopMenu()
   .container(d3.select('.top-menu'))
@@ -165,10 +165,7 @@ const textOverlay = new TextOverlay()
   .view(state.view())
   .draw();
 
-const testTitle = new Title();
 
-testTitle.title.xxx = 50;
-testTitle._.ok = 4;
 new Title()
   .selection(outerContainer)
   .title('The Gowanus Atlas')
@@ -186,11 +183,10 @@ state.registerCallback({
 
     const { selectedInterview } = this.props();
 
-    console.log('view', view);
-    menu
-      .selectedInterview(selectedInterview)
-      .view(view)
-      .update();
+    // menu
+    //   .selectedInterview(selectedInterview)
+    //   .view(view)
+    //   .update();
 
     textOverlay
       .view(view)
@@ -220,15 +216,16 @@ state.registerCallback({
       .selectedLayers(currentLeafletLayers)
       .updateLayers();
 
-    // currentLeafletLayers.forEach(layer => leafletLayers[layer].draw());
-
-
     mapOverlay
       .updateSelectedLayers(d3Layers);
 
-    menu
+    topMenu
       .selectedLayers(selectedLayers)
-      .updateMenuLayers();
+      .updateLayers();
+
+    // menu
+    //   .selectedLayers(selectedLayers)
+    //   .updateMenuLayers();
   },
 });
 
