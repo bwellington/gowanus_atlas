@@ -4,6 +4,11 @@ const Map = ({ bounds, container }) => {
     renderer: L.canvas(),
   }).fitBounds(bounds);
 
+  L.control.zoom({
+    position: 'bottomright',
+  })
+    .addTo(map);
+
   // L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png', {
   //   attribution: "&copy; <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> &copy; <a href='http://cartodb.com/attributions'>CartoDB</a>",
   //   subdomains: 'abcd',

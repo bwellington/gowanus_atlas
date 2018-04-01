@@ -41,7 +41,7 @@ const privateMethods = {
               const categoryBlock = d3.select(this);
               categoryBlock
                 .append('div')
-                .attr('class', 'top-menu__category-header menu__header')
+                .attr('class', 'top-menu__category-header top-menu__header')
                 .text(category)
                 .append('hr')
                 .attr('class', 'top-menu__category-hr');
@@ -172,14 +172,30 @@ const privateMethods = {
         },
       });
   },
+  initModal() {
+    const { container } = privateProps.get(this);
+    const { openModal } = privateMethods;
+    container.select('.top-menu__item--about')
+      .on('click', () => {
+        openModal.call(this);
+      });
+  },
+  openModal() {
+    $('.ui.modal')
+      .modal('show');
+  },
 };
 
 const publicMethods = {
   init() {
     const {
       initPopups,
+      initModal,
+      openModal,
     } = privateMethods;
     initPopups.call(this);
+    initModal.call(this);
+    openModal.call(this);
 
     return this;
   },

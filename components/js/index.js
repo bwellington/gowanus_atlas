@@ -1,9 +1,9 @@
 import MapOverlay from './visualization-components/mapOverlay/mapOverlay';
 import State from './visualization-components/state';
 import LeafletMap from './map';
-import Menu from './menu';
+import Sidebar from './sidebar';
 import TextOverlay from './textOverlay';
-import Title from './title';
+// import Title from './title';
 import TopMenu from './topMenu';
 import containers from './containers';
 import interviews from './interviews';
@@ -34,14 +34,14 @@ require('../styles/index.scss');
   img.src = imgPath;
 });
 
-const { mapContainer, outerContainer } = containers;
+const { mapContainer } = containers;
 const { svgBounds, mapBounds } = constants;
 
 const state = new State({
   view: 'storiesList',
   tab: 'stories',
   dataLoaded: [],
-  selectedLayers: [],
+  selectedLayers: ['watershed'],
   selectedInterview: undefined,
   size: containers.getMapSize(),
 });
@@ -64,129 +64,83 @@ const addDataInfoToLayer = ({ layer, dataName }) => {
 };
 
 addDataInfoToLayer({ layer: csoLayer, dataName: 'cso' });
-
-// addDataInfoToLayer({ layer: assessedValue, dataName: 'assessedValue' });
 addDataInfoToLayer({ layer: plutoBounds, dataName: 'plutoBounds' });
-// addDataInfoToLayer({ layer: manufacturingLandUse, dataName: 'manufacturingLandUse' });
 addDataInfoToLayer({ layer: watershedLayer, dataName: 'watershed' });
 addDataInfoToLayer({ layer: slrLayer, dataName: 'slr' });
 addDataInfoToLayer({ layer: cleanupLayer, dataName: 'cleanup' });
 addDataInfoToLayer({ layer: galleriesLayer, dataName: 'galleries' });
-// addDataInfoToLayer({ layer: landUseLayer, dataName: 'landuse' });
-// addDataInfoToLayer({ layer: zoningLayer, dataName: 'zoning' });
-
 
 const mapOverlay = new MapOverlay()
   .coordinateBounds(svgBounds)
   .addVectorLayer(csoLayer)
-  // .addVectorLayer(assessedValue)
   .addVectorLayer(plutoBounds)
   .addVectorLayer(watershedLayer)
   .addVectorLayer(slrLayer)
   .addVectorLayer(cleanupLayer)
   .addVectorLayer(galleriesLayer)
-  // .addVectorLayer(landUseLayer)
-  // .addVectorLayer(manufacturingLandUse)
-  // .addVectorLayer(zoningLayer)
   .selectedLayers(state.selectedLayers())
   .addTo(leafletMap);
 
+const onLayerClick = (d) => {
+  const currentSelectedLayers = state.selectedLayers();
 
-// const menu = new Menu()
-//   .interviews(interviews)
-//   .selection(outerContainer)
-//   .view(state.view())
-//   .mapLayers(mapDatasetList)
-//   .selectedInterview(state.selectedInterview())
-//   .selectedLayers(state.selectedLayers())
-//   .onInterviewClick((interview) => {
-//     state.update({ selectedInterview: interview, view: 'interview' });
-//   })
-//   .onBackClick(() => {
-//     state.update({ view: 'storiesList' });
-//   })
-//   .onTabClick((tab) => {
-//     const currentView = state.view();
-//     console.log(tab);
-//     if (tab === currentView) return;
-//     state.update({ view: tab });
-//   })
-//   .onLayerClick((d) => {
-//     const currentSelectedLayers = state.selectedLayers();
+  let newLayers;
+  if (currentSelectedLayers.includes(d)) {
+    const index = currentSelectedLayers.indexOf(d);
+    newLayers = [...currentSelectedLayers.slice(0, index),
+      ...currentSelectedLayers.slice(index + 1)];
+  } else {
+    const excludeLayers = mapDatasetList.find(dd => dd.name === d).exclude;
+    if (excludeLayers.length > 0) {
+      newLayers = currentSelectedLayers.filter(dd => !excludeLayers.includes(dd))
+        .concat(d);
+    } else {
+      newLayers = [...currentSelectedLayers, d];
+    }
+  }
+  state.update({ selectedLayers: newLayers });
+};
 
-//     let newLayers;
-//     if (currentSelectedLayers.includes(d)) {
-//       const index = currentSelectedLayers.indexOf(d);
-//       newLayers = [...currentSelectedLayers.slice(0, index),
-//         ...currentSelectedLayers.slice(index + 1)];
-//     } else {
-//       const excludeLayers = mapDatasetList.find(dd => dd.name === d).exclude;
-//       if (excludeLayers.length > 0) {
-//         newLayers = currentSelectedLayers.filter(dd => !excludeLayers.includes(dd))
-//           .concat(d);
-//       } else {
-//         newLayers = [...currentSelectedLayers, d];
-//       }
-//     }
-//     state.update({ selectedLayers: newLayers });
-//   })
-//   .init();
+const sidebar = new Sidebar()
+  .container(d3.select('.sidebar'))
+  .onLayerClick(onLayerClick)
+  .onCloseClick(() => state.update({ selectedInterview: undefined }))
+  .selectedLayers(state.selectedLayers())
+  .mapLayers(mapDatasetList)
+  .init();
 
 const topMenu = new TopMenu()
   .container(d3.select('.top-menu'))
   .interviews(interviews)
   .mapLayers(mapDatasetList)
-  .onLayerClick((d) => {
-    const currentSelectedLayers = state.selectedLayers();
-
-    let newLayers;
-    if (currentSelectedLayers.includes(d)) {
-      const index = currentSelectedLayers.indexOf(d);
-      newLayers = [...currentSelectedLayers.slice(0, index),
-        ...currentSelectedLayers.slice(index + 1)];
-    } else {
-      const excludeLayers = mapDatasetList.find(dd => dd.name === d).exclude;
-      if (excludeLayers.length > 0) {
-        newLayers = currentSelectedLayers.filter(dd => !excludeLayers.includes(dd))
-          .concat(d);
-      } else {
-        newLayers = [...currentSelectedLayers, d];
-      }
-    }
-    state.update({ selectedLayers: newLayers });
-  })
+  .selectedLayers(state.selectedLayers())
+  .onLayerClick(onLayerClick)
   .onInterviewClick((interview) => {
-    state.update({ selectedInterview: interview, view: 'interview' });
+    state.update({ selectedInterview: interview });
   })
   .init();
 
 const textOverlay = new TextOverlay()
-  .selection(outerContainer)
-  .view(state.view())
-  .draw();
+  .init();
 
 
-new Title()
-  .selection(outerContainer)
-  .title('The Gowanus Atlas')
-  .subtitle('Mapping the contexts and potential futures of the Gowanus Canal')
-  .draw();
+// new Title()
+//   .selection(outerContainer)
+//   .title('The Gowanus Atlas')
+//   .subtitle('Mapping the contexts and potential futures of the Gowanus Canal')
+//   .draw();
 
 
 state.registerCallback({
   view: function updateView() {
     const { view } = this.props();
+    console.log('change view');
 
     if (view === 'storiesList') {
       state.update({ selectedInterview: undefined });
     }
 
     const { selectedInterview } = this.props();
-
-    // menu
-    //   .selectedInterview(selectedInterview)
-    //   .view(view)
-    //   .update();
 
     textOverlay
       .view(view)
@@ -205,6 +159,18 @@ state.registerCallback({
     topMenu
       .selectedInterview(selectedInterview)
       .updateInterview();
+
+    sidebar
+      .selectedInterview(selectedInterview)
+      .updateInterview();
+
+    textOverlay
+      .selectedInterview(selectedInterview)
+      .update();
+
+    if (selectedInterview !== undefined) {
+      state.update({ selectedLayers: selectedInterview.layers });
+    }
   },
   selectedLayers: function updateSelectedLayers() {
     const { selectedLayers } = this.props();
@@ -220,6 +186,10 @@ state.registerCallback({
       .updateSelectedLayers(d3Layers);
 
     topMenu
+      .selectedLayers(selectedLayers)
+      .updateLayers();
+
+    sidebar
       .selectedLayers(selectedLayers)
       .updateLayers();
 

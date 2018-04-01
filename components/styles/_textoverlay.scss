@@ -1,19 +1,24 @@
 .quote {
   position: absolute;
-  left: 15vw;
+  left: $menu-left + $menu-width + $menu-left;
   bottom: 50px;
   z-index: 950;
   pointer-events: none;
   color: white;
-  
+  opacity: 1;
   max-width: 500px;
+  transition: opacity 500ms;
 }
 
-@media (max-width: 1200px) {
-  .quote{
-    left: 10vw;
-  }
+.quote--hidden {
+  opacity: 0;
 }
+
+// @media (max-width: 1200px) {
+//   .quote{
+//     left: 10vw;
+//   }
+// }
 
 .quote__text {
   font-size: 18px;

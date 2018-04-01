@@ -18,7 +18,7 @@ const interviews = [
     imagePath: 'jpg/basile.jpg',
     category: 'Industry and Infrastructure',
     description: 'A property manager and developer, Paul founded Gowanus Alliance in 2010 with three friends, all second and third generation businessmen in the surrounding area. Paul promotes the retention of manufacturing, industrial, creative, and entertainment businesses in the Gowanus community; seeks a new location for the Kentile sign he rescued prior to its demolition; and advocates for new community playgrounds and parks.',
-    layers: ['manufacturingLandUse', 'plutoBounds'],
+    layers: ['manufacturingLandUse', 'plutoBounds', 'watershed'],
     quote: 'We need more of the same. We need more space for the manufacturers to feel comfortable that they can grow into a 5 or 10 year plan.',
   },
   {
@@ -29,7 +29,7 @@ const interviews = [
     imagePath: 'jpg/pinkard.jpg',
     category: 'Community',
     description: 'While working as Parent Coordinator at the Brooklyn School of Collaborative Studies, Tracey co-founded the Gowanus Houses Art Collective, an arts youth program for the complex where she is a long time resident. She sees the program as a bridge to the creative community in the surrounding wealthier neighborhoods, offering them a window into life in the public housing complex.',
-    layers: ['cleanup'],
+    layers: ['cleanup', 'watershed'],
     quote: 'For many years the canal reeked, the smell was just horrible, and in the summer it permeated, it was just sickening. And so now there’s this superfund, and there’s this big concern about the cleanup.',
   },
   {
@@ -40,7 +40,7 @@ const interviews = [
     imagePath: 'jpg/uz.jpg',
     category: 'Equity',
     description: 'Michelle is the Executive Director of the Fifth Avenue Committee, a non-profit community organization in Brooklyn that develops and manages affordable housing and community facilities, creates economic opportunities and ensures access to economic stability, organizes residents and workers, offers student-centered adult education, and combats displacement caused by gentrification. She also serves on the New York City Planning Commission.',
-    layers: ['zoning', 'plutoBounds'],
+    layers: ['zoning', 'plutoBounds', 'watershed'],
     quote: 'I think that the cleanup processes that are underway and the rezoning that will be formally launched have the ability to try to right some wrongs that have existed historically, but I think that only happens if we are conscious about righting those wrongs.',
   },
 ];

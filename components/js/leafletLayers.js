@@ -1,12 +1,12 @@
 import Props from './visualization-components/privateProps';
 import LandUseLayer from './mapLayers/landuse';
 import AssessedValueLayer from './mapLayers/assessedValue';
-// import zoningLayer from './mapLayers/zoning';
-// import manufacturingLandUse from './mapLayers/manufacturingLandUse';
+import ZoningLayer from './mapLayers/zoning';
+import ManufacturingLandUseLayer from './mapLayers/manufacturingLandUse';
 
 const privateProps = new WeakMap();
 
-// const privateMethods = {};
+// console.log(ManufacturingLandUseLayer);
 
 const publicMethods = {
   init() {
@@ -21,6 +21,14 @@ const publicMethods = {
       {
         name: 'assessedValue',
         Layer: AssessedValueLayer,
+      },
+      {
+        name: 'manufacturingLandUse',
+        Layer: ManufacturingLandUseLayer,
+      },
+      {
+        name: 'zoning',
+        Layer: ZoningLayer,
       },
     ].reduce((accumulator, d) => {
       /* eslint-disable no-param-reassign */

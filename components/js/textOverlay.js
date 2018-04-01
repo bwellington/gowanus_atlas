@@ -1,41 +1,50 @@
-import Props from './visualization-components/props';
+import Props from './visualization-components/privateProps';
 
-const props = new Props([
-  'selectedInterview',
-  'selection',
-  'view',
-]);
+const privateProps = new WeakMap();
+
+const privateMethods = {
+  setSelections() {
+    const props = privateProps.get(this);
+    props.container = d3.select('.quote');
+    props.title = d3.select('.quote__text');
+    props.name = d3.select('.quote__attribution');
+  },
+};
+
+const publicProps = new Props(
+  {
+    target: privateProps,
+    fields: [
+      'selectedInterview',
+    ],
+  },
+);
 class TextOverlay {
   constructor() {
-    props.addTo(this);
+    privateProps.set(this, {});
   }
-  draw() {
+  init() {
+    const { setSelections } = privateMethods;
+    setSelections.call(this);
     this.update();
     return this;
   }
   update() {
     const {
-      selection,
-      view,
+      title,
+      name,
+      container,
       selectedInterview,
-    } = this.props();
-    selection.selectAll('.quote').remove();
-    if (view === 'interview') {
-      const quoteBox = selection
-        .append('div')
-        .attr('class', 'quote');
+    } = privateProps.get(this);
 
-      quoteBox
-        .append('div')
-        .attr('class', 'quote__text')
-        .text(`"${selectedInterview.quote}"`);
-
-      quoteBox
-        .append('div')
-        .attr('class', 'quote__attribution')
-        .text(`—${selectedInterview.fullName}`);
+    if (selectedInterview !== undefined) {
+      title.text(`"${selectedInterview.quote}"`);
+      name.text(`—${selectedInterview.fullName}`);
     }
+    container.classed('quote--hidden', selectedInterview === undefined);
   }
 }
+
+Object.assign(TextOverlay.prototype, publicProps);
 
 export default TextOverlay;
