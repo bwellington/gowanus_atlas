@@ -90,10 +90,14 @@ const privateMethods = {
       interviewBlocks,
     } = privateProps.get(this);
 
-    if (selectedInterview === undefined || interviewBlocks === undefined) return;
-
-    interviewBlocks
+    if (interviewBlocks === undefined) return;
+    if (selectedInterview === undefined) {
+      interviewBlocks
+      .classed('top-menu__interview--active', false);
+    } else {
+      interviewBlocks
       .classed('top-menu__interview--active', d => d.name === selectedInterview.name);
+    }
   },
   setLayerColors() {
     const { menuLayers, selectedLayers } = privateProps.get(this);
@@ -191,11 +195,11 @@ const publicMethods = {
     const {
       initPopups,
       initModal,
-      openModal,
+      // openModal,
     } = privateMethods;
     initPopups.call(this);
     initModal.call(this);
-    openModal.call(this);
+    // openModal.call(this);
 
     return this;
   },

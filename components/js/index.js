@@ -116,7 +116,14 @@ const topMenu = new TopMenu()
   .selectedLayers(state.selectedLayers())
   .onLayerClick(onLayerClick)
   .onInterviewClick((interview) => {
-    state.update({ selectedInterview: interview });
+    const currentInterview = state.selectedInterview();
+    const currentName = currentInterview === undefined ? '' : currentInterview.name;
+
+    if (interview.name === currentName) {
+      state.update({ selectedInterview: undefined });
+    } else {
+      state.update({ selectedInterview: interview });
+    }
   })
   .init();
 
@@ -124,34 +131,26 @@ const textOverlay = new TextOverlay()
   .init();
 
 
-// new Title()
-//   .selection(outerContainer)
-//   .title('The Gowanus Atlas')
-//   .subtitle('Mapping the contexts and potential futures of the Gowanus Canal')
-//   .draw();
-
-
 state.registerCallback({
   view: function updateView() {
-    const { view } = this.props();
-    console.log('change view');
+    // const { view } = this.props();
 
-    if (view === 'storiesList') {
-      state.update({ selectedInterview: undefined });
-    }
+    // if (view === 'storiesList') {
+    //   state.update({ selectedInterview: undefined });
+    // }
 
-    const { selectedInterview } = this.props();
+    // const { selectedInterview } = this.props();
 
-    textOverlay
-      .view(view)
-      .selectedInterview(selectedInterview)
-      .update();
+    // textOverlay
+    //   .view(view)
+    //   .selectedInterview(selectedInterview)
+    //   .update();
 
-    if (view === 'interview') {
-      state.update({ selectedLayers: selectedInterview.layers });
-    } else if (view === 'storiesList') {
-      state.update({ selectedLayers: [] });
-    }
+    // if (view === 'interview') {
+    //   state.update({ selectedLayers: selectedInterview.layers });
+    // } else if (view === 'storiesList') {
+    //   state.update({ selectedLayers: [] });
+    // }
   },
   selectedInterview() {
     const { selectedInterview } = this.props();
@@ -192,10 +191,6 @@ state.registerCallback({
     sidebar
       .selectedLayers(selectedLayers)
       .updateLayers();
-
-    // menu
-    //   .selectedLayers(selectedLayers)
-    //   .updateMenuLayers();
   },
 });
 
