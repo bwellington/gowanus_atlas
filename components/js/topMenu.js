@@ -108,8 +108,6 @@ const privateMethods = {
 
     if (menuLayers === undefined || selectedLayers === undefined) return;
 
-    console.log('menu layers', menuLayers.data());
-
     menuLayers.classed('top-menu__map-layer--active', d => selectedLayers.includes(d.name));
     menuLayers.classed('top-menu__map-layer--disabled', (d) => {
       if (selectedLayers === undefined) return false;

@@ -52,11 +52,13 @@
   cursor: pointer;
 }
 
-.cso-layer:hover {
+
+.cso-layer--active {
   fill: rgba(255, 165, 0, .5);
 }
 
-.cso-layer--circle {
+.cso-layer-circle {
+  pointer-events: auto;
   stroke: white;
   stroke-width: 1.5;
   fill: rgba(255, 255, 255, .5);
@@ -64,7 +66,7 @@
   cursor: pointer;
 }
 
-.cso-layer--circle:hover {
+.cso-layer-circle--active {
   fill: rgba(255, 255, 255, .9);
 }
 

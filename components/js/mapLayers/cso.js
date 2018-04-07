@@ -27,6 +27,14 @@ const csoLayer = new MapOverlayLayer()
     }
   });
 
+csoLayer.toggleActive = function toggleActive(outfallId, toggle) {
+  const { name, group } = this.props();
+  group.selectAll(`.${name}-layer--${outfallId}`)
+    .classed(`${name}-layer--active`, toggle);
+  group.selectAll(`.${name}-layer-circle--${outfallId}`)
+    .classed(`${name}-layer-circle--active`, toggle);
+};
+
 csoLayer.drawCsoOutfall = function drawOutfall() {
   const { data, group, name, tooltip } = this.props();
   const outfallExtent = d3.extent(data.csoOutfall.features.filter(d => d !== null),
@@ -42,14 +50,14 @@ csoLayer.drawCsoOutfall = function drawOutfall() {
       point.lon = d.geometry.coordinates[0];
       return point;
     });
-  group.selectAll(`.${name}-layer--circle`)
-    .data(points)
+  group.selectAll(`.${name}-layer-circle`)
+    .data(points.filter(d => d.properties.volume_16 !== null))
     .enter()
     .append('circle')
     .attrs({
       r: 0,
       class: (d) => {
-        const baseClass = `${name}-layer--circle`;
+        const baseClass = `${name}-layer-circle ${name}-layer-circle--${d.properties.outfall_id}`;
         if (d.properties.volume_16 === null) {
           return `${baseClass} ${baseClass}--null`;
         }
@@ -57,6 +65,7 @@ csoLayer.drawCsoOutfall = function drawOutfall() {
       },
     })
     .on('mouseover', (d) => {
+      this.toggleActive(d.properties.outfall_id, true);
       if (d.properties.volume_16 === null) {
         tooltip
           .position([d3.event.x + 10, d3.event.y + 10])
@@ -78,7 +87,8 @@ csoLayer.drawCsoOutfall = function drawOutfall() {
         .position([d3.event.x + 10, d3.event.y + 10])
         .update();
     })
-    .on('mouseout', () => {
+    .on('mouseout', (d) => {
+      this.toggleActive(d.properties.outfall_id, false);
       tooltip.remove();
     })
     .transition()
@@ -96,10 +106,11 @@ csoLayer.drawCsoArea = function drawLayer() {
     .enter()
     .append('path')
     .attrs({
-      class: `${name}-layer`,
+      class: d => `${name}-layer ${name}-layer--${d.properties.outfall}`,
       opacity: 0,
     })
     .on('mouseover', (d) => {
+      this.toggleActive(d.properties.outfall, true);
       tooltip
         .position([d3.event.x + 10, d3.event.y + 10])
         .text([
@@ -115,7 +126,8 @@ csoLayer.drawCsoArea = function drawLayer() {
         .position([d3.event.x + 10, d3.event.y + 10])
         .update();
     })
-    .on('mouseout', () => {
+    .on('mouseout', (d) => {
+      this.toggleActive(d.properties.outfall, false);
       tooltip.remove();
     })
     .transition()
@@ -129,7 +141,7 @@ csoLayer.remove = function removeLayer() {
   const { group, name } = this.props();
 
   group.selectAll(`.${name}-layer`).remove();
-  group.selectAll(`.${name}-layer--circle`).remove();
+  group.selectAll(`.${name}-layer-circle`).remove();
 };
 
 export default csoLayer;
