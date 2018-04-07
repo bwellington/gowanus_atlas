@@ -130,7 +130,11 @@
 .sidebar__map-layer--active, .sidebar__map-layer:hover,
 .top-menu__map-layer--active, .top-menu__map-layer:hover {
   color: $layer-button-color--active;
-  //border-color: $layer-button-color--active;
   background: $title-color--dark;
   border-color: $title-color--dark;
+}
+
+.top-menu__map-layer--disabled {
+  opacity: 0.5;
+  pointer-events: none;
 }

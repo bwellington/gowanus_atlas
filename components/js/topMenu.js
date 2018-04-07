@@ -100,11 +100,24 @@ const privateMethods = {
     }
   },
   setLayerColors() {
-    const { menuLayers, selectedLayers } = privateProps.get(this);
+    const {
+      menuLayers,
+      selectedLayers,
+      mapLayers,
+    } = privateProps.get(this);
 
     if (menuLayers === undefined || selectedLayers === undefined) return;
 
+    console.log('menu layers', menuLayers.data());
+
     menuLayers.classed('top-menu__map-layer--active', d => selectedLayers.includes(d.name));
+    menuLayers.classed('top-menu__map-layer--disabled', (d) => {
+      if (selectedLayers === undefined) return false;
+      const selectedMapLayers = selectedLayers.map(dd => mapLayers.find(ddd => ddd.name === dd));
+      return selectedMapLayers
+        .filter(dd => dd.exclude.includes(d.name))
+        .length > 0;
+    });
   },
   drawLayerButtons({ layers, buttonContainer }) {
     const props = privateProps.get(this);
