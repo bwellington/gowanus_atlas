@@ -29,6 +29,7 @@ const privateMethods = {
         `,
         hoverable: true,
         variation: 'basic',
+        lastResort: 'bottom left',
         onCreate: () => {
           props.storiesContainer = d3.select('.top-menu__content--stories');
 
@@ -134,15 +135,22 @@ const privateMethods = {
       .attr('class', 'top-menu__map-layer')
       .text(d => d.fullName);
   },
+  setClearButtonVisibility() {
+    const { clearButton, selectedLayers } = privateProps.get(this);
+    if (clearButton === undefined) return;
+    clearButton.classed('top-menu__clear-button--hidden', selectedLayers.length === 0);
+  },
   initAllDataPopup() {
     const props = privateProps.get(this);
     const {
       mapLayers,
+      onClearClick,
     } = props;
 
     const {
       drawLayerButtons,
       setLayerColors,
+      setClearButtonVisibility,
     } = privateMethods;
     const boundDrawLayerButtons = drawLayerButtons.bind(this);
 
@@ -156,8 +164,17 @@ const privateMethods = {
         `,
         hoverable: true,
         variation: 'basic',
+        lastResort: 'bottom left',
         onCreate: () => {
           props.mapLayersContainer = d3.select('.top-menu__content--all');
+          props.clearButton = props.mapLayersContainer
+            .append('div')
+            .attr('class', 'top-menu__clear-button-row')
+            .append('div')
+            .attr('class', 'top-menu__clear-button top-menu__clear-button--hidden')
+            .text('Clear all layers')
+            .on('click', onClearClick);
+
           const menuRows = props.mapLayersContainer
             .selectAll('.top-menu__button-row')
             .data(categories)
@@ -183,6 +200,7 @@ const privateMethods = {
           props.menuLayers = props.mapLayersContainer
             .selectAll('.top-menu__map-layer');
 
+          setClearButtonVisibility.call(this);
           setLayerColors.call(this);
         },
       });
@@ -206,11 +224,11 @@ const publicMethods = {
     const {
       initPopups,
       initModal,
-      // openModal,
+      openModal,
     } = privateMethods;
     initPopups.call(this);
     initModal.call(this);
-    // openModal.call(this);
+    openModal.call(this);
 
     return this;
   },
@@ -219,8 +237,12 @@ const publicMethods = {
     setInterviewColors.call(this);
   },
   updateLayers() {
-    const { setLayerColors } = privateMethods;
+    const {
+      setLayerColors,
+      setClearButtonVisibility,
+    } = privateMethods;
     setLayerColors.call(this);
+    setClearButtonVisibility.call(this);
   },
 };
 
@@ -230,6 +252,7 @@ const publicProps = new Props({
     'container',
     'interviews',
     'mapLayers',
+    'onClearClick',
     'onInterviewClick',
     'onLayerClick',
     'selectedInterview',

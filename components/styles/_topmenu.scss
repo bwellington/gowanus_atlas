@@ -138,3 +138,17 @@
   opacity: 0.5;
   pointer-events: none;
 }
+
+.top-menu__clear-button-row {
+  display: flex;
+  justify-content: flex-end; 
+}
+
+.top-menu__clear-button {
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.top-menu__clear-button--hidden {
+  display: none;
+}

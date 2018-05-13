@@ -115,6 +115,7 @@ const topMenu = new TopMenu()
   .mapLayers(mapDatasetList)
   .selectedLayers(state.selectedLayers())
   .onLayerClick(onLayerClick)
+  .onClearClick(() => state.update({ selectedLayers: [] }))
   .onInterviewClick((interview) => {
     const currentInterview = state.selectedInterview();
     const currentName = currentInterview === undefined ? '' : currentInterview.name;
