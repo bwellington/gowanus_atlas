@@ -4,5 +4,4 @@ node_modules
 .tmp
 .~lock*
 build/map.js
-build/data
 rawData
