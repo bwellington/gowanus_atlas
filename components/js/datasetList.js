@@ -1,5 +1,3 @@
-
-
 export const mapDatasetList = [
   {
     name: 'slr',
@@ -13,6 +11,30 @@ export const mapDatasetList = [
       'data/30in_clip_simplified.topojson',
       'data/10in_clip_simplified.topojson',
     ],
+  },
+  {
+    name: 'hurricane',
+    render: 'd3',
+    category: 'Hydrology',
+    fullName: 'Hurricane Evactuation Zones',
+    exclude: [],
+    dataPath: 'data/hurricaneZonesClipped.topojson',
+  },
+  {
+    name: 'fema',
+    render: 'd3',
+    category: 'Hydrology',
+    fullName: 'Flood Insurance Rates',
+    exclude: [],
+    dataPath: 'data/femaClipped.topojson',
+  },
+  {
+    name: 'sandy',
+    render: 'd3',
+    category: 'Hydrology',
+    fullName: 'Hurricane Sandy Inundation',
+    exclude: [],
+    dataPath: 'sandyClipped.topojson',
   },
   {
     name: 'watershed',
@@ -34,6 +56,17 @@ export const mapDatasetList = [
     },
   },
   {
+    name: 'hwater',
+    render: 'd3',
+    category: 'Hydrology',
+    fullName: 'Historical Wetlands and Streams',
+    exclude: [],
+    dataPath: {
+      hWater: 'data/hwater.topojson',
+      hWetlands: 'data/hwetlands.topojson',
+    },
+  },
+  {
     name: 'cleanup',
     render: 'd3',
     category: 'Environment',
@@ -48,6 +81,25 @@ export const mapDatasetList = [
     fullName: 'Art Galleries',
     exclude: [],
     dataPath: 'data/art_galleries_clip.geojson',
+  },
+  {
+    name: 'parks',
+    render: 'd3',
+    category: 'Culture',
+    fullName: 'Parks',
+    exclude: [],
+    dataPath: 'data/parksClipped.topojson',
+  },
+  {
+    name: 'subway',
+    render: 'd3',
+    category: 'Infrastructure',
+    fullName: 'Subway Lines and Stops',
+    exclude: [],
+    dataPath: {
+      subwayLines: 'data/subwayLinesClipped.topojson',
+      subwayStations: 'data/subwayStationsClipped.topojson',
+    },
   },
   {
     name: 'bike',

@@ -52,8 +52,12 @@
   background: $title-color;
 }
 
-.top-menu__content {
+.top-menu__content--stories {
   width: 300px;
+}
+
+.top-menu__content--all {
+  width: 400px;
 }
 
 .sidebar__header,

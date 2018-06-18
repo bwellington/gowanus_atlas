@@ -22,7 +22,7 @@ const drawBikeRacks = function drawBikeRacks() {
   const sizeRange = d3.extent(rackPoints, d => d.properties.total_rack);
 
   const rackScale = d3.scaleSqrt().domain(sizeRange).range([3, 8]);
-
+  console.log(rackPoints, 'rack');
   group.selectAll(`.${name}-layer--rack`)
     .data(rackPoints)
     .enter()
@@ -38,7 +38,7 @@ const drawBikeRacks = function drawBikeRacks() {
         .position([d3.event.x + 10, d3.event.y + 10])
         .text([
           ['', `${prop.Name}`],
-          ['', `${prop.total_rack} racks`],
+          ['', `${prop.total_rack} rack${prop.total_rack === 1 ? '' : 's'}`],
         ])
         .draw();
     })
@@ -72,7 +72,6 @@ const drawBikeRoutes = function drawBikeRoutes() {
   const laneExtent = d3.extent(bikeRoutesGeojson.features,
       d => parseInt(d.properties.lanecount, 10));
 
-  console.log('lane', laneExtent);
   const laneScale = d3.scaleLinear().domain(laneExtent).range([2.5, 4.5]);
 
   group.selectAll(`.${name}-layer--route`)
@@ -89,7 +88,7 @@ const drawBikeRoutes = function drawBikeRoutes() {
         .position([d3.event.x + 10, d3.event.y + 10])
         .text([
           ['', `${prop.street}, ${prop.fromstreet} to ${prop.tostreet}`],
-          ['', `${prop.lanecount} lanes`],
+          ['', `${prop.lanecount} lane${parseInt(prop.lanecount, 10) === 1 ? '' : 's'}`],
         ])
         .draw();
     })

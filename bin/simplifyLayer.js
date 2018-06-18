@@ -20,7 +20,7 @@ const args = {
 // Object.assign(args, {
 //   input: 'rawData/fema_flood/s_fld_haz_ar.shp',
 //   simplify: 0.5,
-//   output: 'build/data/femaClipped.geojson',
+//   output: 'build/data/femaClipped.topojson',
 // });
 
 // parks
@@ -52,24 +52,24 @@ const args = {
 // });
 
 // bike routes
-Object.assign(args, {
-  // input: 'rawData/bike/nyc_bike_routes_20170707.shp',
-  input: 'rawData/temp/bikeRoutesDissolved.shp',
-  output: 'build/data/bikeRoutesClipped.topojson',
-  simplify: 0.5,
-  filterFields: 'street,fromstreet,tostreet,lanecount',
-});
+// Object.assign(args, {
+//   // input: 'rawData/bike/nyc_bike_routes_20170707.shp',
+//   input: 'rawData/temp/bikeRoutesDissolved.shp',
+//   output: 'build/data/bikeRoutesClipped.topojson',
+//   simplify: 0.5,
+//   filterFields: 'street,fromstreet,tostreet,lanecount',
+// });
 
 // subway stations
 // Object.assign(args, {
 //   input: 'rawData/subwaystations.geojson',
-//   output: 'build/data/subwayStationsClipped.geojson',
+//   output: 'build/data/subwayStationsClipped.topojson',
 // });
 
 // subway lines
 // Object.assign(args, {
 //   input: 'rawData/subwaylines.geojson',
-//   output: 'build/data/subwayLinesClipped.geojson',
+//   output: 'build/data/subwayLinesClipped.topojson',
 // });
 
 // bulk storage
