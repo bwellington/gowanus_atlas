@@ -20,7 +20,7 @@ export const mapDatasetList = [
     category: 'Hydrology',
     fullName: 'Canal Watershed',
     exclude: [],
-    dataPath: 'data/watershedsketch.json',
+    dataPath: 'data/watershedsketch.topojson',
   },
   {
     name: 'cso',
@@ -50,6 +50,17 @@ export const mapDatasetList = [
     dataPath: 'data/art_galleries_clip.geojson',
   },
   {
+    name: 'bike',
+    render: 'd3',
+    category: 'Infrastructure',
+    fullName: 'Bicycle Infrastructure',
+    exclude: [],
+    dataPath: {
+      bikeRoutes: 'data/bikeRoutesClipped.topojson',
+      bikeRacks: 'data/bikeRacksClipped.geojson',
+    },
+  },
+  {
     name: 'landuse',
     render: 'leaflet',
     category: 'Built Environment',
@@ -73,6 +84,7 @@ export const mapDatasetList = [
     exclude: ['manufacturingLandUse', 'landuse', 'assessedValue'],
     dataPath: 'data/BKMapPlutoClipped.topojson',
   },
+  // need to rename this
   {
     name: 'plutoBounds',
     render: 'd3',

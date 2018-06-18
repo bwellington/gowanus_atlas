@@ -41,7 +41,7 @@
 
 .watershed-layer:hover,
 .plutoBounds-layer:hover {
-  stroke-width: 2;
+  stroke-width: 3.5;
 }
 
 .cso-layer {
@@ -57,6 +57,7 @@
   fill: rgba(255, 165, 0, .5);
 }
 
+.bike-layer--rack,
 .cso-layer-circle {
   pointer-events: auto;
   stroke: white;
@@ -65,11 +66,22 @@
   transition: fill $btn-speed;
   cursor: pointer;
 }
-
+.bike-layer--rack:hover,
 .cso-layer-circle--active {
   fill: rgba(255, 255, 255, .9);
 }
 
+.bike-layer--route {
+  stroke: orange;
+  // stroke-width: 3;
+  fill: none;
+  cursor: pointer;
+}
+
+.bike-layer--route:hover {
+  // stroke-width: 4.5;
+  stroke: white;
+}
 // .cso-layer--circle--null {
 //   stroke: rgb(100, 100, 100);
 //   fill: rgba(100, 100, 100, .5);

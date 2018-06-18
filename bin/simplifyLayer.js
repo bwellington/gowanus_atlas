@@ -6,7 +6,7 @@ const args = {
   output: null,
   simplify: null,
   clipOutput: null,
-  clipLayer: 'build/data/watershed.geojson',
+  clipLayer: 'build/data/watershedsketch.topojson',
 };
 
 // pluto
@@ -47,17 +47,18 @@ const args = {
 
 // bike racks
 // Object.assign(args, {
-//   input: 'rawData/bike/city_racks_2013_06_28.shp',
+//   input: 'rawData/bike/bike_racks.geojson',
 //   output: 'build/data/bikeRacksClipped.geojson',
 // });
 
 // bike routes
-// Object.assign(args, {
-//   input: 'rawData/bike/nyc_bike_routes_20170707.shp',
-//   output: 'build/data/bikeRoutesClipped.topojson',
-//   simplify: 0.5,
-//   filterFields: 'street,fromstreet,tostreet,lanecount',
-// });
+Object.assign(args, {
+  // input: 'rawData/bike/nyc_bike_routes_20170707.shp',
+  input: 'rawData/temp/bikeRoutesDissolved.shp',
+  output: 'build/data/bikeRoutesClipped.topojson',
+  simplify: 0.5,
+  filterFields: 'street,fromstreet,tostreet,lanecount',
+});
 
 // subway stations
 // Object.assign(args, {
@@ -72,11 +73,11 @@ const args = {
 // });
 
 // bulk storage
-Object.assign(args, {
-  input: 'rawData/bulkstorage.geojson',
-  output: 'build/data/bulkStorageClipped.geojson',
-  filterFields: '"Tank Location,Tank Type"',
-});
+// Object.assign(args, {
+//   input: 'rawData/bulkstorage.geojson',
+//   output: 'build/data/bulkStorageClipped.geojson',
+//   filterFields: '"Tank Location,Tank Type"',
+// });
 
 const {
   input,

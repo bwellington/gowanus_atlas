@@ -3,9 +3,8 @@ import MapOverlayLayer from '../visualization-components/mapOverlay/mapOverlayLa
 import Tooltip from '../visualization-components/tooltip';
 
 const csoLayer = new MapOverlayLayer()
-  .type('Polygon')
-
-  .render('Vector')
+  // .type('Polygon')
+  // .render('Vector')
   .addPropMethods(['dataInfo'])
   .draw(function loadData() {
     const { dataInfo, data, refreshMap } = this.props();

@@ -228,7 +228,7 @@ const publicMethods = {
     } = privateMethods;
     initPopups.call(this);
     initModal.call(this);
-    openModal.call(this);
+    // openModal.call(this);
 
     return this;
   },
