@@ -44,6 +44,7 @@
   stroke-width: 3.5;
 }
 
+.fema-layer,
 .cso-layer {
   stroke: orange;
   stroke-width: 1.5;
@@ -52,7 +53,7 @@
   cursor: pointer;
 }
 
-
+.fema-layer:hover,
 .cso-layer--active {
   fill: rgba(255, 165, 0, .5);
 }

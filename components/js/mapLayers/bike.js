@@ -22,7 +22,7 @@ const drawBikeRacks = function drawBikeRacks() {
   const sizeRange = d3.extent(rackPoints, d => d.properties.total_rack);
 
   const rackScale = d3.scaleSqrt().domain(sizeRange).range([3, 8]);
-  console.log(rackPoints, 'rack');
+
   group.selectAll(`.${name}-layer--rack`)
     .data(rackPoints)
     .enter()

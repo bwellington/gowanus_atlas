@@ -13,6 +13,7 @@ import cleanupLayer from './mapLayers/cleanup';
 import watershedLayer from './mapLayers/watershed';
 import galleriesLayer from './mapLayers/galleries';
 import bikeLayer from './mapLayers/bike';
+import femaLayer from './mapLayers/fema';
 
 
 import plutoBounds from './mapLayers/plutoBounds';
@@ -42,7 +43,7 @@ const state = new State({
   view: 'storiesList',
   tab: 'stories',
   dataLoaded: [],
-  selectedLayers: ['watershed', 'bike'],
+  selectedLayers: ['watershed', 'fema'],
   selectedInterview: undefined,
   size: containers.getMapSize(),
 });
@@ -71,6 +72,7 @@ addDataInfoToLayer({ layer: slrLayer, dataName: 'slr' });
 addDataInfoToLayer({ layer: cleanupLayer, dataName: 'cleanup' });
 addDataInfoToLayer({ layer: galleriesLayer, dataName: 'galleries' });
 addDataInfoToLayer({ layer: bikeLayer, dataName: 'bike' });
+addDataInfoToLayer({ layer: femaLayer, dataName: 'fema' });
 
 const mapOverlay = new MapOverlay()
   .coordinateBounds(svgBounds)
@@ -81,6 +83,7 @@ const mapOverlay = new MapOverlay()
   .addVectorLayer(cleanupLayer)
   .addVectorLayer(galleriesLayer)
   .addVectorLayer(bikeLayer)
+  .addVectorLayer(femaLayer)
   .selectedLayers(state.selectedLayers())
   .addTo(leafletMap);
 
