@@ -87,13 +87,15 @@
   stroke: white;
 }
 
+.hwater-layer,
 .sandy-layer {
   fill: rgb(173,216,230);
-  fill-opacity: 0.5;
+  fill-opacity: 0.35;
   transition: fill-opacity $btn-speed;
   cursor: pointer;
 }
 
+.hwater-layer:hover,
 .sandy-layer--selected {
   fill-opacity: 0.75;
 }

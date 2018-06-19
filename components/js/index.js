@@ -17,6 +17,7 @@ import femaLayer from './mapLayers/fema';
 import parksLayer from './mapLayers/parks';
 import hurricaneLayer from './mapLayers/hurricane';
 import sandyLayer from './mapLayers/sandy';
+import historicWaterLayer from './mapLayers/hwater';
 
 
 import plutoBounds from './mapLayers/plutoBounds';
@@ -46,7 +47,7 @@ const state = new State({
   view: 'storiesList',
   tab: 'stories',
   dataLoaded: [],
-  selectedLayers: ['watershed', 'sandy'],
+  selectedLayers: ['watershed', 'hwater'],
   selectedInterview: undefined,
   size: containers.getMapSize(),
 });
@@ -79,6 +80,7 @@ addDataInfoToLayer({ layer: femaLayer, dataName: 'fema' });
 addDataInfoToLayer({ layer: parksLayer, dataName: 'parks' });
 addDataInfoToLayer({ layer: hurricaneLayer, dataName: 'hurricane' });
 addDataInfoToLayer({ layer: sandyLayer, dataName: 'sandy' });
+addDataInfoToLayer({ layer: historicWaterLayer, dataName: 'hwater' });
 
 const mapOverlay = new MapOverlay()
   .coordinateBounds(svgBounds)
@@ -93,6 +95,7 @@ const mapOverlay = new MapOverlay()
   .addVectorLayer(parksLayer)
   .addVectorLayer(hurricaneLayer)
   .addVectorLayer(sandyLayer)
+  .addVectorLayer(historicWaterLayer)
   .selectedLayers(state.selectedLayers())
   .addTo(leafletMap);
 
