@@ -16,6 +16,7 @@ import bikeLayer from './mapLayers/bike';
 import femaLayer from './mapLayers/fema';
 import parksLayer from './mapLayers/parks';
 import hurricaneLayer from './mapLayers/hurricane';
+import sandyLayer from './mapLayers/sandy';
 
 
 import plutoBounds from './mapLayers/plutoBounds';
@@ -45,7 +46,7 @@ const state = new State({
   view: 'storiesList',
   tab: 'stories',
   dataLoaded: [],
-  selectedLayers: ['watershed', 'hurricane'],
+  selectedLayers: ['watershed', 'sandy'],
   selectedInterview: undefined,
   size: containers.getMapSize(),
 });
@@ -77,6 +78,7 @@ addDataInfoToLayer({ layer: bikeLayer, dataName: 'bike' });
 addDataInfoToLayer({ layer: femaLayer, dataName: 'fema' });
 addDataInfoToLayer({ layer: parksLayer, dataName: 'parks' });
 addDataInfoToLayer({ layer: hurricaneLayer, dataName: 'hurricane' });
+addDataInfoToLayer({ layer: sandyLayer, dataName: 'sandy' });
 
 const mapOverlay = new MapOverlay()
   .coordinateBounds(svgBounds)
@@ -90,6 +92,7 @@ const mapOverlay = new MapOverlay()
   .addVectorLayer(femaLayer)
   .addVectorLayer(parksLayer)
   .addVectorLayer(hurricaneLayer)
+  .addVectorLayer(sandyLayer)
   .selectedLayers(state.selectedLayers())
   .addTo(leafletMap);
 

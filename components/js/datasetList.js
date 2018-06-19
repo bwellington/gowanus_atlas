@@ -34,7 +34,7 @@ export const mapDatasetList = [
     category: 'Hydrology',
     fullName: 'Hurricane Sandy Inundation',
     exclude: [],
-    dataPath: 'sandyClipped.topojson',
+    dataPath: 'data/sandyClipped.topojson',
   },
   {
     name: 'watershed',

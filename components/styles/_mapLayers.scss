@@ -86,6 +86,18 @@
   // stroke-width: 4.5;
   stroke: white;
 }
+
+.sandy-layer {
+  fill: rgb(173,216,230);
+  fill-opacity: 0.5;
+  transition: fill-opacity $btn-speed;
+  cursor: pointer;
+}
+
+.sandy-layer--selected {
+  fill-opacity: 0.75;
+}
+
 // .cso-layer--circle--null {
 //   stroke: rgb(100, 100, 100);
 //   fill: rgba(100, 100, 100, .5);

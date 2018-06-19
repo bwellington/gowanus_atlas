@@ -91,7 +91,6 @@ hurricaneLayer.drawLayer = function drawLayer() {
     })
     .on('end', (d, i) => {
       if (i === filteredFeatures.length - 1) {
-        console.log('ENDEND');
         d3.selectAll(`.${name}-layer`)
           .style('pointer-events', 'auto');
       }
