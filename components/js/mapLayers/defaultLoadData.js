@@ -1,6 +1,6 @@
 import Tooltip from '../visualization-components/tooltip';
 
-export const loadData = function loadData(drawLayer) {
+export const loadData = function loadData() {
   const {
     dataInfo,
     data,
