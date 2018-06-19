@@ -207,15 +207,20 @@ const privateMethods = {
   },
   initModal() {
     const { container } = privateProps.get(this);
-    const { openModal } = privateMethods;
+    const { openModal, closeModal } = privateMethods;
     container.select('.top-menu__item--about')
-      .on('click', () => {
-        openModal.call(this);
-      });
+      .on('click', openModal.bind(this));
+    d3.select('.about__explore-button')
+      .on('click', closeModal.bind(this));
   },
   openModal() {
     $('.ui.modal')
       .modal('show');
+  },
+  closeModal() {
+    console.log('close?');
+    $('.ui.modal')
+      .modal('hide');
   },
 };
 
@@ -224,7 +229,7 @@ const publicMethods = {
     const {
       initPopups,
       initModal,
-      openModal,
+      // openModal,
     } = privateMethods;
     initPopups.call(this);
     initModal.call(this);
