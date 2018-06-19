@@ -33,9 +33,11 @@ hurricaneLayer.drawLayer = function drawLayer() {
   const strokeWidth = 1;
   const highlightStrokeWidth = 2.5;
 
+  const filteredFeatures = dataGeojson.features
+  .filter(d => d.properties.hurricane !== 'X');
+
   group.selectAll(`.${name}-layer`)
-    .data(dataGeojson.features
-      .filter(d => d.properties.hurricane !== 'X'))
+    .data(filteredFeatures)
     .enter()
     .append('path')
     .sort((a, b) =>
@@ -49,6 +51,7 @@ hurricaneLayer.drawLayer = function drawLayer() {
       'stroke-width': strokeWidth,
       opacity: 0,
     })
+    .style('pointer-events', 'none')
     .on('mouseover', function mouseover(d) {
       d3.select(this)
         .transition()
@@ -82,10 +85,17 @@ hurricaneLayer.drawLayer = function drawLayer() {
     .transition()
     .duration(animationSpeed)
     .ease(d3.easeQuadInOut)
-      .delay((d, i) => i * animationSpeed)
-      .attrs({
-        opacity: 1,
-      });
+    .delay((d, i) => i * animationSpeed)
+    .attrs({
+      opacity: 1,
+    })
+    .on('end', (d, i) => {
+      if (i === filteredFeatures.length - 1) {
+        console.log('ENDEND');
+        d3.selectAll(`.${name}-layer`)
+          .style('pointer-events', 'auto');
+      }
+    });
 };
 
 export default hurricaneLayer;
