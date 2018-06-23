@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 const interviews = [
   {
     name: 'subak',
@@ -59,8 +60,8 @@ const interviews = [
     name: 'scotto',
     fullName: 'Debra Scotto',
     title: 'Clemente Realty',
-    videoPath: '',
-    imagePath: '',
+    videoPath: 'https://player.vimeo.com/video/275930692',
+    imagePath: 'jpg/scotto.jpg',
     category: 'Built Environment',
     description: 'After attending Brooklyn Law School, Debra started her own real estate company acting as agent, property manager and developer, advocating for affordable, responsible development. She is a Brooklyn CB6 Board member and serves on its Land Use/Landmarks Committee.',
     // Land Use, Affordability, Commercial, Residential, Superfund Cleanup
@@ -71,8 +72,8 @@ const interviews = [
     name: 'wolfe',
     fullName: 'Sue Wolfe',
     title: 'Friends of Thomas Green Park',
-    videoPath: '',
-    imagePath: '',
+    videoPath: 'https://player.vimeo.com/video/275932414',
+    imagePath: 'jpg/wolfe.jpg',
     category: 'Culture',
     description: 'Sue Wolfe and her husband have called Brownstone Brooklyn "home" since the 1960\'s, first owning a brownstone in Fort Greene, then moving to a house in Boerum Hill, purchasing a house with their daughter in Red Hook and most recently buying a coop in Fort Greene. She is the President of Friends of Thomas Green Park, a non-profit advocating for the preservation of public park space in the Gowanus community.',
     // Land Use, Recreation, Public Spaces, Residential, Community Facilities, Superfund Cleanup
@@ -83,8 +84,8 @@ const interviews = [
     name: 'nimmons',
     fullName: 'Charlene Nimmons',
     title: 'Public Housing Communities',
-    videoPath: '',
-    imagePath: '',
+    videoPath: 'https://player.vimeo.com/video/275930618',
+    imagePath: 'jpg/nimmons.jpg',
     category: 'Social Landscape',
     description: 'Charlene is a NYCHA resident and founder of Public Housing Communities, a group that promotes economic development in the community.',
     // Equity, Affordability, Public Spaces, Residential
@@ -95,44 +96,45 @@ const interviews = [
     name: 'parker',
     fullName: 'Andrea Parker',
     title: 'Gowanus Canal Conservancy',
-    videoPath: '',
-    imagePath: '',
+    videoPath: 'https://player.vimeo.com/video/275930436',
+    imagePath: 'jpg/parker.jpg',
     category: 'Environment',
     description: 'With a degree from the University of Virginia and a background in Landscape Design, Andrea joined the Conservancy as a board member/volunteer in 2013. She was hired as the organization’s second Executive Director in 2014 and has been an adjunct professor at City College since 2015.',
     // Gowanus Canal Watershed, Retention Tank Facilities, Public Spaces, Youth, Superfund Cleanup
     layers: ['watershed'],
     quote: 'It’s an extremely productive ecology – the canal and the manufacturing gas plants along it powered most of Brooklyn and built this town.',
   },
-  {
-    name: 'schoneveld',
-    fullName: 'Rebecca Schoneveld',
-    title: 'Schone Bridal',
-    videoPath: '',
-    imagePath: '',
-    category: 'Built Environment',
-    description: 'Rebecca opened her shop on Third Avenue in 2013, with a beautiful and cheerful boutique space in the front and a full sewing production and design studio in the back where visitors can see firsthand the process that goes into creating original, locally handcrafted gowns.',
-    // Land Use, Commercial, Manufacturing
-    layers: ['watershed'],
-    quote: 'We can have a really creative, flourishing community that embraces all the cultures that have been here for generations.',
-  },
-  {
-    name: 'luna',
-    fullName: 'Rafael Gomez Luna',
-    title: 'Community Activist',
-    videoPath: '',
-    imagePath: '',
-    category: 'Culture',
-    description: 'Rafael was born in Santo Domingo, Dominican Republic and moved to NYC when he was 18. As a child he witnessed the Dominican civil war and the end of the Trujillo regime. He has worked as a model, an actor, and as a community and housing activist in Washington Heights, the Lower East Side, and in Brooklyn. He is married with a young daughter, and lives and works in Gowanus.',
-    layers: ['galleries', 'watershed'],
-    // Arts, Diversity, Equity, Youth, Superfund Cleanup
-    quote: 'What our community needs most is for us as residents, organizations, developers, activists, elected officials to come together and try to preserve what we already have while at the same time help progress come our way.',
-  },
+  // {
+  //   name: 'schoneveld',
+  //   fullName: 'Rebecca Schoneveld',
+  //   title: 'Schone Bridal',
+  //   videoPath: '',
+  //   imagePath: '',
+  //   category: 'Built Environment',
+  //   description: 'Rebecca opened her shop on Third Avenue in 2013, with a beautiful and cheerful boutique space in the front and a full sewing production and design studio in the back where visitors can see firsthand the process that goes into creating original, locally handcrafted gowns.',
+  //   // Land Use, Commercial, Manufacturing
+  //   layers: ['watershed'],
+  //   quote: 'We can have a really creative, flourishing community that embraces all the cultures that have been here for generations.',
+  // },
+  // {
+  //   name: 'luna',
+  //   fullName: 'Rafael Gomez Luna',
+  //   title: 'Community Activist',
+  //   videoPath: '',
+  //   imagePath: '',
+  //   category: 'Culture',
+  //   description: 'Rafael was born in Santo Domingo, Dominican Republic and moved to NYC when he was 18. As a child he witnessed the Dominican civil war and the end of the Trujillo regime. He has worked as a model, an actor, and as a community and housing activist in Washington Heights, the Lower East Side, and in Brooklyn. He is married with a young daughter, and lives and works in Gowanus.',
+  //   layers: ['galleries', 'watershed'],
+  //   // Arts, Diversity, Equity, Youth, Superfund Cleanup
+  //   quote: 'What our community needs most is for us as residents, organizations, developers, activists, elected officials to come together and try to preserve what we already have while at the same time help progress come our way.',
+  // },
+
   {
     name: 'reich',
     fullName: 'Peter Reich',
     title: '288 Nevins Street Tenants Association',
-    videoPath: '',
-    imagePath: '',
+    videoPath: 'https://player.vimeo.com/video/275932122',
+    imagePath: 'jpg/reich.jpg',
     category: 'Infrastructure',
     description: 'As one of the designers of the original Swift Folder, Peter, an industrial designer currently fills custom orders and prepares single speed and eight speed internally geared versions of the bike for sale. His shop is located at 543 Union Street and he lives directly adjacent to the proposed staging area for the gallon retention tank facility at the north end of the canal.',
     // Manufacturing, Arts, Retention Tank Facilities, Residential, Bicycle Paths, Superfund Cleanup
@@ -148,8 +150,8 @@ const interviews = [
     quote: 'My vision for the future of Gowanus…is the people to get their just due and for, you know the people that live here to understand their value. We have to give people a way of expressing themselves.',
     // Diversity, Affordability, Residential, Senior Citizens, Youth, Superfund Cleanup
     layers: ['watershed'],
-    videoPath: '',
-    imagePath: '',
+    videoPath: 'https://player.vimeo.com/video/276641721',
+    imagePath: 'jpg/tyre.jpg',
   },
   {
     fullName: 'Michael Higgins',
@@ -160,8 +162,8 @@ const interviews = [
     quote: 'The wealthier community that lives in the Gowanus, the people who live in brownstones, could much better understand how the distribution of public services leans towards them and how their opinions and their voice…affects how their neighbors in public housing live at a very fundamental level.',
     // Ethnicity, Equity, Affordability, Diversity
     layers: ['watershed'],
-    videoPath: '',
-    imagePath: '',
+    videoPath: 'https://player.vimeo.com/video/275931624',
+    imagePath: 'jpg/higgins.jpg',
   },
   {
     name: 'hesselein',
@@ -172,8 +174,8 @@ const interviews = [
     quote: 'The canal needs more open green space; it needs softer, more permeable surfaces; it needs more wildlife habitat, more plant communities, and it also needs a lot of work done to the watershed in order to allow storm water to infiltrate and reduce the amount of sewage that gets dumped into the canal.',
     // Gowanus Canal Watershed, Retention Tank Facilities, Public Spaces
     layers: ['watershed'],
-    videoPath: '',
-    imagePath: '',
+    videoPath: 'https://player.vimeo.com/video/275931153',
+    imagePath: 'jpg/hesselein.jpg',
   },
   {
     name: 'martin',
@@ -184,8 +186,8 @@ const interviews = [
     quote: 'People without money often think they have nothing to offer to the community, but their simple history in being involved through many generations…what it means to grow up in this neighborhood is invaluable as new people come into the neighborhood.',
     // Diversity, Places of Worship, Affordability, Ethnicity, Equity
     layers: ['watershed'],
-    videoPath: '',
-    imagePath: '',
+    videoPath: 'https://player.vimeo.com/video/275932578',
+    imagePath: 'jpg/martin.jpg',
   },
   {
     name: 'kleinman',
@@ -197,8 +199,8 @@ const interviews = [
     // Combined Sewer Overflows, Equity, Flood Zones,
     // Projected Sea Level Rise, Diversity, Superfund Cleanup
     layers: ['watershed'],
-    videoPath: '',
-    imagePath: '',
+    videoPath: 'https://player.vimeo.com/video/275931504',
+    imagePath: 'jpg/kleinman.jpg',
   },
   {
     name: 'giumenta',
@@ -209,8 +211,8 @@ const interviews = [
     quote: 'Sandy really hurt us very bad, very bad. You know, I come in that Monday morning and I didn’t believe my eyes. It was complete disaster.',
     // Manufacturing, Land Use, Flood Zones
     layers: ['sandy', 'watershed'],
-    videoPath: '',
-    imagePath: '',
+    videoPath: 'https://player.vimeo.com/video/275930518',
+    imagePath: 'jpg/giumenta.jpg',
   },
   {
     name: 'dixon',
@@ -222,8 +224,8 @@ const interviews = [
     // Combined Sewer Overflows, Flood Zones, Projected Sea Level Rise,
     // Coal Tar Contamination, Superfund Cleanup
     layers: ['watershed'],
-    videoPath: '',
-    imagePath: '',
+    videoPath: 'https://player.vimeo.com/video/275932294',
+    imagePath: 'jpg/dixon.jpg',
   },
   {
     name: 'franklin',
@@ -234,9 +236,10 @@ const interviews = [
     quote: 'What our community needs most is structured, sincere, and very motivated representation.',
     // Diversity, Equity, Senior Citizens, Flood Zones, Projected Sea Level Rise
     layers: ['watershed'],
-    videoPath: '',
-    imagePath: '',
+    videoPath: 'https://player.vimeo.com/video/275931967',
+    imagePath: 'jpg/franklin.jpg',
   },
+
   {
     name: 'blondel',
     fullName: 'Karen Blondel',
@@ -247,8 +250,8 @@ const interviews = [
     // Diversity, Equity, Ethnicity, Affordability, Flood Zones,
     // Projected Sea Level Rise, Residential
     layers: ['watershed'],
-    videoPath: '',
-    imagePath: '',
+    videoPath: 'https://player.vimeo.com/video/275931345',
+    imagePath: 'jpg/blondel.jpg',
   },
   {
     name: 'mcclure',
@@ -259,8 +262,8 @@ const interviews = [
     quote: 'It’s unclear at this point whether the resources to support all this new population are really here - whether the schools can accommodate it, the transportation system can accommodate it, so I think there are a lot of challenges facing Gowanus. But at the heart of it is an opportunity with the Superfund cleanup to really make the community better.',
     // Bicycle Paths, Mass Transit, Pedestrian Walkways, Roads, Superfund Cleanup
     layers: ['watershed'],
-    videoPath: '',
-    imagePath: '',
+    videoPath: 'https://player.vimeo.com/video/275930878',
+    imagePath: 'jpg/mcclure.jpg',
   },
   {
     name: 'diegel',
@@ -272,9 +275,10 @@ const interviews = [
     // Equity, Land Use, Projected Sea Level Rise, Historical Wetlands and Streams,
     // Gowanus Canal Watershed, Superfund Cleanup, Coal Tar Contamination
     layers: ['watershed'],
-    videoPath: '',
-    imagePath: '',
+    videoPath: 'https://player.vimeo.com/video/275931052',
+    imagePath: 'jpg/diegel.jpg',
   },
 ];
 
 export default interviews;
+/* eslint-enable max-len */
