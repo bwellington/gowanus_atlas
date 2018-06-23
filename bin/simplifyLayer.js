@@ -79,6 +79,13 @@ const args = {
 //   filterFields: '"Tank Location,Tank Type"',
 // });
 
+// demographics
+Object.assign(args, {
+  input: 'rawData/census/blocks_with_demographics.shp',
+  output: 'build/data/demographicsClipped.topojson',
+  filterFields: 'total,',
+});
+
 const {
   input,
   output,

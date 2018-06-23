@@ -19,6 +19,9 @@ const privateMethods = {
       onInterviewClick,
     } = props;
 
+    console.log('interviews', interviews);
+    console.log('interivew cat', interviewCategories);
+
     const { setInterviewColors } = privateMethods;
 
     $('.top-menu__item--stories')
@@ -222,6 +225,13 @@ const privateMethods = {
     $('.ui.modal')
       .modal('hide');
   },
+  setInterviewCategories() {
+    const props = privateProps.get(this);
+    const { interviews } = props;
+    console.log('interviews', interviews);
+    props.interviewCategories = [...new Set(interviews.map(d => d.category))];
+    console.log(props.interviewCategories);
+  },
 };
 
 const publicMethods = {
@@ -229,10 +239,13 @@ const publicMethods = {
     const {
       initPopups,
       initModal,
+      setInterviewCategories,
       // openModal,
     } = privateMethods;
+    setInterviewCategories.call(this);
     initPopups.call(this);
     initModal.call(this);
+
     // openModal.call(this);
 
     return this;
@@ -268,12 +281,18 @@ const publicProps = new Props({
 class TopMenu {
   constructor() {
     privateProps.set(this, {
-      interviewCategories: [
-        'Social Landscape',
-        'Industry and Infrastructure',
-        'Community',
-        'Equity',
-      ],
+      // get all unique categories from interview list
+      // interviewCategories: [
+      //   'Built Environment',
+      //   'Community',
+      //   'Culture',
+      //   'Environment',
+      //   'Equity',
+      //   'Hydrology',
+      //   'Social Landscape',
+      //   // 'Industry and Infrastructure',
+      //   'Infrastructure',
+      // ],
     });
   }
 }
