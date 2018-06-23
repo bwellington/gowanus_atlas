@@ -5,3 +5,4 @@ node_modules
 .~lock*
 build/map.js
 rawData
+headshots.psd
