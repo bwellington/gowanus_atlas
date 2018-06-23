@@ -79,12 +79,17 @@ const args = {
 //   filterFields: '"Tank Location,Tank Type"',
 // });
 
-// demographics
-Object.assign(args, {
-  input: 'rawData/census/blocks_with_demographics.shp',
-  output: 'build/data/demographicsClipped.topojson',
-  filterFields: 'total,',
-});
+// demographics 100
+// Object.assign(args, {
+//   input: 'rawData/census/demographics100.shp',
+//   output: 'build/data/demographics100Clipped.topojson',
+// });
+
+// demographics 10
+// Object.assign(args, {
+//   input: 'rawData/census/demographics10.shp',
+//   output: 'build/data/demographics10Clipped.topojson',
+// });
 
 const {
   input,

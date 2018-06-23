@@ -19,9 +19,6 @@ const privateMethods = {
       onInterviewClick,
     } = props;
 
-    console.log('interviews', interviews);
-    console.log('interivew cat', interviewCategories);
-
     const { setInterviewColors } = privateMethods;
 
     $('.top-menu__item--stories')
@@ -221,16 +218,13 @@ const privateMethods = {
       .modal('show');
   },
   closeModal() {
-    console.log('close?');
     $('.ui.modal')
       .modal('hide');
   },
   setInterviewCategories() {
     const props = privateProps.get(this);
     const { interviews } = props;
-    console.log('interviews', interviews);
     props.interviewCategories = [...new Set(interviews.map(d => d.category))];
-    console.log(props.interviewCategories);
   },
 };
 

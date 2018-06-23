@@ -153,6 +153,14 @@ export const mapDatasetList = [
     exclude: ['manufacturingLandUse', 'landuse', 'zoning'],
     dataPath: 'data/BKMapPlutoClipped.topojson',
   },
+  {
+    name: 'demographics',
+    render: 'leaflet',
+    category: 'Culture',
+    fullName: 'Demographics',
+    exclude: [],
+    dataPath: 'data/demographics10Clipped.topojson',
+  },
 ];
 
 export default mapDatasetList;

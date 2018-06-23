@@ -47,7 +47,7 @@ const state = new State({
   view: 'storiesList',
   tab: 'stories',
   dataLoaded: [],
-  selectedLayers: ['watershed', 'hwater'],
+  selectedLayers: ['watershed'],
   selectedInterview: undefined,
   size: containers.getMapSize(),
 });

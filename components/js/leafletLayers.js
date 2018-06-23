@@ -3,6 +3,7 @@ import LandUseLayer from './mapLayers/landuse';
 import AssessedValueLayer from './mapLayers/assessedValue';
 import ZoningLayer from './mapLayers/zoning';
 import ManufacturingLandUseLayer from './mapLayers/manufacturingLandUse';
+import DemographicsLayer from './mapLayers/DemographicsLayer';
 
 const privateProps = new WeakMap();
 
@@ -29,6 +30,10 @@ const publicMethods = {
       {
         name: 'zoning',
         Layer: ZoningLayer,
+      },
+      {
+        name: 'demographics',
+        Layer: DemographicsLayer,
       },
     ].reduce((accumulator, d) => {
       /* eslint-disable no-param-reassign */
