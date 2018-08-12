@@ -161,6 +161,7 @@ export const mapDatasetList = [
     exclude: [],
     dataPath: 'data/demographics10Clipped.topojson',
   },
+  // NYCHA housing projects
 ];
 
 export default mapDatasetList;

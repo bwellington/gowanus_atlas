@@ -8,7 +8,7 @@ const interviews = [
     imagePath: 'jpg/subak.jpg',
     category: 'Culture',
     description: 'Abby is an artist and the Executive Director of Arts Gowanus, a local non-profit organization working to support, promote, and advocate for local artists and a sustainable arts community. Each year the organization sponsors Gowanus Open Studios, an event held in October that showcases local artists and their work, connecting them to the greater New York City community.',
-    layers: ['assessedValue', 'galleries', 'watershed'],
+    layers: ['galleries', 'watershed'],
     quote: 'There’s a reason gowanus has become such a hub of creativity and artists’ culture, and that’s because of the affordable spaces that are here, and it’s because of the history of industry and manufacturing that has been going on in Gowanus for a couple hundred years now.',
   },
   {
@@ -19,7 +19,7 @@ const interviews = [
     imagePath: 'jpg/basile.jpg',
     category: 'Built Environment',
     description: 'A property manager and developer, Paul founded Gowanus Alliance in 2010 with three friends, all second and third generation businessmen in the surrounding area. Paul promotes the retention of manufacturing, industrial, creative, and entertainment businesses in the Gowanus community; seeks a new location for the Kentile sign he rescued prior to its demolition; and advocates for new community playgrounds and parks.',
-    layers: ['manufacturingLandUse', 'plutoBounds', 'watershed'],
+    layers: ['manufacturingLandUse', 'watershed'],
     quote: 'We need more of the same. We need more space for the manufacturers to feel comfortable that they can grow into a 5 or 10 year plan.',
   },
   {
@@ -30,7 +30,7 @@ const interviews = [
     imagePath: 'jpg/pinkard.jpg',
     category: 'Social Landscape',
     description: 'While working as Parent Coordinator at the Brooklyn School of Collaborative Studies, Tracey co-founded the Gowanus Houses Art Collective, an arts youth program for the complex where she is a long time resident. She sees the program as a bridge to the creative community in the surrounding wealthier neighborhoods, offering them a window into life in the public housing complex.',
-    layers: ['cleanup', 'watershed'],
+    layers: ['watershed'], // nycha, gowanus houses
     quote: 'For many years the canal reeked, the smell was just horrible, and in the summer it permeated, it was just sickening. And so now there’s this superfund, and there’s this big concern about the cleanup.',
   },
   {
@@ -41,7 +41,7 @@ const interviews = [
     imagePath: 'jpg/uz.jpg',
     category: 'Social Landscape',
     description: 'Michelle is the Executive Director of the Fifth Avenue Committee, a non-profit community organization in Brooklyn that develops and manages affordable housing and community facilities, creates economic opportunities and ensures access to economic stability, organizes residents and workers, offers student-centered adult education, and combats displacement caused by gentrification. She also serves on the New York City Planning Commission.',
-    layers: ['zoning', 'plutoBounds', 'watershed'],
+    layers: ['assessedValue', 'watershed'], // nycha, gowanus houses
     quote: 'I think that the cleanup processes that are underway and the rezoning that will be formally launched have the ability to try to right some wrongs that have existed historically, but I think that only happens if we are conscious about righting those wrongs.',
   },
   {
@@ -52,8 +52,7 @@ const interviews = [
     imagePath: 'jpg/valle.jpg',
     category: 'Built Environment',
     description: 'Jared has been a real estate professional and architect for more than 20 years and has managed the acquisition and predevelopment of more than 1 million sf in New York City along the Highline, in the Hudson Yards and in DUMBO, Brooklyn.',
-    // Land Use, Affordability, Commercial, Residential
-    layers: ['watershed'],
+    layers: ['landuse', 'watershed'],
     quote: 'The community plays a fairly extraordinary role in the planning process…[the Gowanus] is the intersection of so many different aspects of our city.',
   },
   {
@@ -64,7 +63,7 @@ const interviews = [
     imagePath: 'jpg/scotto.jpg',
     category: 'Built Environment',
     description: 'After attending Brooklyn Law School, Debra started her own real estate company acting as agent, property manager and developer, advocating for affordable, responsible development. She is a Brooklyn CB6 Board member and serves on its Land Use/Landmarks Committee.',
-    // Land Use, Affordability, Commercial, Residential, Superfund Cleanup
+    // real estate agents...? Do we need to make this? Can I get a list of coordinates?
     layers: ['watershed'],
     quote: 'Some of the challenges in this community right now probably speak to infrastructure, the lack thereof, and lack of affordable housing.',
   },
@@ -76,7 +75,6 @@ const interviews = [
     imagePath: 'jpg/wolfe.jpg',
     category: 'Culture',
     description: 'Sue Wolfe and her husband have called Brownstone Brooklyn "home" since the 1960\'s, first owning a brownstone in Fort Greene, then moving to a house in Boerum Hill, purchasing a house with their daughter in Red Hook and most recently buying a coop in Fort Greene. She is the President of Friends of Thomas Green Park, a non-profit advocating for the preservation of public park space in the Gowanus community.',
-    // Land Use, Recreation, Public Spaces, Residential, Community Facilities, Superfund Cleanup
     layers: ['parks', 'watershed'],
     quote: 'The community needs more parks, more green space – we don’t see that happening.',
   },
@@ -100,8 +98,7 @@ const interviews = [
     imagePath: 'jpg/parker.jpg',
     category: 'Environment',
     description: 'With a degree from the University of Virginia and a background in Landscape Design, Andrea joined the Conservancy as a board member/volunteer in 2013. She was hired as the organization’s second Executive Director in 2014 and has been an adjunct professor at City College since 2015.',
-    // Gowanus Canal Watershed, Retention Tank Facilities, Public Spaces, Youth, Superfund Cleanup
-    layers: ['watershed'],
+    layers: ['parks', 'cso', 'watershed'],
     quote: 'It’s an extremely productive ecology – the canal and the manufacturing gas plants along it powered most of Brooklyn and built this town.',
   },
   // {
@@ -137,8 +134,8 @@ const interviews = [
     imagePath: 'jpg/reich.jpg',
     category: 'Infrastructure',
     description: 'As one of the designers of the original Swift Folder, Peter, an industrial designer currently fills custom orders and prepares single speed and eight speed internally geared versions of the bike for sale. His shop is located at 543 Union Street and he lives directly adjacent to the proposed staging area for the gallon retention tank facility at the north end of the canal.',
-    // Manufacturing, Arts, Retention Tank Facilities, Residential, Bicycle Paths, Superfund Cleanup
-    layers: ['manufacturingLandUse', 'galleries', 'watershed'],
+    //  Art Galleries, Manufacturing Businesses, Bicycle Paths
+    layers: ['galleries', 'bike', 'manufacturingLandUse', 'watershed'],
     quote: 'My vision of the canal is to, as much as possible, maintain the charming post-industrial wasteland aura that makes it so attractive.',
   },
   {
@@ -148,7 +145,7 @@ const interviews = [
     category: 'Social Landscape',
     description: 'Ed is an advocate for expanding the conversation about resiliency and the sustainability in the Gowanus community to include the resiliency and sustainability of the people of the community as a whole. As a community leader he calls on the city to recognize that environmental impacts are not shared equally in the area and prioritize addressing those burdens that disproportionately destroy the health and safety of low-income residents and people of color.',
     quote: 'My vision for the future of Gowanus…is the people to get their just due and for, you know the people that live here to understand their value. We have to give people a way of expressing themselves.',
-    // Diversity, Affordability, Residential, Senior Citizens, Youth, Superfund Cleanup
+    // Youth under 18, Senior Citizens, Gowanus Houses
     layers: ['watershed'],
     videoPath: 'https://player.vimeo.com/video/276641721',
     imagePath: 'jpg/tyre.jpg',
@@ -160,8 +157,8 @@ const interviews = [
     category: 'Social Landscape',
     description: 'Michael is a member turned organizer at FUREE. He first came to the organization through its Youth Program and is a native of the Fort Greene area of Brooklyn. He joined the Accountable Development campaign, before engaging more deeply in work around public housing. He now does organizing with FUREE members around environmental justice, civic participation and further inclusion of public housing in the greater housing justice movement in New York City.',
     quote: 'The wealthier community that lives in the Gowanus, the people who live in brownstones, could much better understand how the distribution of public services leans towards them and how their opinions and their voice…affects how their neighbors in public housing live at a very fundamental level.',
-    // Ethnicity, Equity, Affordability, Diversity
-    layers: ['watershed'],
+    // Affordable Housing (all three NYCHA projects), Assessed Land Value, Diversity
+    layers: ['demographics', 'assessedValue', 'watershed'],
     videoPath: 'https://player.vimeo.com/video/275931624',
     imagePath: 'jpg/higgins.jpg',
   },
@@ -172,8 +169,7 @@ const interviews = [
     category: 'Infrastructure',
     description: 'While the Gowanus Canal Conservancy’s first Executive Director, Hans developed and managed green infrastructure projects, watershed planning initiatives and volunteer stewardship programs. Hans is the founder of Apiary Studio and an adjunct professor at Philadelphia University, where he teaches two courses on the history of Landscape Architecture.',
     quote: 'The canal needs more open green space; it needs softer, more permeable surfaces; it needs more wildlife habitat, more plant communities, and it also needs a lot of work done to the watershed in order to allow storm water to infiltrate and reduce the amount of sewage that gets dumped into the canal.',
-    // Gowanus Canal Watershed, Retention Tank Facilities, Public Spaces
-    layers: ['watershed'],
+    layers: ['parks', 'watershed'],
     videoPath: 'https://player.vimeo.com/video/275931153',
     imagePath: 'jpg/hesselein.jpg',
   },
@@ -184,8 +180,8 @@ const interviews = [
     category: 'Social Landscape',
     description: 'Zac is the executive director of Trellis, an organization fitting churches with non-profits to build stronger communities together. He is also the pastor of community outreach at Trinity Grace Park Slope.',
     quote: 'People without money often think they have nothing to offer to the community, but their simple history in being involved through many generations…what it means to grow up in this neighborhood is invaluable as new people come into the neighborhood.',
-    // Diversity, Places of Worship, Affordability, Ethnicity, Equity
-    layers: ['watershed'],
+    // Affordable Housing (all three NYCHA projects), Places of Worship, Diversity
+    layers: ['demographics', 'watershed'],
     videoPath: 'https://player.vimeo.com/video/275932578',
     imagePath: 'jpg/martin.jpg',
   },
@@ -196,9 +192,8 @@ const interviews = [
     category: 'Hydrology',
     description: 'Louis sits on the Gowanus Canal Community Advisory Group as the community liaison for the Waterfront Alliance, a non-profit advocating for resiliency, ecology, and access to the water’s edge throughout the five boroughs. A strong advocate for environmental justice and the underserved, he also finds time to volunteer with other nonprofit organizations.',
     quote: 'The Gowanus community is facing the challenges that are very usual to all of the five boroughs in neighborhoods of lower economic means.',
-    // Combined Sewer Overflows, Equity, Flood Zones,
-    // Projected Sea Level Rise, Diversity, Superfund Cleanup
-    layers: ['watershed'],
+    // Affordable Housing (all three NYCHA projects), Places of Worship, Diversity
+    layers: ['fema', 'watershed'],
     videoPath: 'https://player.vimeo.com/video/275931504',
     imagePath: 'jpg/kleinman.jpg',
   },
@@ -209,8 +204,8 @@ const interviews = [
     category: 'Built Environment',
     description: 'Anthony is the President and Founder of Architectural Grille located on Second Avenue. He was born and raised in the Dyker Heights and began his career working alongside his mentor and father Federico Giumenta and his two brothers Michael and Fred. After earning his degree in Architectural & Mechanical Design, Anthony formed Architectural Grille. His sons Anthony Jr. and Stephen are Vice Presidents of the company. ',
     quote: 'Sandy really hurt us very bad, very bad. You know, I come in that Monday morning and I didn’t believe my eyes. It was complete disaster.',
-    // Manufacturing, Land Use, Flood Zones
-    layers: ['sandy', 'watershed'],
+    // Layers: Manufacturing Businesses, Flood Zones
+    layers: ['fema', 'manufacturingLandUse', 'watershed'],
     videoPath: 'https://player.vimeo.com/video/275930518',
     imagePath: 'jpg/giumenta.jpg',
   },
@@ -221,9 +216,8 @@ const interviews = [
     category: 'Hydrology',
     description: 'Currently the Senior Policy Advisor to the EPA Regional Administrator in Boston, Sean is the former staff attorney at Riverkeeper, a non-profit founded by Robert Kennedy Jr. that advocates for a clean NYC watershed and a restored Hudson River.',
     quote: 'As a river advocate my vision for the future of the Gowanus Canal is to have fishable, swimmable canal; a waterway that under the Clean Water Act has no pollution coming into it.',
-    // Combined Sewer Overflows, Flood Zones, Projected Sea Level Rise,
-    // Coal Tar Contamination, Superfund Cleanup
-    layers: ['watershed'],
+    // Combined Sewer Overflows, Flood Zones
+    layers: ['cso', 'fema', 'watershed'],
     videoPath: 'https://player.vimeo.com/video/275932294',
     imagePath: 'jpg/dixon.jpg',
   },
@@ -234,12 +228,12 @@ const interviews = [
     category: 'Social Landscape',
     description: 'As part of the Resilient Networks initiative, Nigel is working at the Fifth Avenue Committee to set up a Gowanus network that will be positioned strategically for economic and workforce development. The FAC wants to ensure that following the community’s experience during Sandy, the organization can support the community in future disasters.',
     quote: 'What our community needs most is structured, sincere, and very motivated representation.',
-    // Diversity, Equity, Senior Citizens, Flood Zones, Projected Sea Level Rise
-    layers: ['watershed'],
+    // Diversity, Projected Sea Level Rise, Senior Citizens
+    layers: ['slr', 'demographics', 'watershed'],
     videoPath: 'https://player.vimeo.com/video/275931967',
     imagePath: 'jpg/franklin.jpg',
   },
-
+    // all nycha, Diversity, Flood Zones
   {
     name: 'blondel',
     fullName: 'Karen Blondel',
@@ -247,9 +241,8 @@ const interviews = [
     category: 'Social Landscape',
     description: 'As public and private money flowed in after Hurricane Sandy, Karen and other local organizers launched an initiative called “Turning the Tide” to make sure that low-income public housing residents have a say in how that money is spent. A collaboration of several community organizations, its goal is to amplify the voices of low-income South Brooklyn public housing residents in implementation and policy decisions about environmental cleanup and climate adaptation.',
     quote: 'Environmental justice says that collectively we should be at the table. There’s a difference between equality and equity, and the equity is what’s missing in the equation.',
-    // Diversity, Equity, Ethnicity, Affordability, Flood Zones,
-    // Projected Sea Level Rise, Residential
-    layers: ['watershed'],
+    // Affordable Housing (all three NYCHA projects), Diversity, Flood Zones
+    layers: ['fema', 'demographics', 'watershed'],
     videoPath: 'https://player.vimeo.com/video/275931345',
     imagePath: 'jpg/blondel.jpg',
   },
