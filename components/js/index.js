@@ -18,6 +18,7 @@ import parksLayer from './mapLayers/parks';
 import hurricaneLayer from './mapLayers/hurricane';
 import sandyLayer from './mapLayers/sandy';
 import historicWaterLayer from './mapLayers/hwater';
+import subwayLayer from './mapLayers/subway';
 
 
 import plutoBounds from './mapLayers/plutoBounds';
@@ -76,6 +77,7 @@ addDataInfoToLayer({ layer: slrLayer, dataName: 'slr' });
 addDataInfoToLayer({ layer: cleanupLayer, dataName: 'cleanup' });
 addDataInfoToLayer({ layer: galleriesLayer, dataName: 'galleries' });
 addDataInfoToLayer({ layer: bikeLayer, dataName: 'bike' });
+addDataInfoToLayer({ layer: subwayLayer, dataName: 'subway' });
 addDataInfoToLayer({ layer: femaLayer, dataName: 'fema' });
 addDataInfoToLayer({ layer: parksLayer, dataName: 'parks' });
 addDataInfoToLayer({ layer: hurricaneLayer, dataName: 'hurricane' });
@@ -91,6 +93,7 @@ const mapOverlay = new MapOverlay()
   .addVectorLayer(cleanupLayer)
   .addVectorLayer(galleriesLayer)
   .addVectorLayer(bikeLayer)
+  .addVectorLayer(subwayLayer)
   .addVectorLayer(femaLayer)
   .addVectorLayer(parksLayer)
   .addVectorLayer(hurricaneLayer)

@@ -87,7 +87,7 @@ const interviews = [
     category: 'Social Landscape',
     description: 'Charlene is a NYCHA resident and founder of Public Housing Communities, a group that promotes economic development in the community.',
     // Equity, Affordability, Public Spaces, Residential
-    layers: ['watershed'],
+    layers: ['parks', 'assessedValue', 'watershed'],
     quote: 'I think more so we’re afraid of each other because of the unknown, and so if we come together and learn of who we each are I think that we would have a more productive community.',
   },
   {
