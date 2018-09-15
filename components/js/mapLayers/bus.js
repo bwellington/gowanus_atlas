@@ -2,7 +2,7 @@ import * as topojson from 'topojson-client';
 import MapOverlayLayer from '../visualization-components/mapOverlay/mapOverlayLayer';
 import Tooltip from '../visualization-components/tooltip';
 
-const drawStations = function drawStations() {
+const drawStops = function drawStops() {
   const {
     data,
     group,
@@ -10,14 +10,14 @@ const drawStations = function drawStations() {
     tooltip,
   } = this.props();
 
-  const { subwayStationsData } = data;
+  const { busStopsData } = data;
 
-  const stationsGeojson = topojson
-    .feature(subwayStationsData,
-        subwayStationsData.objects.subwaystations);
-  console.log(stationsGeojson);
+  const stopsGeojson = topojson
+    .feature(busStopsData,
+        busStopsData.objects.bus_stops_nyc_may2018);
+  console.log(stopsGeojson);
 
-  const stationPoints = stationsGeojson.features.map((d) => {
+  const stopPoints = stopsGeojson.features.map((d) => {
     const point = Object.assign({}, d);
     point.lat = d.geometry.coordinates[1];
     point.lon = d.geometry.coordinates[0];
@@ -25,23 +25,21 @@ const drawStations = function drawStations() {
   });
 
 
-  group.selectAll(`.${name}-layer--station`)
-    .data(stationPoints)
+  group.selectAll(`.${name}-layer--stop`)
+    .data(stopPoints)
     .enter()
     .append('circle')
     .attrs({
-      class: `${name}-layer ${name}-layer--station`,
+      class: `${name}-layer ${name}-layer--stop`,
       r: 0,
     })
     .on('mouseover', (d) => {
       const prop = d.properties;
-      console.log('station', d);
       // scale by d.properties.total_rack
       tooltip
         .position([d3.event.x + 10, d3.event.y + 10])
         .text([
-          ['Station: ', `${prop.name}`],
-          ['Line: ', `${prop.line}`],
+          ['Stop: ', `${prop.stop_name}`],
         ])
         .draw();
     })
@@ -59,7 +57,7 @@ const drawStations = function drawStations() {
     .attr('r', 5);
 };
 
-const drawLines = function drawLines() {
+const drawRoutes = function drawRoutes() {
   const {
     data,
     group,
@@ -67,18 +65,18 @@ const drawLines = function drawLines() {
     tooltip,
   } = this.props();
 
-  const { subwayLinesData } = data;
+  const { busRoutesData } = data;
 
-  const subwayLinesGeojson = topojson
-    .feature(subwayLinesData, subwayLinesData.objects.subwaylines);
+  const busRoutesGeojson = topojson
+    .feature(busRoutesData, busRoutesData.objects.bus_routes_nyc_may2018);
 
 
-  group.selectAll(`.${name}-layer--line`)
-    .data(subwayLinesGeojson.features)
+  group.selectAll(`.${name}-layer--route`)
+    .data(busRoutesGeojson.features)
     .enter()
     .append('path')
     .attrs({
-      class: `${name}-layer ${name}-layer--line`,
+      class: `${name}-layer ${name}-layer--route`,
       'stroke-width': 0,
     })
     .on('mouseover', (d) => {
@@ -86,7 +84,7 @@ const drawLines = function drawLines() {
       tooltip
         .position([d3.event.x + 10, d3.event.y + 10])
         .text([
-          ['Line: ', `${prop.name}`],
+          ['Route: ', `${prop.route_long}`],
         ])
         .draw();
     })
@@ -103,7 +101,7 @@ const drawLines = function drawLines() {
     .attr('stroke-width', 3);
 };
 
-const subwayLayer = new MapOverlayLayer()
+const busLayer = new MapOverlayLayer()
   .addPropMethods(['dataInfo'])
   .draw(function loadData() {
     const {
@@ -113,23 +111,25 @@ const subwayLayer = new MapOverlayLayer()
     } = this.props();
 
     const { dataPath } = dataInfo;
+    console.log('path', dataPath);
 
     this._.tooltip = new Tooltip().selection(d3.select('body'));
 
     if (data === undefined) {
-      d3.json(dataPath.subwayLines, (subwayLinesData) => {
-        d3.json(dataPath.subwayStations, (subwayStationsData) => {
-          this._.data = { subwayLinesData, subwayStationsData };
-          drawLines.call(this);
-          drawStations.call(this);
+      d3.json(dataPath.busRoutes, (busRoutesData) => {
+        d3.json(dataPath.busStops, (busStopsData) => {
+          this._.data = { busRoutesData, busStopsData };
+          console.log('bus data', this._.data);
+          drawRoutes.call(this);
+          drawStops.call(this);
 
           // drawBikeRacks.call(this);
           refreshMap();
         });
       });
     } else {
-      drawLines.call(this);
-      drawStations.call(this);
+      drawRoutes.call(this);
+      drawStops.call(this);
 
       // drawBikeRoutes.call(this);
       // drawBikeRacks.call(this);
@@ -141,4 +141,4 @@ const subwayLayer = new MapOverlayLayer()
     group.selectAll(`.${name}-layer`).remove();
   });
 
-export default subwayLayer;
+export default busLayer;

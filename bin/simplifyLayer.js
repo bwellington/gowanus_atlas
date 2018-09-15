@@ -91,6 +91,19 @@ const args = {
 //   output: 'build/data/demographics10Clipped.topojson',
 // });
 
+// bus routes
+// Object.assign(args,
+//   {
+//     input: 'rawData/bus/bus_routes_nyc_may2018.shp',
+//     output: 'build/data/busRoutes.topojson',
+//   });
+
+// bus stops
+Object.assign(args, {
+  input: 'rawData/bus/bus_stops_nyc_may2018.shp',
+  output: 'build/data/busStops.topojson',
+});
+
 const {
   input,
   output,

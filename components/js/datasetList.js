@@ -102,6 +102,17 @@ export const mapDatasetList = [
     },
   },
   {
+    name: 'bus',
+    render: 'd3',
+    category: 'Infrastructure',
+    fullName: 'Bus Routes and Stops',
+    exclude: [],
+    dataPath: {
+      busRoutes: 'data/busRoutes.topojson',
+      busStops: 'data/busStops.topojson',
+    },
+  },
+  {
     name: 'bike',
     render: 'd3',
     category: 'Infrastructure',

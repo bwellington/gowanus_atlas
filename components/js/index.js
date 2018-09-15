@@ -13,6 +13,7 @@ import cleanupLayer from './mapLayers/cleanup';
 import watershedLayer from './mapLayers/watershed';
 import galleriesLayer from './mapLayers/galleries';
 import bikeLayer from './mapLayers/bike';
+import busLayer from './mapLayers/bus';
 import femaLayer from './mapLayers/fema';
 import parksLayer from './mapLayers/parks';
 import hurricaneLayer from './mapLayers/hurricane';
@@ -78,6 +79,7 @@ addDataInfoToLayer({ layer: cleanupLayer, dataName: 'cleanup' });
 addDataInfoToLayer({ layer: galleriesLayer, dataName: 'galleries' });
 addDataInfoToLayer({ layer: bikeLayer, dataName: 'bike' });
 addDataInfoToLayer({ layer: subwayLayer, dataName: 'subway' });
+addDataInfoToLayer({ layer: busLayer, dataName: 'bus' });
 addDataInfoToLayer({ layer: femaLayer, dataName: 'fema' });
 addDataInfoToLayer({ layer: parksLayer, dataName: 'parks' });
 addDataInfoToLayer({ layer: hurricaneLayer, dataName: 'hurricane' });
@@ -94,6 +96,7 @@ const mapOverlay = new MapOverlay()
   .addVectorLayer(galleriesLayer)
   .addVectorLayer(bikeLayer)
   .addVectorLayer(subwayLayer)
+  .addVectorLayer(busLayer)
   .addVectorLayer(femaLayer)
   .addVectorLayer(parksLayer)
   .addVectorLayer(hurricaneLayer)

@@ -63,6 +63,7 @@
 
 .bike-layer--rack,
 .subway-layer--station,
+.bus-layer--stop,
 .cso-layer-circle {
   pointer-events: auto;
   stroke: white;
@@ -73,10 +74,12 @@
 }
 .bike-layer--rack:hover,
 .subway-layer--station:hover,
+.bus-layer--stop:hover,
 .cso-layer-circle--active {
   fill: rgba(255, 255, 255, .9);
 }
 
+.bus-layer--route,
 .subway-layer--line,
 .bike-layer--route {
   stroke: orange;
@@ -85,6 +88,7 @@
   cursor: pointer;
 }
 
+.bus-layer--route:hover,
 .subway-layer--line:hover,
 .bike-layer--route:hover {
   // stroke-width: 4.5;
