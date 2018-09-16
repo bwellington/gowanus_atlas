@@ -6,7 +6,8 @@ import Tooltip from '../visualization-components/tooltip';
 const privateProps = new WeakMap();
 const privateMethods = {
   cleanData(rawData) {
-    return topojson.feature(rawData, rawData.objects.demographics10).features;
+    console.log('rawdata', rawData);
+    return topojson.feature(rawData, rawData.objects.over64_10).features;
   },
   draw() {
     const props = privateProps.get(this);
@@ -17,32 +18,19 @@ const privateMethods = {
       tooltipOffset,
     } = props;
 
-    // console.log('data', data);
     props.mapLayer = L.geoJSON(d3.shuffle(data), {
       pointToLayer(geoPoint, latlng) {
         // console.log('latlng', latlng);
-        const color = {
-          white: 'blue',
-          asian: 'red',
-          black: 'green',
-          hispanic: 'orange',
-        };
-        const raceText = {
-          white: 'Blue Dot = White, Not Hispanic',
-          asian: 'Red Dot = Asian, Not Hispanic',
-          black: 'Green Dot = Black, Not Hispanic',
-          hispanic: 'Orange Dot = Hispanic',
-        };
+
         // console.log(color[geoPoint.properties.race]);
         return L.circleMarker(latlng, {
           radius: 2,
           stroke: false,
-          fillColor: color[geoPoint.properties.race],
+          fillColor: 'orange',
           fillOpacity: 0.75,
         })
         .on('mouseover', (e) => {
-        //   console.log('props', geoPoint.properties);
-
+          const text = '1 Dot = 10 People';
           const pos = [
             e.containerPoint.x + tooltipOffset.x,
             e.containerPoint.y + tooltipOffset.y,
@@ -50,8 +38,8 @@ const privateMethods = {
           tooltip
               .position(pos)
               .text([
-                ['', raceText[geoPoint.properties.race]],
-                ['', '1 Dot = 10 People'],
+                ['', 'Orange Dot = > 64 Years Old'],
+                ['', text],
               ])
               .draw();
         })
@@ -83,10 +71,10 @@ const publicProps = new Props({
 });
 
 
-class DemographicsLayer {
+class SeniorLayer {
   constructor() {
     privateProps.set(this, {
-      name: 'demographics',
+      name: 'senior',
       status: false,
       tooltipOffset: { x: 10, y: 10 },
     });
@@ -135,6 +123,6 @@ class DemographicsLayer {
   }
 }
 
-Object.assign(DemographicsLayer.prototype, publicProps);
+Object.assign(SeniorLayer.prototype, publicProps);
 
-export default DemographicsLayer;
+export default SeniorLayer;

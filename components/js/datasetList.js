@@ -172,6 +172,22 @@ export const mapDatasetList = [
     exclude: [],
     dataPath: 'data/demographics10Clipped.topojson',
   },
+  {
+    name: 'youth',
+    render: 'leaflet',
+    category: 'Culture',
+    fullName: 'Youth (< 18 Years Old)',
+    exclude: [],
+    dataPath: 'data/under18_10.topojson',
+  },
+  {
+    name: 'senior',
+    render: 'leaflet',
+    category: 'Culture',
+    fullName: 'Senior Citizens (> 64 Years Old)',
+    exclude: [],
+    dataPath: 'data/over64_10.topojson',
+  },
   // NYCHA housing projects
 ];
 

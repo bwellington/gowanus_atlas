@@ -101,31 +101,30 @@ const interviews = [
     layers: ['parks', 'cso', 'watershed'],
     quote: 'It’s an extremely productive ecology – the canal and the manufacturing gas plants along it powered most of Brooklyn and built this town.',
   },
-  // {
-  //   name: 'schoneveld',
-  //   fullName: 'Rebecca Schoneveld',
-  //   title: 'Schone Bridal',
-  //   videoPath: '',
-  //   imagePath: '',
-  //   category: 'Built Environment',
-  //   description: 'Rebecca opened her shop on Third Avenue in 2013, with a beautiful and cheerful boutique space in the front and a full sewing production and design studio in the back where visitors can see firsthand the process that goes into creating original, locally handcrafted gowns.',
-  //   // Land Use, Commercial, Manufacturing
-  //   layers: ['watershed'],
-  //   quote: 'We can have a really creative, flourishing community that embraces all the cultures that have been here for generations.',
-  // },
-  // {
-  //   name: 'luna',
-  //   fullName: 'Rafael Gomez Luna',
-  //   title: 'Community Activist',
-  //   videoPath: '',
-  //   imagePath: '',
-  //   category: 'Culture',
-  //   description: 'Rafael was born in Santo Domingo, Dominican Republic and moved to NYC when he was 18. As a child he witnessed the Dominican civil war and the end of the Trujillo regime. He has worked as a model, an actor, and as a community and housing activist in Washington Heights, the Lower East Side, and in Brooklyn. He is married with a young daughter, and lives and works in Gowanus.',
-  //   layers: ['galleries', 'watershed'],
-  //   // Arts, Diversity, Equity, Youth, Superfund Cleanup
-  //   quote: 'What our community needs most is for us as residents, organizations, developers, activists, elected officials to come together and try to preserve what we already have while at the same time help progress come our way.',
-  // },
-
+  {
+    name: 'schoneveld',
+    fullName: 'Rebecca Schoneveld',
+    title: 'Schone Bridal',
+    videoPath: 'https://player.vimeo.com/video/290071617',
+    imagePath: 'jpg/schoneveld.jpg',
+    category: 'Built Environment',
+    description: 'Rebecca opened her shop on Third Avenue in 2013, with a beautiful and cheerful boutique space in the front and a full sewing production and design studio in the back where visitors can see firsthand the process that goes into creating original, locally handcrafted gowns.',
+    // Land Use, Commercial, Manufacturing
+    layers: ['watershed'],
+    quote: 'We can have a really creative, flourishing community that embraces all the cultures that have been here for generations.',
+  },
+  {
+    name: 'luna',
+    fullName: 'Rafael Gomez Luna',
+    title: 'Community Activist',
+    videoPath: 'https://player.vimeo.com/video/290071654',
+    imagePath: 'jpg/gomez.jpg',
+    category: 'Culture',
+    description: 'Rafael was born in Santo Domingo, Dominican Republic and moved to NYC when he was 18. As a child he witnessed the Dominican civil war and the end of the Trujillo regime. He has worked as a model, an actor, and as a community and housing activist in Washington Heights, the Lower East Side, and in Brooklyn. He is married with a young daughter, and lives and works in Gowanus.',
+    layers: ['galleries', 'watershed'],
+    // Arts, Diversity, Equity, Youth, Superfund Cleanup
+    quote: 'What our community needs most is for us as residents, organizations, developers, activists, elected officials to come together and try to preserve what we already have while at the same time help progress come our way.',
+  },
   {
     name: 'reich',
     fullName: 'Peter Reich',
