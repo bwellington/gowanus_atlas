@@ -3,6 +3,8 @@ import LandUseLayer from './mapLayers/landuse';
 import AssessedValueLayer from './mapLayers/assessedValue';
 import ZoningLayer from './mapLayers/zoning';
 import ManufacturingLandUseLayer from './mapLayers/manufacturingLandUse';
+import residentialLandUseLayer from './mapLayers/residentialLandUse';
+import commercialLandUseLayer from './mapLayers/commercialLandUse';
 import demographicsLayer from './mapLayers/demographics';
 import youthLayer from './mapLayers/youth';
 import seniorLayer from './mapLayers/senior';
@@ -28,6 +30,14 @@ const publicMethods = {
       {
         name: 'manufacturingLandUse',
         Layer: ManufacturingLandUseLayer,
+      },
+      {
+        name: 'residential',
+        Layer: residentialLandUseLayer,
+      },
+      {
+        name: 'commercial',
+        Layer: commercialLandUseLayer,
       },
       {
         name: 'zoning',

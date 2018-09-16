@@ -128,7 +128,23 @@ export const mapDatasetList = [
     render: 'leaflet',
     category: 'Built Environment',
     fullName: 'Land Use',
-    exclude: ['manufacturingLandUse', 'zoning', 'assessedValue'],
+    exclude: ['manufacturingLandUse', 'zoning', 'assessedValue', 'residential', 'commercial'],
+    dataPath: 'data/BKMapPlutoClipped.topojson',
+  },
+  {
+    name: 'residential',
+    render: 'leaflet',
+    category: 'Built Environment',
+    fullName: 'Residential Land Use',
+    exclude: ['manufacturingLandUse', 'landuse', 'assessedValue', 'zoning', 'commercial'],
+    dataPath: 'data/BKMapPlutoClipped.topojson',
+  },
+  {
+    name: 'commercial',
+    render: 'leaflet',
+    category: 'Built Environment',
+    fullName: 'Commercial Land Use',
+    exclude: ['manufacturingLandUse', 'landuse', 'assessedValue', 'zoning', 'residential'],
     dataPath: 'data/BKMapPlutoClipped.topojson',
   },
   {
@@ -136,7 +152,7 @@ export const mapDatasetList = [
     render: 'leaflet',
     fullName: 'Manufacturing Land Use',
     category: 'Built Environment',
-    exclude: ['landuse', 'zoning', 'assessedValue'],
+    exclude: ['landuse', 'zoning', 'assessedValue', 'residential', 'commercial'],
     dataPath: 'data/BKMapPlutoClipped.topojson',
   },
   {
@@ -144,7 +160,7 @@ export const mapDatasetList = [
     render: 'leaflet',
     category: 'Built Environment',
     fullName: 'Zoning',
-    exclude: ['manufacturingLandUse', 'landuse', 'assessedValue'],
+    exclude: ['manufacturingLandUse', 'landuse', 'assessedValue', 'residential', 'commercial'],
     dataPath: 'data/BKMapPlutoClipped.topojson',
   },
   // need to rename this
