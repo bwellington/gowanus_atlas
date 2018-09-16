@@ -99,9 +99,21 @@ const args = {
 //   });
 
 // bus stops
+// Object.assign(args, {
+//   input: 'rawData/bus/bus_stops_nyc_may2018.shp',
+//   output: 'build/data/busStops.topojson',
+// });
+
+// age under 18
+// Object.assign(args, {
+//   input: 'rawData/census/processed/under18_10.shp',
+//   output: 'build/data/under18_10.topojson',
+// });
+
+// age over 64
 Object.assign(args, {
-  input: 'rawData/bus/bus_stops_nyc_may2018.shp',
-  output: 'build/data/busStops.topojson',
+  input: 'rawData/census/processed/over64_10.shp',
+  output: 'build/data/over64_10.topojson',
 });
 
 const {
