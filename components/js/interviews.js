@@ -30,7 +30,7 @@ const interviews = [
     imagePath: 'jpg/pinkard.jpg',
     category: 'Social Landscape',
     description: 'While working as Parent Coordinator at the Brooklyn School of Collaborative Studies, Tracey co-founded the Gowanus Houses Art Collective, an arts youth program for the complex where she is a long time resident. She sees the program as a bridge to the creative community in the surrounding wealthier neighborhoods, offering them a window into life in the public housing complex.',
-    layers: ['watershed'], // nycha, gowanus houses
+    layers: ['youth', 'nycha', 'watershed'], // nycha, gowanus houses
     quote: 'For many years the canal reeked, the smell was just horrible, and in the summer it permeated, it was just sickening. And so now there’s this superfund, and there’s this big concern about the cleanup.',
   },
   {
