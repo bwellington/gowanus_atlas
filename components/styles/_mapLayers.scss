@@ -45,6 +45,8 @@
 }
 
 .nycha-layer,
+.police-layer,
+.school-layer,
 .parks-layer,
 .fema-layer,
 .cso-layer {
@@ -55,6 +57,8 @@
   cursor: pointer;
 }
 
+.police-layer:hover,
+.school-layer:hover,
 .nycha-layer:hover,
 .parks-layer:hover,
 .fema-layer:hover,

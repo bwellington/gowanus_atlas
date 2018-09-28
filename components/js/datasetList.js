@@ -183,7 +183,7 @@ export const mapDatasetList = [
   {
     name: 'demographics',
     render: 'leaflet',
-    category: 'Culture',
+    category: 'Social Landscape',
     fullName: 'Demographics',
     exclude: [],
     dataPath: 'data/demographics10Clipped.topojson',
@@ -191,7 +191,7 @@ export const mapDatasetList = [
   {
     name: 'youth',
     render: 'leaflet',
-    category: 'Culture',
+    category: 'Social Landscape',
     fullName: 'Youth (< 18 Years Old)',
     exclude: [],
     dataPath: 'data/under18_10.topojson',
@@ -199,7 +199,7 @@ export const mapDatasetList = [
   {
     name: 'senior',
     render: 'leaflet',
-    category: 'Culture',
+    category: 'Social Landscape',
     fullName: 'Senior Citizens (> 64 Years Old)',
     exclude: [],
     dataPath: 'data/over64_10.topojson',
@@ -212,6 +212,22 @@ export const mapDatasetList = [
     fullName: 'NYCHA Developments',
     exclude: [],
     dataPath: 'data/nycha.topojson',
+  },
+  {
+    name: 'school',
+    render: 'd3',
+    category: 'Social Landscape',
+    fullName: 'School Districts',
+    exclude: [],
+    dataPath: 'data/school.topojson',
+  },
+  {
+    name: 'police',
+    render: 'd3',
+    category: 'Social Landscape',
+    fullName: 'Police Precincts',
+    exclude: [],
+    dataPath: 'data/police.topojson',
   },
 ];
 

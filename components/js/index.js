@@ -21,6 +21,8 @@ import sandyLayer from './mapLayers/sandy';
 import historicWaterLayer from './mapLayers/hwater';
 import subwayLayer from './mapLayers/subway';
 import nychaLayer from './mapLayers/nycha';
+import schoolLayer from './mapLayers/school';
+import policeLayer from './mapLayers/police';
 
 
 import plutoBounds from './mapLayers/plutoBounds';
@@ -81,6 +83,8 @@ addDataInfoToLayer({ layer: galleriesLayer, dataName: 'galleries' });
 addDataInfoToLayer({ layer: bikeLayer, dataName: 'bike' });
 addDataInfoToLayer({ layer: subwayLayer, dataName: 'subway' });
 addDataInfoToLayer({ layer: nychaLayer, dataName: 'nycha' });
+addDataInfoToLayer({ layer: schoolLayer, dataName: 'school' });
+addDataInfoToLayer({ layer: policeLayer, dataName: 'police' });
 addDataInfoToLayer({ layer: busLayer, dataName: 'bus' });
 addDataInfoToLayer({ layer: femaLayer, dataName: 'fema' });
 addDataInfoToLayer({ layer: parksLayer, dataName: 'parks' });
@@ -105,6 +109,8 @@ const mapOverlay = new MapOverlay()
   .addVectorLayer(sandyLayer)
   .addVectorLayer(historicWaterLayer)
   .addVectorLayer(nychaLayer)
+  .addVectorLayer(policeLayer)
+  .addVectorLayer(schoolLayer)
   .selectedLayers(state.selectedLayers())
   .addTo(leafletMap);
 

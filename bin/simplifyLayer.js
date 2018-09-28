@@ -117,9 +117,21 @@ const args = {
 // });
 
 // nycha
+// Object.assign(args, {
+//   input: 'rawData/nycha.geojson',
+//   output: 'build/data/nycha.topojson',
+// });
+
+// school
+// Object.assign(args, {
+//   input: 'rawData/school.geojson',
+//   output: 'build/data/school.topojson',
+// });
+
+// police
 Object.assign(args, {
-  input: 'rawData/nycha.geojson',
-  output: 'build/data/nycha.topojson',
+  input: 'rawData/police.geojson',
+  output: 'build/data/police.topojson',
 });
 
 const {
