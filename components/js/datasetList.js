@@ -24,7 +24,7 @@ export const mapDatasetList = [
     name: 'fema',
     render: 'd3',
     category: 'Hydrology',
-    fullName: 'Flood Insurance Rates',
+    fullName: 'Flood Zones',
     exclude: [],
     dataPath: 'data/femaClipped.topojson',
   },
