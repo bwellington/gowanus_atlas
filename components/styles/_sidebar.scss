@@ -4,7 +4,8 @@
   top: $menu-top + $top-menu-height;
   width: $menu-width;
   max-height: 85vh;
-  background: $title-color;
+  // background: $title-color;
+  background: $sidebar-color;
   z-index:950;
   padding:15px;
   border-radius: 10px;

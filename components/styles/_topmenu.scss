@@ -134,11 +134,23 @@
   margin-bottom: 5px;
 }
 
+.sidebar__map-layer {
+  background: $sidebar-color;
+}
+
 .sidebar__map-layer--active, .sidebar__map-layer:hover,
 .top-menu__map-layer--active, .top-menu__map-layer:hover {
   color: $layer-button-color--active;
   background: $title-color--dark;
   border-color: $title-color--dark;
+}
+
+
+
+.sidebar__map-layer--active, .sidebar__map-layer:hover {
+  color: $sidebar-color;
+  background: $sidebar-color--dark;
+  border-color: $sidebar-color--dark;
 }
 
 .top-menu__map-layer--disabled {
