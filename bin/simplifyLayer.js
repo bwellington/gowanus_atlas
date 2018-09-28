@@ -111,9 +111,15 @@ const args = {
 // });
 
 // age over 64
+// Object.assign(args, {
+//   input: 'rawData/census/processed/over64_10.shp',
+//   output: 'build/data/over64_10.topojson',
+// });
+
+// nycha
 Object.assign(args, {
-  input: 'rawData/census/processed/over64_10.shp',
-  output: 'build/data/over64_10.topojson',
+  input: 'rawData/nycha.geojson',
+  output: 'build/data/nycha.topojson',
 });
 
 const {

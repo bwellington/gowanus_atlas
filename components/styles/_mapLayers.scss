@@ -44,6 +44,7 @@
   stroke-width: 3.5;
 }
 
+.nycha-layer,
 .parks-layer,
 .fema-layer,
 .cso-layer {
@@ -54,7 +55,7 @@
   cursor: pointer;
 }
 
-
+.nycha-layer:hover,
 .parks-layer:hover,
 .fema-layer:hover,
 .cso-layer--active {

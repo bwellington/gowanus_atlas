@@ -205,6 +205,14 @@ export const mapDatasetList = [
     dataPath: 'data/over64_10.topojson',
   },
   // NYCHA housing projects
+  {
+    name: 'nycha',
+    render: 'd3',
+    category: 'Built Environment',
+    fullName: 'NYCHA Developments',
+    exclude: [],
+    dataPath: 'data/nycha.topojson',
+  },
 ];
 
 export default mapDatasetList;
