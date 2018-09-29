@@ -1,0 +1,41 @@
+.legend {
+  position: absolute;
+  bottom: 125px;
+  right: 15px;
+  z-index: 1000;
+  width: 200px;
+  background: $sidebar-color;
+  border-radius: 10px;
+  display: none;
+}
+
+.legend--on {
+  display: block;
+}
+
+.legend__inner {
+  padding: 10px;
+}
+
+.legend__title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.legend__row {
+  display: flex;
+  align-items: center;
+}
+
+.legend__row-text {
+  margin-left: 5px;
+}
+
+.legend__layer-title {
+  font-weight: bold;
+}
+
+.legend__layer-title:not(:first-child) {
+  margin-top: 10px;
+}

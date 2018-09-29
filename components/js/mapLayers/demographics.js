@@ -2,8 +2,23 @@ import * as topojson from 'topojson-client';
 import Props from '../visualization-components/privateProps';
 import datasetList from '../datasetList';
 import Tooltip from '../visualization-components/tooltip';
+import Legend from '../legend';
 
 const privateProps = new WeakMap();
+
+const color = {
+  white: 'blue',
+  asian: 'red',
+  black: 'green',
+  hispanic: 'orange',
+};
+const raceText = {
+  white: 'Blue Dot = White, Not Hispanic',
+  asian: 'Red Dot = Asian, Not Hispanic',
+  black: 'Green Dot = Black, Not Hispanic',
+  hispanic: 'Orange Dot = Hispanic',
+};
+
 const privateMethods = {
   cleanData(rawData) {
     return topojson.feature(rawData, rawData.objects.demographics10).features;
@@ -21,18 +36,7 @@ const privateMethods = {
     props.mapLayer = L.geoJSON(d3.shuffle(data), {
       pointToLayer(geoPoint, latlng) {
         // console.log('latlng', latlng);
-        const color = {
-          white: 'blue',
-          asian: 'red',
-          black: 'green',
-          hispanic: 'orange',
-        };
-        const raceText = {
-          white: 'Blue Dot = White, Not Hispanic',
-          asian: 'Red Dot = Asian, Not Hispanic',
-          black: 'Green Dot = Black, Not Hispanic',
-          hispanic: 'Orange Dot = Hispanic',
-        };
+
         // console.log(color[geoPoint.properties.race]);
         return L.circleMarker(latlng, {
           radius: 2,
@@ -99,6 +103,8 @@ class DemographicsLayer {
     props.dataPath = dataInfo.dataPath;
     props.tooltip = new Tooltip().selection(d3.select('body'));
 
+    props.dataInfo = dataInfo;
+
     return this;
   }
   draw() {
@@ -107,6 +113,8 @@ class DemographicsLayer {
       dataPath,
       data,
       status,
+      dataInfo,
+      name,
     } = props;
     const {
       draw,
@@ -124,14 +132,30 @@ class DemographicsLayer {
       draw.call(this);
     }
     props.status = true;
+
+    const legendContent = Object.keys(raceText)
+      .map(d => ({
+        text: raceText[d].split('=')[1],
+        type: 'dot',
+        color: color[d],
+      }));
+
+    props.legend = new Legend({
+      name,
+      title: dataInfo.fullName,
+      content: legendContent,
+    });
+
+    props.legend.draw();
   }
   remove() {
     const props = privateProps.get(this);
-    const { mapLayer, status } = props;
+    const { mapLayer, status, legend } = props;
     if (!status) return;
 
     props.status = false;
     mapLayer.remove();
+    legend.remove();
   }
 }
 

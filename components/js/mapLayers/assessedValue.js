@@ -1,6 +1,7 @@
 import * as topojson from 'topojson-client';
 import Props from '../visualization-components/privateProps';
 import getPlutoBase from './plutoBase';
+import Legend from '../legend';
 
 const privateProps = new WeakMap();
 
@@ -16,13 +17,36 @@ const publicProps = new Props({
   ],
 });
 
+let dataExtent;
+
 const privateMethods = {
+  getLegend() {
+    const legendCount = 4;
+    const legendScale = d3.scaleLinear().domain([0, legendCount - 1]).range([0, 1]);
+    const legendContent = new Array(legendCount)
+      .fill(0)
+      .map((d, i) => {
+        const item = {
+          type: 'rect',
+          color: d3.interpolateYlOrRd(legendScale(i)),
+          text: 'asdf',
+        };
+        return item;
+      });
+
+    return new Legend({
+      name: 'assessedValue',
+      title: 'Total Assessed Value',
+      content: legendContent,
+    });
+  },
   cleanData(rawData) {
     const data = topojson.feature(rawData, rawData.objects.BKMapPluto);
-    const dataExtent = d3.extent(data.features.filter(d => d.properties.AssessTot !== 0),
+    dataExtent = d3.extent(data.features.filter(d => d.properties.AssessTot !== 0),
       d => d.properties.AssessTot);
 
     const scale = d3.scalePow().exponent(0.25).domain(dataExtent).range([0, 1]);
+
     const cleanFeatures = data
     .features
     .map((d) => {

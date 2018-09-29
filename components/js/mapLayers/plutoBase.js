@@ -86,6 +86,7 @@ const getPlutoBase = ({ privateProps, privateMethods }) => ({
       const {
         draw,
         cleanData,
+        getLegend,
       } = privateMethods;
 
       if (status) return;
@@ -98,15 +99,22 @@ const getPlutoBase = ({ privateProps, privateMethods }) => ({
       } else {
         draw.call(this);
       }
+      if (getLegend !== undefined) {
+        props.legend = getLegend();
+        props.legend.draw();
+      }
       props.status = true;
     },
     remove() {
       const props = privateProps.get(this);
-      const { mapLayer, status } = props;
+      const { mapLayer, status, legend } = props;
       if (!status) return;
 
       props.status = false;
       mapLayer.remove();
+      if (legend !== undefined) {
+        legend.remove();
+      }
     },
   },
 });
