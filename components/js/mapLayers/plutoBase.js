@@ -94,15 +94,19 @@ const getPlutoBase = ({ privateProps, privateMethods }) => ({
       if (data === undefined) {
         d3.json(dataPath, (loadedData) => {
           props.data = cleanData.call(this, loadedData);
+          if (getLegend !== undefined) {
+            props.legend = getLegend(loadedData);
+            props.legend.draw();
+          }
           draw.call(this);
         });
       } else {
         draw.call(this);
+        if (props.legend !== undefined) {
+          props.legend.draw();
+        }
       }
-      if (getLegend !== undefined) {
-        props.legend = getLegend();
-        props.legend.draw();
-      }
+
       props.status = true;
     },
     remove() {

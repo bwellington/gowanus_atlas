@@ -17,10 +17,12 @@ const publicProps = new Props({
   ],
 });
 
-let dataExtent;
 
 const privateMethods = {
-  getLegend() {
+  getLegend(rawData) {
+    const data = topojson.feature(rawData, rawData.objects.BKMapPluto);
+    const dataExtent = d3.extent(data.features.filter(d => d.properties.AssessTot !== 0),
+      d => d.properties.AssessTot);
     const legendCount = 4;
     const legendScale = d3.scaleLinear().domain([0, legendCount - 1]).range([0, 1]);
     const legendContent = new Array(legendCount)
@@ -29,8 +31,14 @@ const privateMethods = {
         const item = {
           type: 'rect',
           color: d3.interpolateYlOrRd(legendScale(i)),
-          text: 'asdf',
+          text: '',
         };
+        if (i === 0) {
+          item.text = `$${formatNum(dataExtent[0])}`;
+        } else if (i === legendCount - 1) {
+          item.text = `$${formatNum(dataExtent[1])}`;
+        }
+        console.log('item', item);
         return item;
       });
 
@@ -42,7 +50,7 @@ const privateMethods = {
   },
   cleanData(rawData) {
     const data = topojson.feature(rawData, rawData.objects.BKMapPluto);
-    dataExtent = d3.extent(data.features.filter(d => d.properties.AssessTot !== 0),
+    const dataExtent = d3.extent(data.features.filter(d => d.properties.AssessTot !== 0),
       d => d.properties.AssessTot);
 
     const scale = d3.scalePow().exponent(0.25).domain(dataExtent).range([0, 1]);

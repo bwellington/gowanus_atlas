@@ -28,7 +28,7 @@ const privateMethods = {
       .append('div')
       .attr('class', 'legend__row');
 
-    const height = 25;
+    const height = 20;
     const width = 25;
 
     const svg = row.append('svg')
@@ -44,6 +44,15 @@ const privateMethods = {
           cy: `${height / 2}`,
           fill: color,
           r: 3,
+        });
+    } else if (type === 'rect') {
+      svg.append('rect')
+        .attrs({
+          x: 0,
+          y: 0,
+          width,
+          height,
+          fill: color,
         });
     }
 
