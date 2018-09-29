@@ -24,13 +24,24 @@
 
 .about__project-statement {
   font-size: 16px;
+  display: flex;
+  align-items: center;
+}
+
+.about__project-statement-text {
+  margin-right: 15px;
+}
+
+.about__project-image {
+  width: 350px;
+  height: auto;
 }
 
 .about__explore-button-row {
   display: flex;
   justify-content: center;
   margin-top: 30px;
-  margin-bottom: 30px;
+  // margin-bottom: 30px;
 }
 .about__explore-button {
   font-size: 22px;
