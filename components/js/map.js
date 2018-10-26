@@ -16,7 +16,7 @@ const Map = ({ bounds, container }) => {
   map.on('movestart', () => {
     d3.selectAll('.tooltip').remove();
   });
-  
+
   return map;
 };
 
