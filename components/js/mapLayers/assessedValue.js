@@ -23,7 +23,7 @@ const privateMethods = {
     const data = topojson.feature(rawData, rawData.objects.BKMapPluto);
     const dataExtent = d3.extent(data.features.filter(d => d.properties.AssessTot !== 0),
       d => d.properties.AssessTot);
-    const legendCount = 4;
+    const legendCount = 20;
     const legendScale = d3.scaleLinear().domain([0, legendCount - 1]).range([0, 1]);
     const legendContent = new Array(legendCount)
       .fill(0)
@@ -38,7 +38,7 @@ const privateMethods = {
         } else if (i === legendCount - 1) {
           item.text = `$${formatNum(dataExtent[1])}`;
         }
-        console.log('item', item);
+
         return item;
       });
 
@@ -46,6 +46,7 @@ const privateMethods = {
       name: 'assessedValue',
       title: 'Total Assessed Value',
       content: legendContent,
+      gradient: true,
     });
   },
   cleanData(rawData) {

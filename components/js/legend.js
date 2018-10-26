@@ -18,6 +18,7 @@ const privateMethods = {
   drawRow({
     data,
     container,
+    gradient,
   }) {
     const {
       type,
@@ -26,9 +27,9 @@ const privateMethods = {
     } = data;
     const row = container
       .append('div')
-      .attr('class', 'legend__row');
+      .attr('class', `legend__row ${gradient ? 'legend__row--gradient' : ''}`);
 
-    const height = 20;
+    const height = gradient ? 5 : 20;
     const width = 25;
 
     const svg = row.append('svg')
@@ -68,6 +69,7 @@ class Legend {
       name: null,
       title: null,
       content: null,
+      gradient: false,
     });
     this.config(config);
   }
@@ -81,6 +83,7 @@ class Legend {
       name,
       content,
       title,
+      gradient,
     } = props;
     const {
       drawContainer,
@@ -98,6 +101,7 @@ class Legend {
     content.forEach((data) => {
       drawRow({
         data,
+        gradient,
         container,
       });
     });
@@ -113,7 +117,7 @@ class Legend {
     } = props;
     container.remove();
     const blockCount = d3.selectAll('.legend__block').size();
-    console.log('count', blockCount);
+
     d3.select('.legend')
       .classed('legend--on', blockCount > 0);
   }
