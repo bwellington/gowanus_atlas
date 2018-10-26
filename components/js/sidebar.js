@@ -8,8 +8,14 @@ const privateMethods = {
       container,
       selectedInterview,
     } = privateProps.get(this);
+    const { clearInterview } = privateMethods;
     if (container === undefined) return;
-    const toggleClass = () => container.classed('sidebar--hidden', selectedInterview === undefined);
+    const toggleClass = () => {
+      container.classed('sidebar--hidden', selectedInterview === undefined);
+      if (selectedInterview === undefined) {
+        clearInterview.call(this);
+      }
+    };
 
     if (selectedInterview === undefined) {
       container

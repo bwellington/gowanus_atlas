@@ -4,6 +4,10 @@
 //   left: 50px;
 // }
 
+$layer-pink: rgb(255, 0, 229);
+$layer-green: rgb(97, 255, 58);
+$layer-blue: rgb(57, 228, 255);
+
 .galleries-layer {
   fill: rgba(255, 165, 0, .8);
   pointer-events: auto;
@@ -39,9 +43,19 @@
   cursor: pointer;
 }
 
+.plutoBounds-layer {
+  stroke: $layer-blue;
+  stroke-width: 4;
+  stroke-dasharray: 5,5;
+}
+
 .watershed-layer:hover,
 .plutoBounds-layer:hover {
   stroke-width: 3.5;
+}
+
+.plutoBounds-layer:hover {
+  stroke-width: 5;
 }
 
 .nycha-layer,

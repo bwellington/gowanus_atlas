@@ -56,7 +56,7 @@ const privateMethods = {
         });
     }
 
-    const textContainer = row.append('div')
+    row.append('div')
       .attr('class', 'legend__row-text')
       .text(text);
   },

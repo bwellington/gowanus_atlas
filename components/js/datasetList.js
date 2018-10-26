@@ -209,7 +209,7 @@ export const mapDatasetList = [
     name: 'nycha',
     render: 'd3',
     category: 'Built Environment',
-    fullName: 'NYCHA Developments',
+    fullName: 'NYCHA Campuses',
     exclude: [],
     dataPath: 'data/nycha.topojson',
   },
