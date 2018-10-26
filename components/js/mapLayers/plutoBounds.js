@@ -33,7 +33,7 @@ plutoBoundsLayer.drawLayer = function drawLayer() {
       class: `${name}-layer`,
       opacity: 0,
     })
-    .on('mouseover', () => {
+    .on('mouseover click', () => {
       tooltip
         .position([d3.event.x + 10, d3.event.y + 10])
         .text([

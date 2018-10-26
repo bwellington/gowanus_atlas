@@ -44,7 +44,7 @@ const privateMethods = {
           fillColor: color[geoPoint.properties.race],
           fillOpacity: 0.75,
         })
-        .on('mouseover', (e) => {
+        .on('mouseover click', (e) => {
         //   console.log('props', geoPoint.properties);
 
           const pos = [

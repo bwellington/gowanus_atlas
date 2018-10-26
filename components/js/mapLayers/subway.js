@@ -33,7 +33,7 @@ const drawStations = function drawStations() {
       class: `${name}-layer ${name}-layer--station`,
       r: 0,
     })
-    .on('mouseover', (d) => {
+    .on('mouseover click', (d) => {
       const prop = d.properties;
       console.log('station', d);
       // scale by d.properties.total_rack
@@ -81,7 +81,7 @@ const drawLines = function drawLines() {
       class: `${name}-layer ${name}-layer--line`,
       'stroke-width': 0,
     })
-    .on('mouseover', (d) => {
+    .on('mouseover click', (d) => {
       const prop = d.properties;
       tooltip
         .position([d3.event.x + 10, d3.event.y + 10])

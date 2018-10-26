@@ -24,7 +24,7 @@ parksLayer.drawLayer = function drawLayer() {
     .enter()
     .append('path')
     .attr('class', `${name}-layer`)
-    .on('mouseover', (d) => {
+    .on('mouseover click', (d) => {
       const prop = d.properties;
 
       tooltip

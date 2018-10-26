@@ -28,7 +28,7 @@ const getPlutoBase = ({ privateProps, privateMethods }) => ({
             tooltip.remove();
           });
 
-          layer.on('mouseover', (e) => {
+          layer.on('mouseover click', (e) => {
             layer.setStyle({
               fillOpacity: 1,
             });

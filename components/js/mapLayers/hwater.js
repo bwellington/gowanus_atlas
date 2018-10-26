@@ -60,7 +60,7 @@ const drawWetlands = function drawWetlands() {
       opacity: 0,
     })
     .style('pointer-events', 'none')
-    .on('mouseover', () => {
+    .on('mouseover click', () => {
       tooltip
         .position([d3.event.x + 10, d3.event.y + 10])
         .text([
@@ -108,7 +108,7 @@ const drawWater = function drawWater() {
       opacity: 0,
     })
     .style('pointer-events', 'none')
-    .on('mouseover', () => {
+    .on('mouseover click', () => {
       tooltip
         .position([d3.event.x + 10, d3.event.y + 10])
         .text([

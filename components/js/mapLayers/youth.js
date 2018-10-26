@@ -28,7 +28,7 @@ const privateMethods = {
           fillColor: 'rgba(74, 217, 217, 1)',
           fillOpacity: 0.75,
         })
-        .on('mouseover', (e) => {
+        .on('mouseover click', (e) => {
           const text = '1 Dot = 10 People';
           const pos = [
             e.containerPoint.x + tooltipOffset.x,

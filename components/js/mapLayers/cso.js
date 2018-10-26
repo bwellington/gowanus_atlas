@@ -63,7 +63,7 @@ csoLayer.drawCsoOutfall = function drawOutfall() {
         return baseClass;
       },
     })
-    .on('mouseover', (d) => {
+    .on('mouseover click', (d) => {
       this.toggleActive(d.properties.outfall_id, true);
       if (d.properties.volume_16 === null) {
         tooltip
@@ -108,7 +108,7 @@ csoLayer.drawCsoArea = function drawLayer() {
       class: d => `${name}-layer ${name}-layer--${d.properties.outfall}`,
       opacity: 0,
     })
-    .on('mouseover', (d) => {
+    .on('mouseover click', (d) => {
       this.toggleActive(d.properties.outfall, true);
       tooltip
         .position([d3.event.x + 10, d3.event.y + 10])

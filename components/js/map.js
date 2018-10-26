@@ -13,6 +13,10 @@ const Map = ({ bounds, container }) => {
     attribution: "&copy; <a href='http://osm.org/copyright'>OpenStreetMap</a> contributors",
   }).addTo(map);
 
+  map.on('movestart', () => {
+    d3.selectAll('.tooltip').remove();
+  });
+  
   return map;
 };
 

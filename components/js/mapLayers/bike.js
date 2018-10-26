@@ -31,7 +31,7 @@ const drawBikeRacks = function drawBikeRacks() {
       class: `${name}-layer ${name}-layer--rack`,
       r: 0,
     })
-    .on('mouseover', (d) => {
+    .on('mouseover click', (d) => {
       const prop = d.properties;
       // scale by d.properties.total_rack
       tooltip
@@ -82,7 +82,7 @@ const drawBikeRoutes = function drawBikeRoutes() {
       class: `${name}-layer ${name}-layer--route`,
       'stroke-width': 0,
     })
-    .on('mouseover', (d) => {
+    .on('mouseover click', (d) => {
       const prop = d.properties;
       tooltip
         .position([d3.event.x + 10, d3.event.y + 10])

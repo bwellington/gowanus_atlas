@@ -47,7 +47,7 @@ galleriesLayer.drawLayer = function drawLayer() {
       r: 5,
     })
     .style('opacity', 0)
-    .on('mouseover', (d) => {
+    .on('mouseover click', (d) => {
       tooltip
         .position([d3.event.x + 10, d3.event.y + 10])
         .text([

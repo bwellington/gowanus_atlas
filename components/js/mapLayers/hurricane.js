@@ -52,7 +52,7 @@ hurricaneLayer.drawLayer = function drawLayer() {
       opacity: 0,
     })
     .style('pointer-events', 'none')
-    .on('mouseover', function mouseover(d) {
+    .on('mouseover click', function mouseover(d) {
       d3.select(this)
         .transition()
         .duration(highlightSpeed)

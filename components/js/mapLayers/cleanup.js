@@ -49,7 +49,7 @@ const privateMethods = {
             opacity: 1,
             cursor: 'pointer',
           })
-          .on('mouseover', function mouseover(dd) {
+          .on('mouseover click', function mouseover(dd) {
             const text = [['Cleanup Stage: ', dd.properties.stage]];
             const transitionSpeed = 150;
 

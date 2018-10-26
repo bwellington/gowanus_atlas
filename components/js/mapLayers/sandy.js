@@ -23,7 +23,7 @@ sandyLayer.drawLayer = function drawLayer() {
     .attrs({
       class: `${name}-layer`,
     })
-    .on('mouseover', () => {
+    .on('mouseover click', () => {
       d3.selectAll(`.${name}-layer`)
         .classed(`${name}-layer--selected`, true);
       tooltip

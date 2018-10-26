@@ -28,7 +28,7 @@ femaLayer.drawLayer = function drawLayer() {
     .attrs({
       class: `${name}-layer`,
     })
-    .on('mouseover', (d) => {
+    .on('mouseover click', (d) => {
       const prop = d.properties;
       tooltip
         .position([d3.event.x + 10, d3.event.y + 10])
