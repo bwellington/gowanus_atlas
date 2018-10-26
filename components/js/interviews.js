@@ -9,7 +9,7 @@ const interviews = [
     category: 'Culture',
     description: 'Abby is an artist and the Executive Director of Arts Gowanus, a local non-profit organization working to support, promote, and advocate for local artists and a sustainable arts community. Each year the organization sponsors Gowanus Open Studios, an event held in October that showcases local artists and their work, connecting them to the greater New York City community.',
     layers: ['galleries', 'watershed'],
-    quote: 'There’s a reason gowanus has become such a hub of creativity and artists’ culture, and that’s because of the affordable spaces that are here, and it’s because of the history of industry and manufacturing that has been going on in Gowanus for a couple hundred years now.',
+    quote: 'There’s a reason Gowanus has become such a hub of creativity and artists’ culture, and that’s because of the affordable spaces that are here, and it’s because of the history of industry and manufacturing that has been going on in Gowanus for a couple hundred years now.',
   },
   {
     name: 'basile',
@@ -31,7 +31,7 @@ const interviews = [
     category: 'Social Landscape',
     description: 'While working as Parent Coordinator at the Brooklyn School of Collaborative Studies, Tracey co-founded the Gowanus Houses Art Collective, an arts youth program for the complex where she is a long time resident. She sees the program as a bridge to the creative community in the surrounding wealthier neighborhoods, offering them a window into life in the public housing complex.',
     layers: ['youth', 'nycha', 'watershed'], // nycha, gowanus houses
-    quote: 'For many years the canal reeked, the smell was just horrible, and in the summer it permeated, it was just sickening. And so now there’s this superfund, and there’s this big concern about the cleanup.',
+    quote: 'For many years the canal reeked, the smell was just horrible, and in the summer it permeated, it was just sickening. And so now there’s this Superfund, and there’s this big concern about the cleanup.',
   },
   {
     name: 'uz',
@@ -73,7 +73,7 @@ const interviews = [
     videoPath: 'https://player.vimeo.com/video/275932414',
     imagePath: 'jpg/wolfe.jpg',
     category: 'Culture',
-    description: 'Sue Wolfe and her husband have called Brownstone Brooklyn "home" since the 1960\'s, first owning a brownstone in Fort Greene, then moving to a house in Boerum Hill, purchasing a house with their daughter in Red Hook and most recently buying a coop in Fort Greene. She is the President of Friends of Thomas Green Park, a non-profit advocating for the preservation of public park space in the Gowanus community.',
+    description: 'Sue Wolfe has called Brownstone Brooklyn "home" since the 1960\'s, first owning a brownstone in Fort Greene, then moving to a house in Boerum Hill, purchasing a house with their daughter in Red Hook and most recently buying a coop in Fort Greene. She is the President of Friends of Thomas Green Park, a non-profit advocating for the preservation of public park space in the Gowanus community.',
     layers: ['parks', 'watershed'],
     quote: 'The community needs more parks, more green space – we don’t see that happening.',
   },
@@ -128,7 +128,7 @@ const interviews = [
     videoPath: 'https://player.vimeo.com/video/275932122',
     imagePath: 'jpg/reich.jpg',
     category: 'Infrastructure',
-    description: 'As one of the designers of the original Swift Folder, Peter, an industrial designer currently fills custom orders and prepares single speed and eight speed internally geared versions of the bike for sale. His shop is located at 543 Union Street and he lives directly adjacent to the proposed staging area for the gallon retention tank facility at the north end of the canal.',
+    description: 'Peter is an industrial designer and one of the founders of the original Swift Folder bicycle. His fabrication shop is located at 543 Union Street and he lives directly adjacent to the proposed staging area for the 8 million gallon retention tank facility at the north end of the canal.',
     //  Art Galleries, Manufacturing Businesses, Bicycle Paths
     layers: ['manufacturingLandUse', 'bike', 'galleries', 'watershed'],
     quote: 'My vision of the canal is to, as much as possible, maintain the charming post-industrial wasteland aura that makes it so attractive.',
@@ -138,7 +138,7 @@ const interviews = [
     fullName: 'Ed Tyre',
     title: 'Gowanus Tenants Association',
     category: 'Social Landscape',
-    description: 'Ed is an advocate for expanding the conversation about resiliency and the sustainability in the Gowanus community to include the resiliency and sustainability of the people of the community as a whole. As a community leader he calls on the city to recognize that environmental impacts are not shared equally in the area and prioritize addressing those burdens that disproportionately destroy the health and safety of low-income residents and people of color.',
+    description: 'Ed is an advocate for expanding the conversation about resiliency and sustainability in the Gowanus to include the resiliency and sustainability of the community’s people. As a community leader he calls on the city to recognize that environmental impacts are not shared equally in the area and prioritize addressing those burdens that disproportionately destroy the health and safety of low-income residents and people of color.',
     quote: 'My vision for the future of Gowanus…is the people to get their just due and for, you know the people that live here to understand their value. We have to give people a way of expressing themselves.',
     layers: ['youth', 'senior', 'watershed'],
     videoPath: 'https://player.vimeo.com/video/276641721',
@@ -195,7 +195,7 @@ const interviews = [
     title: 'Architectural Grille',
     category: 'Built Environment',
     description: 'Anthony is the President and Founder of Architectural Grille located on Second Avenue. He was born and raised in the Dyker Heights and began his career working alongside his mentor and father Federico Giumenta and his two brothers Michael and Fred. After earning his degree in Architectural & Mechanical Design, Anthony formed Architectural Grille. His sons Anthony Jr. and Stephen are Vice Presidents of the company. ',
-    quote: 'Sandy really hurt us very bad, very bad. You know, I come in that Monday morning and I didn’t believe my eyes. It was complete disaster.',
+    quote: 'Sandy really hurt us very bad, very bad. You know, I come in that Monday morning and I didn’t believe my eyes. It was a complete disaster.',
     // Layers: Manufacturing Businesses, Flood Zones
     layers: ['manufacturingLandUse', 'sandy', 'watershed'],
     videoPath: 'https://player.vimeo.com/video/275930518',

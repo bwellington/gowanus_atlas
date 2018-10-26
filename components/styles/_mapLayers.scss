@@ -4,9 +4,25 @@
 //   left: 50px;
 // }
 
-$layer-pink: rgb(255, 0, 229);
-$layer-green: rgb(97, 255, 58);
-$layer-blue: rgb(57, 228, 255);
+$layer-red-solid: rgba(242, 60, 80, 1);
+$layer-red-medium: rgba(242, 60, 80, .5);
+$layer-red-light: rgba(242, 60, 80, .15);
+
+$layer-yellow-solid: rgba(255, 203, 5, 1);
+$layer-yellow-medium: rgba(255, 203, 5, .5);
+$layer-yellow-light: rgba(255, 203, 5, .15);
+
+$layer-white-solid: rgba(233, 241, 223, 1);
+$layer-white-medium: rgba(233, 241, 223, .5);
+$layer-white-light: rgba(233, 241, 223, .15);
+
+$layer-blue-solid: rgba(74, 217, 217, 1);
+$layer-blue-medium: rgba(74, 217, 217, .5);
+$layer-blue-light: rgba(74, 217, 217, .15);
+
+$layer-green-solid: rgba(79, 185, 159, 1);
+$layer-green-medium: rgba(79, 185, 159, .5);
+$layer-green-light: rgba(79, 185, 159, .15);
 
 .galleries-layer {
   fill: rgba(255, 165, 0, .8);
@@ -44,7 +60,7 @@ $layer-blue: rgb(57, 228, 255);
 }
 
 .plutoBounds-layer {
-  stroke: $layer-blue;
+  stroke: $layer-blue-solid;
   stroke-width: 4;
   stroke-dasharray: 5,5;
 }
@@ -80,6 +96,25 @@ $layer-blue: rgb(57, 228, 255);
   fill: rgba(255, 165, 0, .5);
 }
 
+.parks-layer {
+  stroke: $layer-green-solid;
+  fill: $layer-green-light;
+}
+
+.parks-layer:hover {
+  fill: $layer-green-medium;
+}
+
+.nycha-layer {
+  stroke: $layer-red-solid;
+  fill: $layer-red-light;
+}
+
+.nycha-layer:hover {
+  fill: $layer-red-medium;
+}
+
+
 .bike-layer--rack,
 .subway-layer--station,
 .bus-layer--stop,
@@ -112,6 +147,32 @@ $layer-blue: rgb(57, 228, 255);
 .bike-layer--route:hover {
   // stroke-width: 4.5;
   stroke: white;
+}
+
+.subway-layer--station {
+  stroke: $layer-white-solid;
+  fill: $layer-red-medium;
+}
+
+.subway-layer--station:hover {
+  fill: $layer-red-solid;
+}
+
+.subway-layer--line {
+  stroke: $layer-red-solid;
+}
+
+.bus-layer--route {
+  stroke: $layer-blue-solid;
+}
+
+.bus-layer--stop {
+  stroke: $layer-white-solid;
+  fill: $layer-blue-medium;
+}
+
+.bus-layer--stop:hover {
+  fill: $layer-blue-solid;
 }
 
 .hwater-layer,

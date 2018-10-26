@@ -26,7 +26,7 @@ const privateMethods = {
         return L.circleMarker(latlng, {
           radius: 2,
           stroke: false,
-          fillColor: 'orange',
+          fillColor: 'rgba(242, 60, 80, 1)',
           fillOpacity: 0.75,
         })
         .on('mouseover', (e) => {
@@ -38,7 +38,7 @@ const privateMethods = {
           tooltip
               .position(pos)
               .text([
-                ['', 'Orange Dot = > 64 Years Old'],
+                ['', 'Red Dot = > 64 Years Old'],
                 ['', text],
               ])
               .draw();

@@ -25,7 +25,7 @@ const privateMethods = {
         return L.circleMarker(latlng, {
           radius: 2,
           stroke: false,
-          fillColor: 'blue',
+          fillColor: 'rgba(74, 217, 217, 1)',
           fillOpacity: 0.75,
         })
         .on('mouseover', (e) => {
