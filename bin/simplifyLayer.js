@@ -16,6 +16,12 @@ const args = {
 //   output: 'build/data/BKMapPlutoClipped.topojson',
 // });
 
+// bounds
+Object.assign(args, {
+  input: 'rawData/newbounds/rezoning.shp',
+  output: 'build/data/rezoning.topojson',
+});
+
 // fema
 // Object.assign(args, {
 //   input: 'rawData/fema_flood/s_fld_haz_ar.shp',
@@ -129,10 +135,10 @@ const args = {
 // });
 
 // police
-Object.assign(args, {
-  input: 'rawData/police.geojson',
-  output: 'build/data/police.topojson',
-});
+// Object.assign(args, {
+//   input: 'rawData/police.geojson',
+//   output: 'build/data/police.topojson',
+// });
 
 const {
   input,

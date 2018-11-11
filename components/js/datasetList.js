@@ -170,7 +170,7 @@ export const mapDatasetList = [
     category: 'Built Environment',
     fullName: 'Approximate Rezoning Area',
     exclude: [],
-    dataPath: 'data/plutoBounds.topojson',
+    dataPath: 'data/rezoning.topojson',
   },
   {
     name: 'assessedValue',

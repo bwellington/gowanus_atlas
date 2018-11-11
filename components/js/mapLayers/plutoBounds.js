@@ -24,7 +24,7 @@ const plutoBoundsLayer = new MapOverlayLayer()
 plutoBoundsLayer.drawLayer = function drawLayer() {
   const { data, group, refreshMap, name, tooltip } = this.props();
 
-  const geoJSON = topojson.feature(data, data.objects.plutobounds);
+  const geoJSON = topojson.feature(data, data.objects.rezoning);
 
   group
     .append('path')
@@ -37,7 +37,7 @@ plutoBoundsLayer.drawLayer = function drawLayer() {
       tooltip
         .position([d3.event.x + 10, d3.event.y + 10])
         .text([
-          ['', 'Study Area (Approximate Bounds of Rezoning)'],
+          ['', 'Approximate Bounds of Rezoning'],
         ])
         .draw();
     })
