@@ -23,6 +23,7 @@ import subwayLayer from './mapLayers/subway';
 import nychaLayer from './mapLayers/nycha';
 import schoolLayer from './mapLayers/school';
 import policeLayer from './mapLayers/police';
+import ibzLayer from './mapLayers/ibz';
 
 
 import plutoBounds from './mapLayers/plutoBounds';
@@ -91,6 +92,7 @@ addDataInfoToLayer({ layer: parksLayer, dataName: 'parks' });
 addDataInfoToLayer({ layer: hurricaneLayer, dataName: 'hurricane' });
 addDataInfoToLayer({ layer: sandyLayer, dataName: 'sandy' });
 addDataInfoToLayer({ layer: historicWaterLayer, dataName: 'hwater' });
+addDataInfoToLayer({ layer: ibzLayer, dataName: 'ibz' });
 
 const mapOverlay = new MapOverlay()
   .coordinateBounds(svgBounds)
@@ -111,6 +113,7 @@ const mapOverlay = new MapOverlay()
   .addVectorLayer(nychaLayer)
   .addVectorLayer(policeLayer)
   .addVectorLayer(schoolLayer)
+  .addVectorLayer(ibzLayer)
   .selectedLayers(state.selectedLayers())
   .addTo(leafletMap);
 

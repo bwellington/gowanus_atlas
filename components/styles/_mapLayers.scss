@@ -65,11 +65,21 @@ $layer-green-light: rgba(79, 185, 159, .15);
   stroke-dasharray: 5,5;
 }
 
+.ibz-layer {
+  stroke: $layer-red-solid;
+  stroke-width: 4;
+  stroke-dasharray: 5,5;
+  fill: none;
+  cursor: pointer;
+}
+
+
 .watershed-layer:hover,
 .plutoBounds-layer:hover {
   stroke-width: 3.5;
 }
 
+.ibz-layer:hover,
 .plutoBounds-layer:hover {
   stroke-width: 5;
 }

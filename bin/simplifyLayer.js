@@ -17,10 +17,10 @@ const args = {
 // });
 
 // bounds
-Object.assign(args, {
-  input: 'rawData/newbounds/rezoning.shp',
-  output: 'build/data/rezoning.topojson',
-});
+// Object.assign(args, {
+//   input: 'rawData/newbounds/rezoning.shp',
+//   output: 'build/data/rezoning.topojson',
+// });
 
 // fema
 // Object.assign(args, {
@@ -139,6 +139,12 @@ Object.assign(args, {
 //   input: 'rawData/police.geojson',
 //   output: 'build/data/police.topojson',
 // });
+
+// ibz
+Object.assign(args, {
+  input: 'rawData/newbounds/ibz.shp',
+  output: 'build/data/ibz.geojson',
+});
 
 const {
   input,

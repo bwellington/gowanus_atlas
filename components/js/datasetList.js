@@ -16,7 +16,7 @@ export const mapDatasetList = [
     name: 'hurricane',
     render: 'd3',
     category: 'Hydrology',
-    fullName: 'Hurricane Evactuation Zones',
+    fullName: 'Hurricane Evacuation Zones',
     exclude: [],
     dataPath: 'data/hurricaneZonesClipped.topojson',
   },
@@ -228,6 +228,14 @@ export const mapDatasetList = [
     fullName: 'Police Precincts',
     exclude: [],
     dataPath: 'data/police.topojson',
+  },
+  {
+    name: 'ibz',
+    render: 'd3',
+    category: 'Built Environment',
+    fullName: 'Southwest Brooklyn Industrial Business Zone',
+    exclude: [],
+    dataPath: 'data/ibz.geojson',
   },
 ];
 
