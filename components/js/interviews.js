@@ -19,7 +19,7 @@ const interviews = [
     imagePath: 'jpg/basile.jpg',
     category: 'Built Environment',
     description: 'A property manager and developer, Paul founded Gowanus Alliance in 2010 with three friends, all second and third generation businessmen in the surrounding area. Paul promotes the retention of manufacturing, industrial, creative, and entertainment businesses in the Gowanus community; seeks a new location for the Kentile sign he rescued prior to its demolition; and advocates for new community playgrounds and parks.',
-    layers: ['manufacturingLandUse', 'watershed'],
+    layers: ['manufacturingLandUse', 'ibz', 'watershed'],
     quote: 'We need more of the same. We need more space for the manufacturers to feel comfortable that they can grow into a 5 or 10 year plan.',
   },
   {
@@ -197,7 +197,7 @@ const interviews = [
     description: 'Anthony is the President and Founder of Architectural Grille located on Second Avenue. He was born and raised in the Dyker Heights and began his career working alongside his mentor and father Federico Giumenta and his two brothers Michael and Fred. After earning his degree in Architectural & Mechanical Design, Anthony formed Architectural Grille. His sons Anthony Jr. and Stephen are Vice Presidents of the company. ',
     quote: 'Sandy really hurt us very bad, very bad. You know, I come in that Monday morning and I didn’t believe my eyes. It was a complete disaster.',
     // Layers: Manufacturing Businesses, Flood Zones
-    layers: ['manufacturingLandUse', 'sandy', 'watershed'],
+    layers: ['manufacturingLandUse', 'sandy', 'ibz', 'watershed'],
     videoPath: 'https://player.vimeo.com/video/275930518',
     imagePath: 'jpg/giumenta.jpg',
   },
